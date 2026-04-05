@@ -1,0 +1,19 @@
+services:
+  ows-app-web:
+    container_name: "ows-app-web"
+    image: "octalmesh/ows-app-web"
+    ports:
+      - "${SHOP_WEB_PORT:-3000}:${SHOP_WEB_PORT:-3000}"
+    volumes:
+      - "ows-app-web-node-modules:/app/node_modules"
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SHOP_WEB_PORT:-3000}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+      start_interval: 2s
+
+# Dedicated volumes for caching
+volumes:
+  ows-app-web-node-modules:
