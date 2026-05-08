@@ -16,10 +16,9 @@ WORKDIR /app
 # ============================================================================ #
 FROM base AS deps
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 
 # ============================================================================ #
 #                         Stage: Static Build                                  #
