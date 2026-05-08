@@ -16,9 +16,10 @@ WORKDIR /app
 # ============================================================================ #
 FROM base AS deps
 
-COPY package*.json ./
+COPY ../../package.json ./
+COPY ../../package-lock.json ./
 
-RUN npm ci
+RUN npm install
 
 # ============================================================================ #
 #                         Stage: Static Build                                  #
@@ -32,7 +33,7 @@ COPY . .
 
 ENV NODE_ENV=production
 
-RUN npm run build
+RUN npm run build && mkdir -p /app/public
 
 # ============================================================================ #
 #                         Stage: Production Runtime                            #
@@ -47,8 +48,8 @@ COPY --from=deps       /app/node_modules    ./node_modules
 COPY --from=builder    /app/.next           ./.next
 COPY --from=builder    /app/.next/static    ./.next/static
 COPY --chown=node:node package*.json        ./
-COPY --chown=node:node next.config.ts       ./
-COPY --chown=node:node public/              ./public/
+COPY --from=builder    /app/next.config.ts  ./
+COPY --from=builder    /app/public          ./public/
 
 ENV NODE_ENV=production
 ENV SHOP_WEB_PORT=3001
