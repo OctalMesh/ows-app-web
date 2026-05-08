@@ -16,8 +16,8 @@ WORKDIR /app
 # ============================================================================ #
 FROM base AS deps
 
-COPY ../../package.json ./
-COPY ../../package-lock.json ./
+COPY ../../../package.json ./
+COPY ../../../package-lock.json ./
 
 RUN npm install
 
