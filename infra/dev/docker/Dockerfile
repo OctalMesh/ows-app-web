@@ -7,7 +7,6 @@
 
 FROM node:22-alpine AS base
 
-# Install system dependencies for native module compatibility
 RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
@@ -19,7 +18,6 @@ FROM base AS deps
 
 COPY package*.json ./
 
-# Use 'npm ci' for deterministic dependency resolution from lockfile
 RUN npm ci
 
 # ============================================================================ #
@@ -29,17 +27,17 @@ FROM base AS development
 
 WORKDIR /app
 
-# Sync node_modules from the 'deps' stage to isolate build artifacts
-COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+ENV NODE_ENV=development
+ENV SHOP_WEB_PORT=3001
 
-# Copy source manifest
+USER root
+
+RUN mkdir -p /app/.next && chown -R node:node /app
+
+COPY --from=deps --chown=node:node /app/node_modules ./node_modules
 COPY --chown=node:node . .
 
-# Runtime environment configuration
-ENV NODE_ENV=development
-ENV SHOP_WEB_PORT=3000
-
+USER node
 EXPOSE ${SHOP_WEB_PORT}
 
-# Execute development server
 CMD ["sh", "-c", "npm run dev -- --port ${SHOP_WEB_PORT}"]

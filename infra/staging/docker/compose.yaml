@@ -1,4 +1,4 @@
-name: "octalweb-shop-dev"
+name: "octalweb-shop-staging"
 
 # Common defaults for services.
 # Reused via "<<: *defaults" to avoid duplication.
@@ -9,7 +9,7 @@ x-defaults: &defaults
   env_file:
     - "../.env"
   networks:
-    - "octalnet-shop-dev"
+    - "octalnet-shop-staging"
 
 services:
   # ========================================================================== #
@@ -22,15 +22,11 @@ services:
     image: "octalmesh/ows-app-web"
     build:
       context: "../../../.."
-      dockerfile: "apps/web/infra/dev/docker/Dockerfile"
+      dockerfile: "apps/web/infra/staging/docker/Dockerfile"
     ports:
-      - "${SHOP_WEB_PORT:-3001}:${SHOP_WEB_PORT:-3001}"
-    volumes:
-      - "../../../:/app"
-      - "ows-app-web-node-modules:/app/node_modules"
-      - "ows-app-web-next:/app/.next"
+      - "${SHOP_WEB_PORT:-3000}:${SHOP_WEB_PORT:-3000}"
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SHOP_WEB_PORT:-3001}"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SHOP_WEB_PORT:-3000}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -39,10 +35,5 @@ services:
 
 # Dedicated isolated networks
 networks:
-  octalnet-shop-dev:
-    name: "octalnet-shop-dev"
-
-# Dedicated volumes for caching
-volumes:
-  ows-app-web-node-modules:
-  ows-app-web-next:
+  octalnet-shop-staging:
+    name: "octalnet-shop-staging"

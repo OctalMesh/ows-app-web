@@ -1,0 +1,5 @@
+services:
+  ows-app-web:
+    build:
+      context: "../../.."
+      dockerfile: "infra/staging/docker/Dockerfile"

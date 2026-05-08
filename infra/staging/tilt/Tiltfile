@@ -1,0 +1,3 @@
+version_settings(constraint='>=0.33.0')
+
+dc_resource('ows-app-web', labels=['app'])

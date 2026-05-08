@@ -1,7 +1,7 @@
 # ============================================================================ #
-#                        OctalWeb: Shop | Production Node                      #
+#                        OctalWeb: Shop | Staging Node                         #
 # ============================================================================ #
-# Multi-stage Dockerfile for a production-ready environment.                   #
+# Multi-stage Dockerfile for a production-like staging environment.            #
 # Produces a fully built Next.js application with optimized runtime.           #
 # ============================================================================ #
 
@@ -35,9 +35,9 @@ ENV NODE_ENV=production
 RUN npm run build
 
 # ============================================================================ #
-#                         Stage: Production Runtime                            #
+#                         Stage: Staging Runtime                               #
 # ============================================================================ #
-FROM node:22-alpine AS production
+FROM node:22-alpine AS staging
 
 RUN apk add --no-cache libc6-compat
 
