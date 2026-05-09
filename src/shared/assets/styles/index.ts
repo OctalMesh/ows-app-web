@@ -1,2 +1,2 @@
-import "./globals.css";
 import "./fonts.css";
+import "./globals.css";

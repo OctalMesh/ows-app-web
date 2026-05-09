@@ -121,11 +121,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={cn(
-        "font-sans",
-        inter.variable,
-        spaceGroteskHeading.variable,
-      )}
+      className={cn("font-sans", inter.variable, spaceGroteskHeading.variable)}
       suppressHydrationWarning
     >
       <body>
