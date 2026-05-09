@@ -67,6 +67,9 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: "Update npm"
+        run: npx npm@11 install -g npm@11
+
       - name: "Install Node.js dependencies"
         if: matrix.language == 'javascript-typescript'
         run: npm ci
