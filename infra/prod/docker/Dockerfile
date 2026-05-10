@@ -18,6 +18,8 @@ FROM base AS deps
 
 COPY package*.json ./
 
+RUN npx npm@11 install -g npm@11
+
 RUN npm ci
 
 # ============================================================================ #
