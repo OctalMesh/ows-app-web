@@ -6,6 +6,9 @@ import { ThemeProvider } from "next-themes";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 
+import { Footer } from "@widgets/footer";
+import { Header } from "@widgets/header";
+
 import { routing } from "@shared/i18n";
 import { cn } from "@shared/lib";
 
@@ -121,13 +124,22 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html
       lang={locale}
-      className={cn("font-sans", inter.variable, spaceGroteskHeading.variable)}
+      className={cn(inter.variable, spaceGroteskHeading.variable)}
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <NextIntlClientProvider locale={locale}>
-            {children}
+            <Header />
+            <main className="relative z-10 border-b bg-background">
+              {children}
+            </main>
+            <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
