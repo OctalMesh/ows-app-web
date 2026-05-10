@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer
       className={cn(
-        "sticky bottom-0 left-0 z-0 h-svh w-full bg-foreground/2",
+        "sticky bottom-0 left-0 z-0 h-dvh w-full bg-foreground/2",
         "flex flex-col",
       )}
     >
