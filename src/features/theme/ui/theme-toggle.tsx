@@ -27,7 +27,7 @@ export function ThemeToggle() {
           light={<IconSun />}
           dark={<IconMoon />}
           system={<IconDeviceDesktop />}
-          fallback={<span />}
+          fallback={<IconDeviceDesktop />}
         />
         <span className="sr-only">{t("toggle")}</span>
       </DropdownMenuTrigger>

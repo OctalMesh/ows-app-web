@@ -23,7 +23,7 @@ export function ThemeSwitcher({
   system,
   fallback,
 }: ThemeSwitchProps) {
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
 
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -41,7 +41,7 @@ export function ThemeSwitcher({
     case Theme.DARK:
       return dark;
     case Theme.SYSTEM:
-      return system ?? light;
+      return system ?? (resolvedTheme === Theme.DARK ? dark : light);
     default:
       return light;
   }
