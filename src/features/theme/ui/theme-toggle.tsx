@@ -1,9 +1,11 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
-import { IconMoon, IconSun } from "@tabler/icons-react";
+import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
+import { Theme } from "@shared/config";
 import { Button } from "@shared/ui/button";
 import {
   DropdownMenu,
@@ -12,27 +14,35 @@ import {
   DropdownMenuTrigger,
 } from "@shared/ui/dropdown-menu";
 
+import { ThemeSwitcher } from "./theme-switcher";
+
 export function ThemeToggle() {
   const { setTheme } = useTheme();
+  const t = useTranslations("theme");
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Button variant="outline" size="icon">
-          <IconSun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <IconMoon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+      <DropdownMenuTrigger render={<Button variant="outline" size="icon" />}>
+        <ThemeSwitcher
+          light={<IconSun />}
+          dark={<IconMoon />}
+          system={<IconDeviceDesktop />}
+          fallback={<span />}
+        />
+        <span className="sr-only">{t("toggle")}</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+        <DropdownMenuItem onClick={() => setTheme(Theme.SYSTEM)}>
+          <IconDeviceDesktop />
+          {t("system")}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+        <DropdownMenuItem onClick={() => setTheme(Theme.LIGHT)}>
+          <IconSun />
+          {t("light")}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+        <DropdownMenuItem onClick={() => setTheme(Theme.DARK)}>
+          <IconMoon />
+          {t("dark")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

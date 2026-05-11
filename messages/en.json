@@ -7,6 +7,12 @@
   "common": {
     "brand": "Octal Mesh"
   },
+  "theme": {
+    "toggle": "Toggle Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
   "footer": {
     "copyright": "© 2025 Octal Mesh. All rights reserved.",
     "about": "About Us",

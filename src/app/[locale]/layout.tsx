@@ -2,12 +2,13 @@ import { ReactNode } from "react";
 
 import type { Metadata } from "next";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { ThemeProvider } from "next-themes";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Footer } from "@widgets/footer";
 import { Header } from "@widgets/header";
+
+import { ThemeProvider } from "@features/theme";
 
 import { routing } from "@shared/i18n";
 import { cn } from "@shared/lib";
@@ -128,12 +129,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       suppressHydrationWarning
     >
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <NextIntlClientProvider locale={locale}>
             <Header />
             <main className="relative z-10 border-b bg-background">

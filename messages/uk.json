@@ -7,6 +7,12 @@
   "common": {
     "brand": "Octal Mesh"
   },
+  "theme": {
+    "toggle": "Перемкнути тему",
+    "system": "Системна",
+    "light": "Світла",
+    "dark": "Темна"
+  },
   "footer": {
     "copyright": "© 2025 Octal Mesh. Всі права захищені.",
     "about": "Про нас",
