@@ -15,11 +15,12 @@ export function Footer() {
   return (
     <footer
       className={cn(
-        "sticky bottom-0 left-0 z-0 h-dvh w-full bg-foreground/2",
+        "sticky bottom-0 left-0 z-0 w-full bg-foreground/2",
         "flex flex-col",
+        "min-h-dvh transition-[min-height] duration-300 ease-out",
       )}
     >
-      <div className={cn("h-full", "grid grid-cols-1 sm:grid-cols-2")}>
+      <div className="grid flex-1 grid-cols-1 sm:grid-cols-2">
         <div className="p-8">
           <LogoOctalMesh className="h-auto w-full" />
         </div>
