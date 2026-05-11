@@ -1,14 +1,16 @@
 "use client";
 
 import * as React from "react";
+import { useTransition } from "react";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+import { useParams } from "next/navigation";
 
-import {
-  DEFAULT_LOCALE,
-  SUPPORTED_LOCALES,
-  getLanguageOptions,
-} from "@shared/i18n";
+import { SelectRootChangeEventDetails } from "@base-ui/react";
+import { IconLanguage } from "@tabler/icons-react";
+
+import { usePathname, useRouter } from "@shared/i18n";
+import { getLanguageOptions } from "@shared/i18n";
 import {
   Select,
   SelectContent,
@@ -19,45 +21,48 @@ import {
   SelectValue,
 } from "@shared/ui/select";
 
-function isLocale(value: string | undefined): value is Locale {
-  return !!value && (SUPPORTED_LOCALES as readonly string[]).includes(value);
-}
-
 export function LanguageSwitcher() {
-  const pathname = usePathname() ?? "/";
+  const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
   const selectId = React.useId();
   const contentId = `language-select-content-${selectId}`;
-
-  const current = React.useMemo((): Locale => {
-    const re = /^\/([a-z]{2})(?:\/|$)/;
-    const m = re.exec(pathname);
-    return m && isLocale(m[1]) ? m[1] : DEFAULT_LOCALE;
-  }, [pathname]);
+  const [isPending, startTransition] = useTransition();
 
   const options = getLanguageOptions();
 
-  function handleChange(code: string | null) {
-    const newLocale = isLocale(code ?? undefined) ? code! : DEFAULT_LOCALE;
-    const base = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "");
-    const href = `/${newLocale}${base}`;
-    router.push(href);
+  function handleChange(
+    newLocale: Locale | null,
+    _eventDetails: SelectRootChangeEventDetails,
+  ) {
+    if (!newLocale || newLocale === locale) {
+      return;
+    }
+
+    const searchParams = { ...params };
+    delete searchParams.locale;
+
+    startTransition(() => {
+      router.replace(
+        { pathname, query: searchParams },
+        { locale: newLocale, scroll: false },
+      );
+    });
   }
 
   return (
-    <Select
-      value={current}
-      onValueChange={(value) => handleChange(value ?? null)}
-    >
+    <Select value={locale} onValueChange={handleChange} disabled={isPending}>
       <SelectTrigger
         size="lg"
         className="rounded-4xl border-border bg-background px-4 py-2 hover:bg-muted dark:bg-transparent dark:hover:bg-input/30"
         aria-label="Change language"
         aria-controls={contentId}
       >
+        <IconLanguage />
         <SelectValue>
           {(value: string) => {
-            const selected = options.find((option) => option.code === value);
+            const selected = options.find((o) => o.code === value);
             return selected ? selected.code.toUpperCase() : value;
           }}
         </SelectValue>
