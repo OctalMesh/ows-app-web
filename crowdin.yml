@@ -1,3 +1,0 @@
-files:
-  - source: /messages/uk.json
-    translation: /messages/%two_letters_code%.json
