@@ -14,14 +14,17 @@ import { routing } from "@shared/i18n";
 import { cn } from "@shared/lib";
 
 //<editor-fold desc="Fonts" defaultstate="collapsed">
+
 const spaceGroteskHeading = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-heading",
 });
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
 //</editor-fold>
 
 //<editor-fold desc="Metadata" defaultstate="collapsed">
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://octalmesh.com"),
   title: { default: "OctalMesh", template: "%s | OctalMesh" },
@@ -38,30 +41,30 @@ export const metadata: Metadata = {
     icon: [
       /* Light mode favicons */
       {
-        url: "/assets/favicon.ico",
+        url: "/favicon.ico",
         sizes: "any",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/assets/favicon-16.png",
+        url: "/favicon-16.png",
         sizes: "16x16",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/assets/favicon-32.png",
+        url: "/favicon-32.png",
         sizes: "32x32",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/assets/favicon-48.png",
+        url: "/favicon-48.png",
         sizes: "48x48",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
       },
       {
-        url: "/assets/favicon-96.png",
+        url: "/favicon-96.png",
         sizes: "96x96",
         type: "image/png",
         media: "(prefers-color-scheme: light)",
@@ -69,30 +72,30 @@ export const metadata: Metadata = {
 
       /* Dark mode favicons */
       {
-        url: "/assets/favicon-dark.ico",
+        url: "/favicon-dark.ico",
         sizes: "any",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/assets/favicon-dark-16.png",
+        url: "/favicon-dark-16.png",
         sizes: "16x16",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/assets/favicon-dark-32.png",
+        url: "/favicon-dark-32.png",
         sizes: "32x32",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/assets/favicon-dark-48.png",
+        url: "/favicon-dark-48.png",
         sizes: "48x48",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/assets/favicon-dark-96.png",
+        url: "/favicon-dark-96.png",
         sizes: "96x96",
         type: "image/png",
         media: "(prefers-color-scheme: dark)",
@@ -100,13 +103,14 @@ export const metadata: Metadata = {
     ],
     apple: [
       {
-        url: "/assets/apple-touch-icon.png",
+        url: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
       },
     ],
   },
 };
+
 //</editor-fold>
 
 interface Props {
