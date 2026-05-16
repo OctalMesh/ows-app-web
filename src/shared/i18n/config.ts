@@ -1,6 +1,13 @@
 export const DEFAULT_LOCALE = "uk" as const;
 export const SUPPORTED_LOCALES = [DEFAULT_LOCALE, "en"] as const;
 
+export const MESSAGE_NAMESPACES = [
+  "common",
+  "manifest",
+  "theme",
+  "footer",
+] as const satisfies readonly IntlNamespaces[];
+
 export interface LanguageOptionItem {
   code: Locale;
   label: string;

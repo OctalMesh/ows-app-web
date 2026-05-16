@@ -1,15 +1,21 @@
-import { ukMessages } from "./";
 import { SUPPORTED_LOCALES } from "./config";
 
-type Messages = typeof ukMessages;
+interface NamespaceMap {
+  common: typeof import("../../../messages/uk/common.json");
+  manifest: typeof import("../../../messages/uk/manifest.json");
+  theme: typeof import("../../../messages/uk/theme.json");
+  footer: typeof import("../../../messages/uk/footer.json");
+}
 
 declare global {
   type Locale = (typeof SUPPORTED_LOCALES)[number];
-  type IntlMessages = Messages;
+  type IntlMessages = NamespaceMap;
+  type IntlNamespaces = keyof NamespaceMap;
 }
 
 declare module "next-intl" {
   interface AppConfig {
     Locale: Locale;
+    Messages: NamespaceMap;
   }
 }
