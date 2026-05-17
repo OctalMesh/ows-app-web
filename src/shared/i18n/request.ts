@@ -1,15 +1,7 @@
 import { IntlErrorCode } from "next-intl";
 import { GetRequestConfigParams, getRequestConfig } from "next-intl/server";
 
-import {
-  DEFAULT_LOCALE,
-  MESSAGE_NAMESPACES,
-  SUPPORTED_LOCALES,
-} from "./config";
-
-function isValidLocale(value: string | undefined): value is Locale {
-  return !!value && SUPPORTED_LOCALES.includes(value as Locale);
-}
+import { DEFAULT_LOCALE, MESSAGE_NAMESPACES, isValidLocale } from "./config";
 
 async function loadMessages(locale: string): Promise<IntlMessages> {
   const entries = await Promise.all(

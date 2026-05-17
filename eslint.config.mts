@@ -1,13 +1,14 @@
+import fsModule from "node:fs";
+import path from "node:path";
+import pathModule from "node:path";
+import { fileURLToPath } from "node:url";
+
 import type { Rule } from "eslint";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import eslintConfigPrettierModule from "eslint-config-prettier";
 import { defineConfig, globalIgnores } from "eslint/config";
 import type { ImportDeclaration } from "estree";
-import fsModule from "node:fs";
-import path from "node:path";
-import pathModule from "node:path";
-import { fileURLToPath } from "node:url";
 import tseslint from "typescript-eslint";
 
 //<editor-fold desc="Custom Plugins" defaultstate="collapsed">
@@ -26,7 +27,7 @@ const LAYER_PATTERN =
   /src\/(app|pages|widgets|features|entities|shared)(?:\/([^/]+))?/;
 const IMPORT_PATTERN =
   /^@(app|pages|widgets|features|entities|shared)\/([^/]+)(?:\/(.+))?/;
-const INDEX_PATTERN = /^index(\.(ts|tsx|js|jsx))?$/;
+const INDEX_PATTERN = /^(index|server)(\.(ts|tsx|js|jsx))?$/;
 const CROSS_SLICE_EXEMPT_LAYERS = new Set<Layer>(["shared", "app"]);
 const PUBLIC_API_INDEX_ENTRY_LAYERS = new Set<Layer>(["app", "shared"]);
 const RESOLVABLE_INDEX_FILES = [
@@ -34,6 +35,8 @@ const RESOLVABLE_INDEX_FILES = [
   "index.tsx",
   "index.js",
   "index.jsx",
+  "server.ts",
+  "server.tsx",
 ];
 
 function hasPublicDirectoryIndex(

@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
-const withNextIntl = createNextIntlPlugin("./src/shared/i18n/request.ts");
+import nextMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+
+  //<editor-fold desc="Redirects" defaultstate="collapsed">
+
   async redirects() {
     return [
       {
@@ -67,10 +71,30 @@ const nextConfig: NextConfig = {
         destination: "https://patreon.com/c/octalmesh",
         permanent: false,
       },
+      {
+        source: "/crowdin",
+        destination: "https://crowdin.com/project/octalweb",
+        permanent: false,
+      },
     ];
   },
+
+  //</editor-fold>
 };
 
-const configWithIntl = withNextIntl(nextConfig);
+const withNextIntl = createNextIntlPlugin("./src/shared/i18n/request.ts");
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [
+      "remark-gfm",
+      "remark-frontmatter",
+      ["remark-mdx-frontmatter", { name: "metadata" }],
+    ],
+  },
+});
 
-export default configWithIntl;
+const configWithIntl = withNextIntl(nextConfig);
+const finalConfig = withMDX(configWithIntl);
+
+export default finalConfig;

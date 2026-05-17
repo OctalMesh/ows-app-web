@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 import type { Metadata } from "next";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 
@@ -10,7 +10,7 @@ import { Header } from "@widgets/header";
 
 import { ThemeProvider } from "@features/theme";
 
-import { routing } from "@shared/i18n";
+import { isValidLocale } from "@shared/i18n";
 import { cn } from "@shared/lib";
 
 //<editor-fold desc="Fonts" defaultstate="collapsed">
@@ -119,10 +119,9 @@ interface Props {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  const resolvedParams = await params;
-  const locale = resolvedParams.locale as Locale;
+  const { locale } = await params;
 
-  if (!hasLocale(routing.locales, locale)) {
+  if (!isValidLocale(locale)) {
     notFound();
   }
 
@@ -130,6 +129,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html
       lang={locale}
       className={cn(inter.variable, spaceGroteskHeading.variable)}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body>
