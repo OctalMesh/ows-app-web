@@ -34,15 +34,15 @@ export function ThemeToggle() {
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme(Theme.SYSTEM)}>
           <IconDeviceDesktop />
-          {t("system")}
+          {t("mode.system")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme(Theme.LIGHT)}>
           <IconSun />
-          {t("light")}
+          {t("mode.light")}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme(Theme.DARK)}>
           <IconMoon />
-          {t("dark")}
+          {t("mode.dark")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
