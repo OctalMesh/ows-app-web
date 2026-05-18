@@ -1,6 +1,8 @@
 {
   "toggle": "Toggle Theme",
-  "system": "System",
-  "light": "Light",
-  "dark": "Dark"
+  "mode": {
+    "system": "Системна",
+    "light": "Світла",
+    "dark": "Темна"
+  }
 }
