@@ -15,9 +15,15 @@ interface LegalMetadata {
   description: string;
 }
 
-export function generateStaticParams() {
+export function generateStaticParams(): {
+  locale: string;
+  slug: string;
+}[] {
   return routing.locales.flatMap((locale) =>
-    getMdxSlugs(COLLECTION).map((slug) => ({ locale, slug })),
+    getMdxSlugs(COLLECTION).map((slug) => ({
+      locale: locale,
+      slug: slug,
+    })),
   );
 }
 

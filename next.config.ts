@@ -5,6 +5,7 @@ import nextMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
 
   //<editor-fold desc="Redirects" defaultstate="collapsed">

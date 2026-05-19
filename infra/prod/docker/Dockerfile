@@ -1,5 +1,5 @@
 # ============================================================================ #
-#                        OctalWeb: Shop | Production Node                      #
+#                       OctalWeb: Shop | Production Node                       #
 # ============================================================================ #
 # Multi-stage Dockerfile for a production-ready environment.                   #
 # Produces a fully built Next.js application with optimized runtime.           #
@@ -7,7 +7,12 @@
 
 FROM node:22-alpine AS base
 
-RUN apk add --no-cache libc6-compat
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN apk add --no-cache libc6-compat \
+    && corepack enable \
+    && corepack prepare pnpm@11.1.3 --activate
 
 WORKDIR /app
 
@@ -16,14 +21,13 @@ WORKDIR /app
 # ============================================================================ #
 FROM base AS deps
 
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
 
-RUN npx npm@11 install -g npm@11
-
-RUN npm ci
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile
 
 # ============================================================================ #
-#                         Stage: Static Build                                  #
+#                              Stage: Static Build                             #
 # ============================================================================ #
 FROM base AS builder
 
@@ -32,31 +36,30 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
-RUN npm run build && mkdir -p /app/public
+RUN pnpm build
 
 # ============================================================================ #
-#                         Stage: Production Runtime                            #
+#                           Stage: Production Runtime                          #
 # ============================================================================ #
 FROM node:22-alpine AS production
 
-RUN apk add --no-cache libc6-compat
-
 WORKDIR /app
-
-COPY --from=deps       /app/node_modules    ./node_modules
-COPY --from=builder    /app/.next           ./.next
-COPY --from=builder    /app/.next/static    ./.next/static
-COPY --chown=node:node package*.json        ./
-COPY --from=builder    /app/next.config.ts  ./
-COPY --from=builder    /app/public          ./public/
 
 ENV NODE_ENV=production
 ENV SHOP_WEB_PORT=3001
 
 USER node
 
+COPY --from=builder --chown=node:node /app/public           ./public
+COPY --from=builder --chown=node:node /app/.next/standalone ./
+COPY --from=builder --chown=node:node /app/.next/static     ./.next/static
+
 EXPOSE ${SHOP_WEB_PORT}
 
-CMD ["sh", "-c", "npm run start -- -p ${SHOP_WEB_PORT}"]
+ENV PORT=${SHOP_WEB_PORT}
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]

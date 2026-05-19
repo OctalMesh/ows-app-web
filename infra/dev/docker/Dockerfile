@@ -7,7 +7,12 @@
 
 FROM node:22-alpine AS base
 
-RUN apk add --no-cache libc6-compat
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+RUN apk add --no-cache libc6-compat \
+  && corepack enable \
+  && mkdir -p /pnpm
 
 WORKDIR /app
 
@@ -16,11 +21,9 @@ WORKDIR /app
 # ============================================================================ #
 FROM base AS deps
 
-COPY package*.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN npx npm@11 install -g npm@11
-
-RUN npm ci
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # ============================================================================ #
 #                     Stage: Development Environment Setup                     #
@@ -34,12 +37,11 @@ ENV SHOP_WEB_PORT=3001
 
 USER root
 
-RUN mkdir -p /app/.next && chown -R node:node /app
+RUN mkdir -p /app/.next
 
-COPY --from=deps --chown=node:node /app/node_modules ./node_modules
-COPY --chown=node:node . .
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-USER node
 EXPOSE ${SHOP_WEB_PORT}
 
-CMD ["sh", "-c", "npm run dev -- --port ${SHOP_WEB_PORT}"]
+CMD ["sh", "-c", "pnpm dev -p ${SHOP_WEB_PORT}"]

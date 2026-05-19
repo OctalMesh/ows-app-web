@@ -145,6 +145,7 @@ hs_err_pid*
 
 # Node
 node_modules/
+.pnpm-store/
 .pnp/
 .pnp.*
 .yarn/*
