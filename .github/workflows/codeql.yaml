@@ -61,18 +61,28 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: "Setup Node.js"
-        if: matrix.language == 'javascript-typescript'
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
 
-      - name: "Update npm"
-        run: npx npm@11 install -g npm@11
+      - name: "Setup pnpm"
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: "Get pnpm store path"
+        id: pnpm-cache
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+
+      - name: "Cache pnpm store"
+        uses: actions/cache@v5
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
 
       - name: "Install Node.js dependencies"
-        if: matrix.language == 'javascript-typescript'
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: "Initialize CodeQL"
         uses: github/codeql-action/init@v4

@@ -37,4 +37,21 @@
   [role="button"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
+  .marquee-content {
+    display: flex;
+    min-width: 100%;
+    flex-shrink: 0;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

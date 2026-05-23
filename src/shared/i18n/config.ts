@@ -24,3 +24,7 @@ export function getLanguageOptions(): LanguageOptionItem[] {
     label: LABELS[code] ?? String(code),
   }));
 }
+
+export function isValidLocale(value: string | undefined): value is Locale {
+  return !!value && SUPPORTED_LOCALES.includes(value as Locale);
+}

@@ -16,8 +16,10 @@
   "tailwindStylesheet": "./src/shared/assets/styles/globals.css",
   "tailwindFunctions": ["cn", "cva"],
   "importOrder": [
+    "^server-only$",
+    "^node:",
     "^react",
-    "^next",
+    "^@?next",
     "<THIRD_PARTY_MODULES>",
     "^@app/(.*)$",
     "^@pages/(.*)$",

@@ -1,0 +1,17 @@
+# ============================================================================ #
+#                         PNPM Workspace Configuration                         #
+# ============================================================================ #
+# This file defines the configuration for the pnpm workspace, which is a       #
+# package management tool for JavaScript projects.                             #
+#                                                                              #
+# See: https://pnpm.io/settings                                                #
+# ============================================================================ #
+
+minimumReleaseAge: 0
+
+allowBuilds:
+  "@parcel/watcher": true
+  "@swc/core": true
+  "msw": true
+  "sharp": true
+  "unrs-resolver": true

@@ -1,8 +1,6 @@
 import { SVGProps } from "react";
 
-export type LogoProps = SVGProps<SVGSVGElement>;
-
-export function LogoOctalMesh(props: LogoProps) {
+export function LogoOctalMesh(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

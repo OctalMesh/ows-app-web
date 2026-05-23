@@ -24,9 +24,9 @@ services:
       context: "../../../.."
       dockerfile: "apps/web/infra/staging/docker/Dockerfile"
     ports:
-      - "${SHOP_WEB_PORT:-3000}:${SHOP_WEB_PORT:-3000}"
+      - "${SHOP_WEB_PORT:-3001}:${SHOP_WEB_PORT:-3001}"
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SHOP_WEB_PORT:-3000}"]
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SHOP_WEB_PORT:-3001}"]
       interval: 10s
       timeout: 5s
       retries: 5
