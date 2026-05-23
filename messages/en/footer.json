@@ -2,26 +2,26 @@
   "copyright": "© 2025 Octal Mesh. All rights reserved.",
   "marquee": "OCTALMESH STUDIO • DESIGNED IN UKRAINE • HIGH PRECISION PRINTING • MODULAR SOLUTIONS •",
   "nav_group": {
-    "company": "Company",
-    "ecosystem": "Ecosystem",
-    "shop": "Shop"
+    "company": "Компанія",
+    "ecosystem": "Екосистема",
+    "shop": "Магазин"
   },
   "nav": {
-    "about": "About Us",
-    "contact": "Contact Us",
-    "design": "Design Studio",
-    "links": "Links",
-    "faq": "FAQ"
+    "about": "Про нас",
+    "contact": "Зв'язатися з нами",
+    "design": "Дизайн Студія",
+    "links": "Посилання",
+    "faq": "Питання та відповіді"
   },
   "legal": {
-    "terms": "Terms of Service",
-    "privacy": "Privacy & Data Policy",
-    "cookies": "Cookie Policy",
-    "logistics": "Shipping & Payment",
-    "warranty": "Warranty & Returns"
+    "terms": "Умови використання",
+    "privacy": "Політика конфіденційності",
+    "cookies": "Політика cookies",
+    "logistics": "Доставка та оплата",
+    "warranty": "Гарантія та повернення"
   },
   "products": {
-    "title": "Studio Products",
-    "description": "Coming Soon"
+    "title": "Продукти Студії",
+    "description": "Скоро буде"
   }
 }
