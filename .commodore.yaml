@@ -1,21 +1,42 @@
-role: unit
-id:   app-web
+# ============================================================================ #
+#                               Unit Designation                               #
+# ============================================================================ #
+# Role: unit | The atomic execution unit of the Commodore fleet.               #
+# Handles the lifecycle, metadata, and identity of a single process.           #
+#                                                                              #
+# See: https://git.octalmesh.com/Commodore                                     #
+# ============================================================================ #
+
+role: "unit"
+id:   "app-web"
+
+# ============================================================================ #
+#                            Reactor Configuration                             #
+# ============================================================================ #
+# Defines how the unit is powered (virtualized/orchestrated).                  #
+# The reactor handles the environment, ports, and build context.               #
+# ============================================================================ #
 
 reactor:
-  provider: tilt
-  context: ./
+  provider: "tilt"
+  context:  "./"
 
+  # Define the reactor configuration, such as the path to the Tiltfile and any
+  # additional settings needed for the reactor to function properly.
   blueprints:
-    - env:  dev
-      path: ./infra/dev/tilt/Tiltfile
+    - env:  "dev"
+      path: "./infra/dev/tilt/Tiltfile"
 
-    - env:  staging
-      path: ./infra/staging/tilt/Tiltfile
+    - env:  "staging"
+      path: "./infra/staging/tilt/Tiltfile"
 
+  # Standalone overrides for direct unit execution.
+  # When this unit is run directly (for example `commodore up` in this folder),
+  # blueprints/environments below are checked first, then fallback to defaults.
   standalone:
     blueprints:
-      - env: dev
-        path: ./infra/dev/tilt/standalone.Tiltfile
+      - env:  "dev"
+        path: "./infra/dev/tilt/standalone.Tiltfile"
 
-      - env: staging
-        path: ./infra/staging/tilt/standalone.Tiltfile
+      - env:  "staging"
+        path: "./infra/staging/tilt/standalone.Tiltfile"

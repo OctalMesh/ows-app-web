@@ -17,9 +17,9 @@
   "tailwindFunctions": ["cn", "cva"],
   "importOrder": [
     "^server-only$",
-    "^react",
-    "^next",
     "^node:",
+    "^react",
+    "^@?next",
     "<THIRD_PARTY_MODULES>",
     "^@app/(.*)$",
     "^@pages/(.*)$",

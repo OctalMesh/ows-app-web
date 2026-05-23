@@ -168,9 +168,15 @@ const fsdPlugin = {
 };
 //</editor-fold>
 
+/**
+ * ESLint configuration
+ *
+ * @see {@link https://eslint.org/docs/latest/use/configure/configuration-files
+ *      ESLint documentation}
+ */
 export default defineConfig([
-  ...nextVitals,
-  ...nextTs,
+  ...nextVitals, // https://web.dev/articles/vitals
+  ...nextTs, // https://typescript-eslint.io
 
   globalIgnores([
     ".next/**",
@@ -198,8 +204,8 @@ export default defineConfig([
       },
     },
     extends: [
-      ...tseslint.configs.recommendedTypeChecked,
-      ...tseslint.configs.stylisticTypeChecked,
+      ...tseslint.configs.recommendedTypeChecked, // https://typescript-eslint.io/users/configs/#recommended-type-checked
+      ...tseslint.configs.stylisticTypeChecked, // https://typescript-eslint.io/users/configs/#stylistic-type-checked
     ],
     plugins: {
       fsd: fsdPlugin,
@@ -215,5 +221,5 @@ export default defineConfig([
     },
   },
 
-  eslintConfigPrettierModule,
+  eslintConfigPrettierModule, // https://github.com/prettier/eslint-config-prettier#readme
 ]);

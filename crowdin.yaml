@@ -1,6 +1,38 @@
-files:
-  - source: /messages/uk/*.json
-    translation: /messages/%two_letters_code%/%original_file_name%
+# ============================================================================ #
+#                          Crowdin Configuration File                          #
+# ============================================================================ #
+# This file defines the configuration for Crowdin, a localization management   #
+# platform. It specifies how source files are mapped to their translations,    #
+# allowing for efficient localization of the project's content.                #
+#                                                                              #
+# See: https://octalmesh.com/crowdin                                           #
+# See: https://support.crowdin.com/developer/configuration-file/               #
+# ============================================================================ #
 
-  - source: /src/shared/assets/content/uk/**/*.mdx
-    translation: /src/shared/assets/content/%two_letters_code%/**/%original_file_name%
+# General configuration
+base_path: "."
+base_url: "https://api.crowdin.com"
+preserve_hierarchy: true
+
+# Commit message configuration
+commit_message: "chore(i18n): [ci-skip] update localization %original_file_name% (%language%)"
+append_commit_message: false
+
+# Pull request configuration
+pull_request_title: "feat(i18n): update localization files"
+pull_request_labels:
+  - "Suggestion"
+
+files:
+  # General JSON translation files
+  - source: "/messages/uk/**/*.json"
+    translation: "/messages/%two_letters_code%/**/%original_file_name%"
+    update_option: "update_without_changes"
+
+  # Mdx files for content pages
+  - source: "/src/shared/assets/content/uk/**/*.mdx"
+    translation: "/src/shared/assets/content/%two_letters_code%/**/%original_file_name%"
+    update_option: "update_as_unapproved"
+    content_segmentation: 1
+    translate_content: 1
+    translate_attributes: 1

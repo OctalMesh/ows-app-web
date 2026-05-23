@@ -1,9 +1,9 @@
 import "server-only";
 
-import { ComponentType, cache } from "react";
-
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
+
+import { ComponentType, cache } from "react";
 
 import { MDXContent } from "mdx/types";
 
