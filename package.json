@@ -4,13 +4,13 @@
   "private": true,
   "packageManager": "pnpm@11.2.2",
   "engines": {
-    "node": ">=22.0.0",
+    "node": ">=22.22.0",
     "pnpm": ">=11.0.0"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": ">=22.0.0",
+      "version": "22.22.3",
       "onFail": "error"
     },
     "packageManager": {
