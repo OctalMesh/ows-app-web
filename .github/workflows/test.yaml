@@ -1,17 +1,19 @@
 # ============================================================================ #
-#                               Quality Workflow                               #
+#                                 Test Workflow                                #
 # ============================================================================ #
-# Runs Prettier formatting check and ESLint static analysis on every push to   #
-# dev and on every pull request targeting dev.                                 #
+# Runs Vitest unit and integration tests on every push to dev and on every     #
+# pull request targeting dev.                                                  #
 #                                                                              #
 # Skip tags (anywhere in commit message or PR title):                          #
-#   [ci-skip]      - skips all workflows                                       #
-#   [quality-skip] - skips this workflow only                                  #
+#   [ci-skip]   - skips all workflows                                          #
+#   [test-skip] - skips this workflow only                                     #
 #                                                                              #
 # Note: skip tags are ignored for scheduled runs.                              #
+#                                                                              #
+# See: https://vitest.dev/guide/                                               #
 # ============================================================================ #
 
-name: "Quality"
+name: "Test"
 
 on:
   workflow_dispatch:
@@ -24,8 +26,6 @@ on:
       - "pnpm-lock.yaml"
       - "tsconfig*.json"
       - "*.config.*"
-      - ".prettierrc"
-      - ".prettierignore"
   pull_request:
     branches: ["dev"]
 
@@ -50,7 +50,7 @@ jobs:
       - name: "Run: Check skip tags"
         id: skip_check
         env:
-          SKIP_TAGS: "[ci-skip] [quality-skip]"
+          SKIP_TAGS: "[ci-skip] [test-skip]"
           PR_TITLE: ${{ github.event.pull_request.title }}
           IS_SCHEDULED: ${{ github.event_name == 'schedule' }}
         # For pull_request events: use PR title + latest commit message
@@ -74,18 +74,13 @@ jobs:
 
           echo "should_skip=false" >> $GITHUB_OUTPUT
 
-  # Perform quality analysis
-  quality:
-    name: "Analyze (${{ matrix.language }})"
+  # Run Vitest test suite
+  test:
+    name: "Run Tests"
     needs: check
     if: needs.check.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-
-    strategy:
-      matrix:
-        include:
-          - language: "javascript-typescript"
+    timeout-minutes: 15
 
     steps:
       - name: "Setup: Checkout repository"
@@ -117,8 +112,5 @@ jobs:
       - name: "Setup: Install dependencies"
         run: pnpm install --frozen-lockfile
 
-      - name: "Run: Prettier check"
-        run: pnpm format:check
-
-      - name: "Run: ESLint check"
-        run: pnpm lint
+      - name: "Run: Execute tests"
+        run: pnpm test:run

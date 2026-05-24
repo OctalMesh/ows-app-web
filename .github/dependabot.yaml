@@ -1,3 +1,13 @@
+# ============================================================================ #
+#                        Dependabot Configuration File                         #
+# ============================================================================ #
+# This file defines the Dependabot configuration for this project. It keeps    #
+# both npm dependencies and GitHub Actions up to date by opening pull requests #
+# on a weekly schedule, grouped by ecosystem.                                  #
+#                                                                              #
+# See: https://dependabot.com                                                  #
+# ============================================================================ #
+
 version: 2
 
 updates:
@@ -5,59 +15,134 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     target-branch: "dev"
+    open-pull-requests-limit: 5
+
+    # Runs every Monday
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+
     reviewers:
       - "OctalMesh/development"
+
     labels:
       - "Dependencies"
+
     groups:
-      next:
+      # TypeScript ecosystem packages
+      typescript:
         patterns:
-          - "next"
-          - "next-*"
+          - "typescript"
+          - "typescript-*"
+
+      # React ecosystem packages
       react:
         patterns:
           - "react"
           - "react-dom"
           - "@types/react"
           - "@types/react-dom"
+
+      # Next.js ecosystem packages
+      next:
+        patterns:
+          - "next"
+          - "next-*"
+          - "@next/*"
+
+      # Tailwind CSS ecosystem packages
       tailwind:
         patterns:
           - "tailwindcss"
           - "@tailwindcss/*"
           - "tailwind-*"
           - "tw-*"
+
+      # TanStack ecosystem packages
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+
+      # PostCSS ecosystem packages
+      postcss:
+        patterns:
+          - "postcss"
+          - "postcss-*"
+
+      # ESLint ecosystem packages
       eslint:
         patterns:
           - "eslint"
           - "eslint-*"
           - "@eslint/*"
           - "typescript-eslint"
+
+      # Prettier ecosystem packages
       prettier:
         patterns:
           - "prettier"
           - "prettier-*"
           - "@trivago/prettier-*"
+
+      # MDX-related packages
+      mdx:
+        patterns:
+          - "@mdx-js/*"
+          - "@next/mdx"
+          - "@types/mdx"
+          - "remark-*"
+          - "rehype-*"
+
+      # Testing-related packages
+      testing:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+          - "vite-*"
+          - "@vitejs/*"
+          - "@testing-library/*"
+          - "jsdom"
+
+      # TypeScript types packages
+      types:
+        patterns:
+          - "@types/node"
+          - "@types/estree"
+
+    # Ignore major version updates for critical dependencies to prevent breaking
+    # changes without manual review
     ignore:
       - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+      - dependency-name: "next"
         update-types: ["version-update:semver-major"]
 
   # Keep GitHub Actions up to date
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "dev"
+    open-pull-requests-limit: 5
+
+    # Runs every Monday
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+
     reviewers:
       - "OctalMesh/development"
+
     labels:
       - "Dependencies"
+
     groups:
+      # GitHub Actions ecosystem packages
       github-actions:
         patterns:
           - "*"
