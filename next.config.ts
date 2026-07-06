@@ -64,7 +64,7 @@ const configNext: NextConfig = {
       },
       {
         source: "/reddit",
-        destination: "https://reddit.com/r/octalmesh/",
+        destination: "https://reddit.com/r/OctalMesh/",
         permanent: false,
       },
       {
