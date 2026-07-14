@@ -24,17 +24,17 @@ const configNext: NextConfig = {
       },
       {
         source: "/telegram",
-        destination: "https://t.me/octalmesh",
+        destination: "https://telegram.me/octalmesh",
         permanent: false,
       },
       {
         source: "/manager",
-        destination: "https://t.me/octalmesh_manager",
+        destination: "https://telegram.me/octalmesh_manager",
         permanent: false,
       },
       {
         source: "/telegram_manager",
-        destination: "https://t.me/octalmesh_manager",
+        destination: "https://telegram.me/octalmesh_manager",
         permanent: false,
       },
       {
