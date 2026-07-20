@@ -1,5 +1,7 @@
 "use client";
 
+import { useLayoutEffect, useRef, useState } from "react";
+
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -28,14 +30,39 @@ function ProductFallback({ className }: { className?: string }) {
 
 export function Footer() {
   const t = useTranslations("footer");
+  const footerRef = useRef<HTMLElement>(null);
+  const [fitsViewport, setFitsViewport] = useState(false);
+
+  useLayoutEffect(() => {
+    const footer = footerRef.current;
+
+    if (!footer) {
+      return;
+    }
+
+    const check = () => {
+      setFitsViewport(footer.offsetHeight <= window.innerHeight);
+    };
+    check();
+
+    const resizeObserver = new ResizeObserver(check);
+    resizeObserver.observe(footer);
+    window.addEventListener("resize", check);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", check);
+    };
+  }, []);
 
   return (
     <footer
+      ref={footerRef}
       className={cn(
-        "sticky bottom-0 left-0 z-0 no-scrollbar w-full bg-foreground/2",
+        "left-0 z-0 w-full bg-foreground/2",
         "flex flex-col",
-        "h-dvh overflow-y-auto",
-        "transition-[min-height] duration-300 ease-out",
+        "min-h-dvh",
+        fitsViewport ? "sticky bottom-0 overflow-hidden" : "static",
       )}
     >
       <div className="grid flex-1 grid-cols-1 sm:grid-cols-2">
