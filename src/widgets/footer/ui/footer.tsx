@@ -1,14 +1,12 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState } from "react";
+import * as React from "react";
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 import { motion, useScroll, useTransform } from "motion/react";
-
-import { LanguageSwitcher } from "@features/i18n";
-import { ThemeToggle } from "@features/theme";
 
 import { cn } from "@shared/lib";
 import { LogoOctalMesh, PlaceholderImg } from "@shared/ui";
@@ -30,7 +28,10 @@ function ProductFallback({ className }: { className?: string }) {
   );
 }
 
-export function Footer() {
+export function Footer({
+  className,
+  ...props
+}: React.ComponentProps<"footer">) {
   const t = useTranslations("footer");
   const footerRef = useRef<HTMLElement>(null);
   const [fitsViewport, setFitsViewport] = useState(false);
@@ -67,9 +68,11 @@ export function Footer() {
     <footer
       ref={footerRef}
       className={cn(
+        className,
         "relative left-0 z-0 w-full bg-background",
         fitsViewport && "overflow-hidden",
       )}
+      {...props}
     >
       <motion.div
         style={fitsViewport ? { y } : undefined}
@@ -105,12 +108,7 @@ export function Footer() {
 
           {/* Right col */}
           <div className="flex flex-col max-sm:border-t sm:border-l">
-            <div className="flex items-center justify-end gap-4 p-8">
-              <ThemeToggle />
-              <LanguageSwitcher />
-            </div>
-
-            <div className="grid flex-1 grid-cols-1 gap-8 p-8 xl:grid-cols-2">
+            <div className="grid flex-1 grid-cols-1 gap-8 p-8 sm:pt-30 xl:grid-cols-2">
               <FooterLinkGroup title={t("nav_group.company")}>
                 <FooterLink href="/about" label={t("nav.about")} />
                 <FooterLink href="/faq" label={t("nav.faq")} />

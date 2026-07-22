@@ -55,7 +55,7 @@ export function LanguageSwitcher() {
     <Select value={locale} onValueChange={handleChange} disabled={isPending}>
       <SelectTrigger
         size="lg"
-        className="rounded-4xl border-border bg-background px-4 py-2 hover:bg-muted dark:bg-transparent dark:hover:bg-input/30"
+        className="rounded-4xl border-border bg-background px-4 py-2 hover:bg-muted dark:hover:bg-input/30"
         aria-label="Change language"
         aria-controls={contentId}
       >

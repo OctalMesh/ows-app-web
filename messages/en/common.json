@@ -1,3 +1,29 @@
 {
-  "brand": "Octal Mesh"
+  "brand": "Octal Mesh",
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "printing": "3D Printing",
+    "about": "About",
+    "contacts": "Contacts",
+    "catalog": "Catalog",
+    "faq": "FAQ",
+    "profile": "Profile",
+    "settings": "Settings",
+    "language": "Language",
+    "search": "Search",
+    "cart": "Cart",
+    "menu": "Menu",
+    "back": "Back",
+    "constructor": "Constructor",
+    "status": "Order status",
+    "promoPrint": "3D printing on demand",
+    "promoShop": "Open shop",
+    "services": "Services",
+    "materials": "Materials",
+    "calculator": "Calculator",
+    "account": "Account",
+    "links": "Quick links",
+    "actions": "Actions"
+  }
 }

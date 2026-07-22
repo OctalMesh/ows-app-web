@@ -6,7 +6,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Footer } from "@widgets/footer";
-import { Header } from "@widgets/header";
+import { Navbar } from "@widgets/navbar";
 
 import { ThemeProvider } from "@features/theme";
 
@@ -135,11 +135,11 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale}>
-            <Header />
-            <main className="relative z-10 border-b bg-background">
+            <Navbar />
+            <main className="relative z-10 min-h-dvh border-b bg-background">
               {children}
             </main>
-            <Footer />
+            <Footer className="mb-23 max-sm:border-b sm:mb-0" />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
