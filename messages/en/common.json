@@ -1,3 +1,30 @@
 {
-  "brand": "Octal Mesh"
+  "brand": "Octal Mesh",
+  "nav": {
+    "home": "Головна",
+    "shop": "Магазин",
+    "printing": "3D-друк",
+    "about": "Про нас",
+    "contacts": "Контакти",
+    "catalog": "Каталог",
+    "faq": "FAQ",
+    "profile": "Профіль",
+    "settings": "Налаштування",
+    "language": "Мова",
+    "search": "Пошук",
+    "cart": "Кошик",
+    "menu": "Меню",
+    "back": "Назад",
+    "constructor": "Конструктор",
+    "status": "Статус замовлення",
+    "promoPrint": "3D-друк на замовлення",
+    "promoShop": "Відкрити магазин",
+    "services": "Послуги",
+    "materials": "Матеріали",
+    "calculator": "Калькулятор",
+    "account": "Акаунт",
+    "links": "Швидкі посилання",
+    "actions": "Дії"
+  }
 }
+
