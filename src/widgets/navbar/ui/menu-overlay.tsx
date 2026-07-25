@@ -13,15 +13,14 @@ import {
 import { AnimatePresence, motion } from "motion/react";
 
 import { LanguageSwitcher } from "@features/i18n";
-import { ThemeToggle } from "@features/theme";
-
 import {
   type NavigationContext,
   PRINT_MENU_LINKS,
   SERVICE_MENU_LINKS,
   SHOP_MENU_LINKS,
-} from "@shared/config";
-import { useNavigationStore } from "@shared/lib/navigation";
+  useNavigationStore,
+} from "@features/navigation";
+import { ThemeToggle } from "@features/theme";
 
 interface MenuOverlayProps {
   context: NavigationContext;

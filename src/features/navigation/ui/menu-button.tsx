@@ -5,8 +5,9 @@ import { useState } from "react";
 import { IconMenu, IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { useNavigationStore } from "@shared/lib/navigation";
 import { Button } from "@shared/ui/button";
+
+import { useNavigationStore } from "../model";
 
 export function MenuButton() {
   const isMenuOpen = useNavigationStore((state) => state.isMenuOpen);

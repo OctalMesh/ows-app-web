@@ -7,10 +7,11 @@ import Link from "next/link";
 
 import { IconArrowRight } from "@tabler/icons-react";
 
-import { SHOP_MENU_LINKS } from "@shared/config";
-import { useNavigationStore } from "@shared/lib/navigation";
-
-import { DesktopOverlayShell } from "./overlay-shell";
+import {
+  DesktopOverlayShell,
+  SHOP_MENU_LINKS,
+  useNavigationStore,
+} from "@features/navigation";
 
 export function SearchOverlay() {
   const t = useTranslations("common");

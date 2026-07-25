@@ -9,11 +9,14 @@ import {
   IconShoppingBag,
 } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
-import { useNavigationStore } from "@shared/lib/navigation";
-import { buttonVariants } from "@shared/ui";
+import {
+  DesktopOverlayShell,
+  OverlayCard,
+  useNavigationStore,
+} from "@features/navigation";
 
-import { DesktopOverlayShell, OverlayCard } from "./overlay-shell";
+import { cn } from "@shared/lib";
+import { buttonVariants } from "@shared/ui";
 
 export function CartOverlay() {
   const t = useTranslations("common");

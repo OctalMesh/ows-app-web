@@ -3,18 +3,19 @@
 import { useEffect } from "react";
 
 import {
+  BackButton,
+  MenuButton,
+  PrimaryBar,
   getNavigationContext,
   isPrimaryNavigationVisible,
-} from "@shared/config";
+  useNavigationStore,
+} from "@features/navigation";
+
 import { usePathname } from "@shared/i18n";
 import { cn } from "@shared/lib";
-import { useNavigationStore } from "@shared/lib/navigation";
 
-import { BackButton } from "./back-button";
 import { CartOverlay } from "./cart-overlay";
-import { MenuButton } from "./menu-button";
 import { MenuOverlay } from "./menu-overlay";
-import { PrimaryBar } from "./primary-bar";
 import { SearchOverlay } from "./search-overlay";
 
 export function Navbar() {

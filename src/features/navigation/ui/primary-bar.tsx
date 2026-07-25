@@ -9,10 +9,10 @@ import {
   IconSmartHome,
 } from "@tabler/icons-react";
 
-import type { NavigationContext } from "@shared/config";
 import { cn } from "@shared/lib";
-import { useNavigationStore } from "@shared/lib/navigation";
 
+import type { NavigationContext } from "../config";
+import { useNavigationStore } from "../model";
 import { PrimaryBarItem } from "./primary-bar-item";
 
 interface PrimaryBarProps {
