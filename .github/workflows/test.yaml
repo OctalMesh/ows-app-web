@@ -38,7 +38,7 @@ jobs:
     name: "Skip Check"
     runs-on: ubuntu-latest
     outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+      should_skip: ${{ steps.belay.outputs.issued }}
 
     steps:
       - name: "Setup: Checkout repository"
@@ -48,31 +48,10 @@ jobs:
           fetch-depth: 1
 
       - name: "Run: Check skip tags"
-        id: skip_check
-        env:
-          SKIP_TAGS: "[ci-skip] [test-skip]"
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          IS_SCHEDULED: ${{ github.event_name == 'schedule' }}
-        # For pull_request events: use PR title + latest commit message
-        # For push events: use the latest commit message from git log
-        # Scheduled runs: always execute regardless of skip tags
-        run: |
-          if [[ "$IS_SCHEDULED" == "true" ]]; then
-            echo "should_skip=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          COMMIT_MSG=$(git log -1 --format="%s %b")
-          COMBINED="${PR_TITLE} ${COMMIT_MSG}"
-
-          for tag in $SKIP_TAGS; do
-            if [[ "$COMBINED" == *"$tag"* ]]; then
-              echo "should_skip=true" >> $GITHUB_OUTPUT
-              exit 0
-            fi
-          done
-
-          echo "should_skip=false" >> $GITHUB_OUTPUT
+        id: belay
+        uses: OctalMesh/belay-action@v1
+        with:
+          signal_tags: "[ci-skip],[test-skip]"
 
   # Run Vitest test suite
   test:
@@ -88,26 +67,14 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
+      - name: "Setup: pnpm"
+        uses: pnpm/action-setup@v6
+
       - name: "Setup: Node.js"
         uses: actions/setup-node@v7
         with:
           node-version: 22
-
-      - name: "Setup: pnpm"
-        uses: pnpm/action-setup@v6
-        with:
-          run_install: false
-
-      - name: "Setup: Get pnpm store path"
-        id: pnpm-cache
-        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
-
-      - name: "Setup: Cache pnpm store"
-        uses: actions/cache@v6
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-${{ runner.arch }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-${{ runner.arch }}-pnpm-
+          cache: "pnpm"
 
       - name: "Setup: Install dependencies"
         run: pnpm install --frozen-lockfile
