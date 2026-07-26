@@ -30,5 +30,5 @@
     "noUncheckedIndexedAccess": true,
   },
 
-  "include": [ "./next.config.mts", "./eslint.config.mts" ]
+  "include": [ "./next.config.ts", "./eslint.config.ts" ]
 }
