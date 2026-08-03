@@ -102,7 +102,7 @@
     "eslint-import-resolver-typescript": "^4.4.5",
     "jsdom": "^29.1.1",
     "npm-check-updates": "^23.0.0",
-    "postcss": "^8.5.21",
+    "postcss": "^8.5.25",
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
