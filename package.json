@@ -65,7 +65,7 @@
     "@types/mdx": "^2.0.14",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "jose": "^6.2.3",
+    "jose": "^6.2.5",
     "motion": "^12.42.2",
     "next": "16.2.12",
     "next-intl": "^4.13.2",
