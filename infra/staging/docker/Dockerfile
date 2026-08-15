@@ -12,7 +12,7 @@ ENV PATH="$PNPM_HOME:$PATH"
 
 RUN apk add --no-cache libc6-compat \
     && corepack enable \
-    && corepack prepare pnpm@11.2.2 --activate
+    && corepack prepare pnpm@11.22.0 --activate
 
 WORKDIR /app
 
