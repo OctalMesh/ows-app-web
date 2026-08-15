@@ -4,9 +4,13 @@ import { useTranslations } from "next-intl";
 
 import { IconArrowLeft } from "@tabler/icons-react";
 
-import { Button } from "@shared/ui/button";
+import { NavPillButton } from "./nav-pill-button";
 
-export function BackButton() {
+interface BackButtonProps {
+  fallbackHref?: string;
+}
+
+export function BackButton({ fallbackHref = "/" }: BackButtonProps) {
   const t = useTranslations("common");
 
   function handleBrowserBack() {
@@ -15,19 +19,14 @@ export function BackButton() {
       return;
     }
 
-    window.location.assign("/");
+    window.location.assign(fallbackHref);
   }
 
   return (
-    <Button
-      type="button"
-      variant="outline"
-      size="lg"
-      className="flex h-16 items-center justify-start gap-4 rounded-full px-6 backdrop-blur-xl"
+    <NavPillButton
+      icon={<IconArrowLeft className="size-5" />}
+      label={t("nav.back")}
       onClick={handleBrowserBack}
-    >
-      <IconArrowLeft className="size-5" />
-      <span className="text-sm">{t("nav.back")}</span>
-    </Button>
+    />
   );
 }
