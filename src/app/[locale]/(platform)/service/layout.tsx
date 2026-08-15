@@ -43,10 +43,10 @@ export default function ServiceLayout({ children }: { children: ReactNode }) {
       </NavBar>
 
       <NavOverlay.Panel overlay="constructor">
-        {/* <ShopSearchPanel /> */}
+        <div />
       </NavOverlay.Panel>
       <NavOverlay.Panel overlay="cart">
-        {/* <ShopCartPanel /> */}
+        <div />
       </NavOverlay.Panel>
 
       {children}

@@ -43,9 +43,11 @@ export default function ShopLayout({ children }: { children: ReactNode }) {
       </NavBar>
 
       <NavOverlay.Panel overlay="search">
-        {/* <SearchPanel /> */}
+        <div />
       </NavOverlay.Panel>
-      <NavOverlay.Panel overlay="cart">{/* <CartPanel /> */}</NavOverlay.Panel>
+      <NavOverlay.Panel overlay="cart">
+        <div />
+      </NavOverlay.Panel>
 
       {children}
     </Navigation>

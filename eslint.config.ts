@@ -9,7 +9,6 @@ import nextTs from "eslint-config-next/typescript";
 import eslintConfigPrettierModule from "eslint-config-prettier";
 import { defineConfig, globalIgnores } from "eslint/config";
 import type { ImportDeclaration } from "estree";
-import tseslint from "typescript-eslint";
 
 //<editor-fold desc="Custom Plugins" defaultstate="collapsed">
 const LAYER_WEIGHTS = {
@@ -203,10 +202,6 @@ export default defineConfig([
         tsconfigRootDir: path.dirname(fileURLToPath(import.meta.url)),
       },
     },
-    extends: [
-      ...tseslint.configs.recommendedTypeChecked, // https://typescript-eslint.io/users/configs/#recommended-type-checked
-      ...tseslint.configs.stylisticTypeChecked, // https://typescript-eslint.io/users/configs/#stylistic-type-checked
-    ],
     plugins: {
       fsd: fsdPlugin,
     },
