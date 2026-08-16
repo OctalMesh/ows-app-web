@@ -1,5 +1,9 @@
 {
   "brand": "Octal Mesh",
+  "languages": {
+    "uk": "Українська",
+    "en": "English"
+  },
   "nav": {
     "home": "Головна",
     "shop": "Магазин",
