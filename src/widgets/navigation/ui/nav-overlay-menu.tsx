@@ -30,7 +30,7 @@ export function NavOverlayMenu({ children, backdrop }: NavOverlayMenuProps) {
         <Dialog.Backdrop
           className={cn(
             "fixed inset-0 z-105 bg-black/10 backdrop-blur-md transition-opacity duration-200 ease-in-out max-sm:hidden",
-            "data-ending-style:opacity-0 data-starting-style:opacity-0",
+            "[&[data-starting-style],&[data-ending-style]]:opacity-0",
           )}
         >
           {backdrop ?? (
@@ -46,7 +46,7 @@ export function NavOverlayMenu({ children, backdrop }: NavOverlayMenuProps) {
           className={cn(
             "fixed inset-y-0 right-0 z-108 flex w-full flex-col overflow-y-auto border-l bg-background shadow-2xl",
             "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            "data-ending-style:translate-x-full data-starting-style:translate-x-full",
+            "[&[data-ending-style],&[data-starting-style]]:translate-x-full",
             "sm:w-2/3 lg:w-1/2",
           )}
         >

@@ -10,7 +10,7 @@ import {
   NavBar,
   NavOverlay,
   Navigation,
-} from "@features/navigation";
+} from "@widgets/navigation";
 
 interface Props {
   children: ReactNode;

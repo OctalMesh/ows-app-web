@@ -12,9 +12,7 @@ import {
 import { useCartStore } from "@entities/cart";
 
 import { usePathname } from "@shared/i18n";
-
-import { createFlagStore } from "./create-flag-store";
-import { createOverlayStore } from "./create-overlay-store";
+import { createFlagStore, createOverlayStore } from "@shared/lib";
 
 export type NavOverlayKey = string;
 

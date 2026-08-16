@@ -11,14 +11,15 @@ import {
   IconUserCircle,
 } from "@tabler/icons-react";
 
-import { LanguageSwitcher } from "@features/i18n";
 import {
   MenuButton,
   NavBar,
   NavOverlay,
   Navigation,
   PrimaryNav,
-} from "@features/navigation";
+} from "@widgets/navigation";
+
+import { LanguageSwitcher } from "@features/i18n";
 import { ThemeToggle } from "@features/theme";
 
 import { useCartStore } from "@entities/cart";

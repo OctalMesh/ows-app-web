@@ -16,12 +16,7 @@ export function NavOverlayMenuSection({
   className,
 }: NavOverlayMenuSectionProps) {
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-2 border-b p-6 last:border-b-0",
-        className,
-      )}
-    >
+    <div className={cn("flex flex-col gap-2 p-6", className)}>
       <p className="mb-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
         {title}
       </p>

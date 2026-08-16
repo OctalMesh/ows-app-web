@@ -14,7 +14,12 @@ export function NavOverlayMenuContent({
   className,
 }: NavOverlayMenuContentProps) {
   return (
-    <div className={cn("flex flex-col gap-8 max-sm:pb-20 sm:pt-20", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-8 divide-y max-sm:pb-20 sm:pt-20",
+        className,
+      )}
+    >
       {children}
     </div>
   );
