@@ -1,30 +1,7 @@
 export const DEFAULT_LOCALE = "uk" as const;
 export const SUPPORTED_LOCALES = [DEFAULT_LOCALE, "en"] as const;
-
-export const MESSAGE_NAMESPACES = [
-  "common",
-  "manifest",
-  "theme",
-  "footer",
-] as const satisfies readonly IntlNamespaces[];
-
-export interface LanguageOptionItem {
-  code: Locale;
-  label: string;
-}
-
-const LABELS: Record<Locale, string> = {
-  uk: "Українська",
-  en: "English",
-};
-
-export function getLanguageOptions(): LanguageOptionItem[] {
-  return SUPPORTED_LOCALES.map((code) => ({
-    code,
-    label: LABELS[code] ?? String(code),
-  }));
-}
+export const NAMESPACES = ["common", "manifest", "theme", "footer"] as const;
 
 export function isValidLocale(value: string | undefined): value is Locale {
-  return !!value && SUPPORTED_LOCALES.includes(value as Locale);
+  return !!value && (SUPPORTED_LOCALES as readonly string[]).includes(value);
 }

@@ -3,14 +3,13 @@
 import * as React from "react";
 import { useTransition } from "react";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 
 import { SelectRootChangeEventDetails } from "@base-ui/react";
 import { IconLanguage } from "@tabler/icons-react";
 
-import { usePathname, useRouter } from "@shared/i18n";
-import { getLanguageOptions } from "@shared/i18n";
+import { SUPPORTED_LOCALES, usePathname, useRouter } from "@shared/i18n";
 import {
   Select,
   SelectContent,
@@ -23,6 +22,7 @@ import {
 
 export function LanguageSwitcher() {
   const locale = useLocale();
+  const t = useTranslations("common.languages");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -30,7 +30,12 @@ export function LanguageSwitcher() {
   const contentId = `language-select-content-${selectId}`;
   const [isPending, startTransition] = useTransition();
 
-  const options = getLanguageOptions();
+  const options = React.useMemo(() => {
+    return SUPPORTED_LOCALES.map((code) => ({
+      code,
+      label: t(code),
+    }));
+  }, [t]);
 
   function handleChange(
     newLocale: Locale | null,
@@ -60,12 +65,7 @@ export function LanguageSwitcher() {
         aria-controls={contentId}
       >
         <IconLanguage />
-        <SelectValue>
-          {(value: string) => {
-            const selected = options.find((o) => o.code === value);
-            return selected ? selected.code.toUpperCase() : value;
-          }}
-        </SelectValue>
+        <SelectValue>{(value: string) => value.toUpperCase()}</SelectValue>
       </SelectTrigger>
 
       <SelectContent id={contentId} className="max-h-72">

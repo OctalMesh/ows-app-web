@@ -1,11 +1,11 @@
 import { IntlErrorCode } from "next-intl";
 import { GetRequestConfigParams, getRequestConfig } from "next-intl/server";
 
-import { DEFAULT_LOCALE, MESSAGE_NAMESPACES, isValidLocale } from "./config";
+import { DEFAULT_LOCALE, NAMESPACES, isValidLocale } from "./config";
 
-async function loadMessages(locale: string): Promise<IntlMessages> {
+async function loadMessages(locale: Locale): Promise<IntlMessages> {
   const entries = await Promise.all(
-    MESSAGE_NAMESPACES.map(async (ns) => {
+    NAMESPACES.map(async (ns: IntlNamespaces) => {
       const mod = (await import(`../../../messages/${locale}/${ns}.json`)) as {
         default: Record<string, unknown>;
       };
@@ -46,10 +46,12 @@ function deepMerge(
   return result;
 }
 
-async function loadMessagesWithFallback(locale: string): Promise<IntlMessages> {
+async function loadMessagesWithFallback(locale: Locale): Promise<IntlMessages> {
   const defaultMessages = await loadMessages(DEFAULT_LOCALE);
 
-  if (locale === DEFAULT_LOCALE) return defaultMessages;
+  if (locale === DEFAULT_LOCALE) {
+    return defaultMessages;
+  }
 
   try {
     const localeMessages = await loadMessages(locale);
