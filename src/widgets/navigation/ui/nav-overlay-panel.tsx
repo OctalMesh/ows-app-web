@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 
 import { type NavOverlayKey, useNavigation } from "../model";
-import { DesktopOverlayShell } from "./overlay-shell";
+import { OverlayShell } from "./overlay-shell";
 
 interface NavOverlayPanelProps {
   overlay: NavOverlayKey;
@@ -14,11 +14,11 @@ export function NavOverlayPanel({ overlay, children }: NavOverlayPanelProps) {
   const { activeOverlay, closeOverlay } = useNavigation();
 
   return (
-    <DesktopOverlayShell
+    <OverlayShell
       open={activeOverlay === overlay}
-      onClose={() => closeOverlay(overlay)}
+      action={() => closeOverlay(overlay)}
     >
       {children}
-    </DesktopOverlayShell>
+    </OverlayShell>
   );
 }

@@ -44,7 +44,7 @@ export function NavOverlayMenu({ children, backdrop }: NavOverlayMenuProps) {
 
         <Dialog.Popup
           className={cn(
-            "fixed inset-y-0 right-0 z-108 flex w-full flex-col overflow-y-auto border-l bg-background shadow-2xl",
+            "fixed inset-y-0 right-0 z-108 no-scrollbar flex w-full flex-col overflow-y-auto border-l bg-background shadow-2xl",
             "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
             "[&[data-ending-style],&[data-starting-style]]:translate-x-full",
             "sm:w-2/3 lg:w-1/2",

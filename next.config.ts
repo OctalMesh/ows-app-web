@@ -110,6 +110,7 @@ const withMDX = nextMDX({
       "remark-frontmatter",
       ["remark-mdx-frontmatter", { name: "metadata" }],
     ],
+    rehypePlugins: ["rehype-slug"],
   },
 });
 

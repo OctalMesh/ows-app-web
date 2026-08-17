@@ -28,7 +28,7 @@ export * from "./popover";
 export * from "./progress";
 export * from "./questionnaire";
 export * from "./radio-group";
-export * from "./scroll-area";
+export * from "./scroll";
 export * from "./select";
 export * from "./separator";
 export * from "./sheet";

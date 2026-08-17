@@ -4,39 +4,14 @@ import type { ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-export function OverlayCard({
-  title,
-  children,
-  action,
-}: {
-  title: string;
-  children: ReactNode;
-  action?: ReactNode;
-}) {
-  return (
-    <section className="rounded-[2rem] border border-border/60 bg-background/80 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl md:p-6">
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <h3 className="text-xs font-semibold tracking-[0.32em] text-muted-foreground uppercase">
-          {title}
-        </h3>
-        {action}
-      </div>
-      {children}
-    </section>
-  );
-}
-
-export function DesktopOverlayShell({
-  open,
-  onClose,
-  children,
-  className,
-}: {
+interface Props {
   open: boolean;
-  onClose: () => void;
+  action: () => void;
   children: ReactNode;
   className?: string;
-}) {
+}
+
+export function OverlayShell({ open, action, children, className }: Props) {
   return (
     <>
       {open ? (
@@ -45,7 +20,7 @@ export function DesktopOverlayShell({
             "fixed inset-0 z-50 flex items-stretch justify-center bg-background/20 p-3 backdrop-blur-xl md:p-6",
             className,
           )}
-          onClick={onClose}
+          onClick={action}
         >
           <div
             className="flex w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-border/60 bg-background shadow-2xl"

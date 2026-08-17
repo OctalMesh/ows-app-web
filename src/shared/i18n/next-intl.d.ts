@@ -14,8 +14,8 @@ declare global {
 }
 
 declare module "next-intl" {
-  // noinspection JSUnusedGlobalSymbols
   // Used by next-intl to type check the messages in application
+  // noinspection JSUnusedGlobalSymbols
   interface AppConfig {
     Locale: Locale;
     Messages: NamespaceMap;
