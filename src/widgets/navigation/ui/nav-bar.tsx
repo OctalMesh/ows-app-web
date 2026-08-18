@@ -17,18 +17,23 @@ export function NavBar({ children, className }: NavBarProps) {
   return (
     <nav
       className={cn(
-        "fixed inset-x-0 z-100 transition-all duration-500 max-sm:bottom-0",
+        "pointer-events-none fixed inset-x-0 z-100 transition-all duration-500 max-sm:bottom-0",
         "sm:top-0 sm:right-0 sm:left-auto sm:w-full sm:max-w-100 sm:p-4",
         "lg:max-w-120",
         className,
       )}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="mx-auto flex w-full flex-row justify-between gap-3 px-3 py-3 sm:justify-end sm:gap-4">
+      <div
+        className={cn(
+          "flex flex-row justify-between gap-3 px-3 py-3 *:pointer-events-auto",
+          "sm:justify-end sm:gap-4",
+        )}
+      >
         {children}
       </div>
 
-      <div ref={setNavBarContainer} />
+      <div ref={setNavBarContainer} className="pointer-events-auto" />
     </nav>
   );
 }
