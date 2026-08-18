@@ -20,7 +20,7 @@ export default function LegalLayout({ children }: Props) {
 
       <article
         id={LEGAL_CONTENT_ID}
-        className="prose max-w-full px-10 py-16 prose-neutral dark:prose-invert"
+        className="prose max-w-full px-5 py-16 prose-neutral lg:px-10 dark:prose-invert"
       >
         {children}
       </article>

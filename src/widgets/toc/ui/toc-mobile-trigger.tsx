@@ -18,17 +18,13 @@ export function TocMobileTrigger({
 }: TocMobileTriggerProps) {
   return (
     <Button
-      type="button"
-      variant="outline"
-      className={cn(
-        "flex h-8 w-20 items-center justify-center rounded-full backdrop-blur-xl",
-        className,
-      )}
+      variant="text"
+      className={cn("h-10 w-20 text-primary", className)}
       onClick={onClick}
     >
       <IconChevronDown
         className={cn(
-          "size-5 transition-transform duration-300",
+          "size-6 transition-transform duration-300",
           open && "rotate-180",
         )}
       />

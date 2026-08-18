@@ -49,7 +49,7 @@ export function TocMobile({ headings, activeIds, onSelect }: TocMobileProps) {
         />
 
         <TocMobileTrigger
-          className="relative z-20 mt-3"
+          className="relative z-20"
           open={open}
           onClick={() => setOpen((v) => !v)}
         />
