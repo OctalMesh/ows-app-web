@@ -10,7 +10,7 @@ export interface TocIndicatorProps {
   className?: string;
 }
 
-export function TocIndicator({
+export function ArticleTocIndicator({
   containerRef,
   activeIds,
   className,

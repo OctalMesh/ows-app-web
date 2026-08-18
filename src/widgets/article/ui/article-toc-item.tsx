@@ -1,9 +1,9 @@
 "use client";
 
+import { TocHeading } from "*.mdx";
+
 import { cn } from "@shared/lib";
 import { Button } from "@shared/ui";
-
-import type { TocHeading } from "../model/heading";
 
 export interface TocItemProps {
   heading: TocHeading;
@@ -12,7 +12,7 @@ export interface TocItemProps {
   className?: string;
 }
 
-export function TocItem({
+export function ArticleTocItem({
   heading,
   isActive,
   onSelect,

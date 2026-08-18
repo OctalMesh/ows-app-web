@@ -3,37 +3,25 @@ import "server-only";
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
-import { ComponentType, cache } from "react";
+import { cache } from "react";
 
-import { MDXContent } from "mdx/types";
+import type { TocHeading } from "*.mdx";
+import type { MDXContent } from "mdx/types";
 
 import { DEFAULT_LOCALE, isValidLocale } from "@shared/i18n";
 
-interface MdxModule {
+export interface MdxModule {
   default: MDXContent;
   metadata?: unknown;
+  tableOfContents?: TocHeading[];
 }
 
-const importMdx = cache(
-  async (path: string, locale: Locale): Promise<MdxModule | null> => {
-    const resolvedLocale = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
-
-    return (
-      (await tryImport(path, resolvedLocale)) ??
-      (resolvedLocale !== DEFAULT_LOCALE
-        ? await tryImport(path, DEFAULT_LOCALE)
-        : null)
-    );
-  },
-);
-
-export async function getPage(
-  path: string,
+export async function getMdxContent(
+  collection: string,
+  slug: string,
   locale: Locale = DEFAULT_LOCALE,
-): Promise<ComponentType | null> {
-  const mod = await importMdx(path, locale);
-
-  return mod?.default ?? null;
+): Promise<MdxModule | null> {
+  return importMdx(`${collection}/${slug}`, locale);
 }
 
 export async function getMdxMetadata<T = Record<string, unknown>>(
@@ -55,9 +43,22 @@ export function getMdxSlugs(
   );
 
   return readdirSync(dir)
-    .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""));
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => file.replace(/\.mdx$/, ""));
 }
+
+const importMdx = cache(
+  async (path: string, locale: Locale): Promise<MdxModule | null> => {
+    const resolvedLocale = isValidLocale(locale) ? locale : DEFAULT_LOCALE;
+
+    return (
+      (await tryImport(path, resolvedLocale)) ??
+      (resolvedLocale !== DEFAULT_LOCALE
+        ? await tryImport(path, DEFAULT_LOCALE)
+        : null)
+    );
+  },
+);
 
 async function tryImport(
   path: string,

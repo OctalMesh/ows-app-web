@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { TocHeading } from "*.mdx";
 import { IconChevronRight } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
@@ -11,8 +12,7 @@ import {
   CollapsibleTrigger,
 } from "@shared/ui/collapsible";
 
-import type { TocHeading } from "../model/heading";
-import { TocItem } from "./toc-item";
+import { ArticleTocItem } from "./article-toc-item";
 
 export interface TocSectionProps {
   heading: TocHeading;
@@ -20,20 +20,28 @@ export interface TocSectionProps {
   onSelect: (id: string) => void;
 }
 
-export function TocSection({ heading, activeIds, onSelect }: TocSectionProps) {
+export function ArticleTocSection({
+  heading,
+  activeIds,
+  onSelect,
+}: TocSectionProps) {
   const [open, setOpen] = useState(true);
   const isActive = activeIds.has(heading.id);
 
-  if (!heading.children || heading.children.length === 0) {
+  if (heading.children.length === 0) {
     return (
-      <TocItem heading={heading} isActive={isActive} onSelect={onSelect} />
+      <ArticleTocItem
+        heading={heading}
+        isActive={isActive}
+        onSelect={onSelect}
+      />
     );
   }
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
       <div className="flex items-center gap-0.5">
-        <TocItem
+        <ArticleTocItem
           heading={heading}
           isActive={isActive}
           onSelect={onSelect}
@@ -54,15 +62,15 @@ export function TocSection({ heading, activeIds, onSelect }: TocSectionProps) {
 
       <CollapsibleContent className="flex flex-col overflow-hidden py-1.5">
         {heading.children.map((child) =>
-          child.children && child.children.length > 0 ? (
-            <TocSection
+          child.children.length > 0 ? (
+            <ArticleTocSection
               key={child.id}
               heading={child}
               activeIds={activeIds}
               onSelect={onSelect}
             />
           ) : (
-            <TocItem
+            <ArticleTocItem
               key={child.id}
               heading={child}
               isActive={activeIds.has(child.id)}

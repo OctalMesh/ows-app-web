@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { Article } from "@widgets/article";
+
 import { routing } from "@shared/i18n";
-import { getMdxMetadata, getMdxSlugs, getPage } from "@shared/lib/server";
+import { getMdxContent, getMdxMetadata, getMdxSlugs } from "@shared/lib/server";
 
 const COLLECTION: string = "legal" as const;
 
 interface Props {
-  params: Promise<{ locale: string; slug: string }>;
+  params: Promise<{ locale: Locale; slug: string }>;
 }
 
 interface LegalMetadata {
@@ -16,13 +18,13 @@ interface LegalMetadata {
 }
 
 export function generateStaticParams(): {
-  locale: string;
+  locale: Locale;
   slug: string;
 }[] {
   return routing.locales.flatMap((locale) =>
     getMdxSlugs(COLLECTION).map((slug) => ({
-      locale: locale,
-      slug: slug,
+      locale,
+      slug,
     })),
   );
 }
@@ -42,11 +44,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LegalPage({ params }: Props) {
   const { locale, slug } = await params;
-  const Content = await getPage(`${COLLECTION}/${slug}`, locale as Locale);
+  const content = await getMdxContent(COLLECTION, slug, locale);
 
-  if (!Content) {
+  if (!content) {
     notFound();
   }
 
-  return <Content />;
+  return (
+    <Article>
+      <Article.Toc headings={content.tableOfContents ?? []} />
+
+      <Article.Content>
+        <content.default />
+      </Article.Content>
+    </Article>
+  );
 }

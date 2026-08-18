@@ -11,7 +11,7 @@ export interface TocTitleProps {
   className?: string;
 }
 
-export function TocTitle({ text, className }: TocTitleProps) {
+export function ArticleTocTitle({ text, className }: TocTitleProps) {
   const t = useTranslations("common.toc");
 
   return (

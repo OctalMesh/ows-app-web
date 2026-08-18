@@ -2,11 +2,12 @@
 
 import { useTranslations } from "next-intl";
 
+import { TocHeading } from "*.mdx";
+
 import { ScrollArea } from "@shared/ui/scroll";
 
-import type { TocHeading } from "../model/heading";
-import { TocHeadingList } from "./toc-heading-list";
-import { TocTitle } from "./toc-title";
+import { ArticleTocList } from "./article-toc-list";
+import { ArticleTocTitle } from "./article-toc-title";
 
 export interface TocDesktopProps {
   headings: TocHeading[];
@@ -14,7 +15,11 @@ export interface TocDesktopProps {
   onSelect: (id: string) => void;
 }
 
-export function TocDesktop({ headings, activeIds, onSelect }: TocDesktopProps) {
+export function ArticleTocDesktop({
+  headings,
+  activeIds,
+  onSelect,
+}: TocDesktopProps) {
   const t = useTranslations("common.toc");
 
   return (
@@ -22,10 +27,10 @@ export function TocDesktop({ headings, activeIds, onSelect }: TocDesktopProps) {
       aria-label={t("title")}
       className="sticky top-0 flex h-dvh flex-col self-start pt-16 max-lg:hidden"
     >
-      <TocTitle />
+      <ArticleTocTitle />
 
       <ScrollArea showBar={false} className="min-h-0 flex-1 pl-3">
-        <TocHeadingList
+        <ArticleTocList
           headings={headings}
           activeIds={activeIds}
           onSelect={onSelect}

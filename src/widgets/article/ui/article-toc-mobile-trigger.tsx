@@ -11,7 +11,7 @@ export interface TocMobileTriggerProps {
   className?: string;
 }
 
-export function TocMobileTrigger({
+export function ArticleTocMobileTrigger({
   open,
   onClick,
   className,

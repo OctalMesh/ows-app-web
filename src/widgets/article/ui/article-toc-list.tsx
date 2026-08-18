@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useRef } from "react";
+
+import { TocHeading } from "*.mdx";
 
 import { cn } from "@shared/lib";
 
-import type { TocHeading } from "../model/heading";
-import { buildHeadingTree } from "../model/heading";
-import { TocIndicator } from "./toc-indicator";
-import { TocSection } from "./toc-section";
+import { ArticleTocIndicator } from "./article-toc-indicator";
+import { ArticleTocSection } from "./article-toc-section";
 
 export interface TocHeadingListProps {
   headings: TocHeading[];
@@ -16,14 +16,13 @@ export interface TocHeadingListProps {
   className?: string;
 }
 
-export function TocHeadingList({
+export function ArticleTocList({
   headings,
   activeIds,
   onSelect,
   className,
 }: TocHeadingListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const headingTree = useMemo(() => buildHeadingTree(headings), [headings]);
 
   return (
     <div
@@ -33,10 +32,10 @@ export function TocHeadingList({
         className,
       )}
     >
-      <TocIndicator containerRef={containerRef} activeIds={activeIds} />
+      <ArticleTocIndicator containerRef={containerRef} activeIds={activeIds} />
 
-      {headingTree.map((heading) => (
-        <TocSection
+      {headings.map((heading) => (
+        <ArticleTocSection
           key={heading.id}
           heading={heading}
           activeIds={activeIds}

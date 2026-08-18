@@ -1,3 +1,5 @@
+import path from "node:path";
+
 import nextMDX from "@next/mdx";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
@@ -110,7 +112,10 @@ const withMDX = nextMDX({
       "remark-frontmatter",
       ["remark-mdx-frontmatter", { name: "metadata" }],
     ],
-    rehypePlugins: ["rehype-slug"],
+    rehypePlugins: [
+      "rehype-slug",
+      path.resolve(process.cwd(), "src/shared/lib/rehype-toc.mts"),
+    ],
   },
 });
 

@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
+import { TocHeading } from "*.mdx";
+
 import { ScrollArea } from "@shared/ui";
 import { Collapsible, CollapsibleContent } from "@shared/ui/collapsible";
 
-import type { TocHeading } from "../model/heading";
-import { TocHeadingList } from "./toc-heading-list";
-import { TocMobileTrigger } from "./toc-mobile-trigger";
-import { TocTitle } from "./toc-title";
+import { ArticleTocList } from "./article-toc-list";
+import { ArticleTocMobileTrigger } from "./article-toc-mobile-trigger";
+import { ArticleTocTitle } from "./article-toc-title";
 
 export interface TocMobileProps {
   headings: TocHeading[];
@@ -16,17 +17,21 @@ export interface TocMobileProps {
   onSelect: (id: string) => void;
 }
 
-export function TocMobile({ headings, activeIds, onSelect }: TocMobileProps) {
+export function ArticleTocMobile({
+  headings,
+  activeIds,
+  onSelect,
+}: TocMobileProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="fixed top-0 z-50 block w-full lg:hidden">
       <Collapsible open={open} onOpenChange={setOpen}>
         <CollapsibleContent className="w-screen border-b bg-background px-5 pt-8 sm:pt-16">
-          <TocTitle />
+          <ArticleTocTitle />
 
           <ScrollArea showBar={false} className="min-h-0 flex-1 px-3">
-            <TocHeadingList
+            <ArticleTocList
               headings={headings}
               activeIds={activeIds}
               onSelect={(id) => {
@@ -48,7 +53,7 @@ export function TocMobile({ headings, activeIds, onSelect }: TocMobileProps) {
           }}
         />
 
-        <TocMobileTrigger
+        <ArticleTocMobileTrigger
           className="relative z-20"
           open={open}
           onClick={() => setOpen((v) => !v)}
