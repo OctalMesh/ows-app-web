@@ -47,7 +47,7 @@ export function Navigation({ children }: NavigationProps): JSX.Element {
     closeAllOverlays();
   }, [closeMenu, closeAllOverlays]);
 
-  const isAnyOpen = isMenuOpen || activeOverlay !== null;
+  const isAnyOpen = activeOverlay !== null;
 
   useEffect(() => {
     closeAll();
