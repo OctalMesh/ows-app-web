@@ -24,91 +24,96 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 //<editor-fold desc="Metadata" defaultstate="collapsed">
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://octalmesh.com"),
-  title: { default: "OctalMesh", template: "%s | OctalMesh" },
-  description:
-    "Engineering studio specializing in 3D printing and additive manufacturing",
-  openGraph: {
-    title: "OctalMesh",
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    metadataBase: new URL("https://octalmesh.com"),
+    manifest: `/${locale}/manifest.webmanifest`,
+    title: { default: "OctalMesh", template: "%s | OctalMesh" },
     description:
       "Engineering studio specializing in 3D printing and additive manufacturing",
-    url: "https://octalmesh.com",
-    siteName: "OctalMesh",
-  },
-  icons: {
-    icon: [
-      /* Light mode favicons */
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-16.png",
-        sizes: "16x16",
-        type: "image/png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-32.png",
-        sizes: "32x32",
-        type: "image/png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-48.png",
-        sizes: "48x48",
-        type: "image/png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/favicon-96.png",
-        sizes: "96x96",
-        type: "image/png",
-        media: "(prefers-color-scheme: light)",
-      },
+    openGraph: {
+      title: "OctalMesh",
+      description:
+        "Engineering studio specializing in 3D printing and additive manufacturing",
+      url: "https://octalmesh.com",
+      siteName: "OctalMesh",
+    },
+    icons: {
+      icon: [
+        /* Light mode favicons */
+        {
+          url: "/favicon.ico",
+          sizes: "any",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/favicon-16.png",
+          sizes: "16x16",
+          type: "image/png",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/favicon-32.png",
+          sizes: "32x32",
+          type: "image/png",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/favicon-48.png",
+          sizes: "48x48",
+          type: "image/png",
+          media: "(prefers-color-scheme: light)",
+        },
+        {
+          url: "/favicon-96.png",
+          sizes: "96x96",
+          type: "image/png",
+          media: "(prefers-color-scheme: light)",
+        },
 
-      /* Dark mode favicons */
-      {
-        url: "/favicon-dark.ico",
-        sizes: "any",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/favicon-dark-16.png",
-        sizes: "16x16",
-        type: "image/png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/favicon-dark-32.png",
-        sizes: "32x32",
-        type: "image/png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/favicon-dark-48.png",
-        sizes: "48x48",
-        type: "image/png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/favicon-dark-96.png",
-        sizes: "96x96",
-        type: "image/png",
-        media: "(prefers-color-scheme: dark)",
-      },
-    ],
-    apple: [
-      {
-        url: "/apple-touch-icon.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
-    ],
-  },
-};
+        /* Dark mode favicons */
+        {
+          url: "/favicon-dark.ico",
+          sizes: "any",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/favicon-dark-16.png",
+          sizes: "16x16",
+          type: "image/png",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/favicon-dark-32.png",
+          sizes: "32x32",
+          type: "image/png",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/favicon-dark-48.png",
+          sizes: "48x48",
+          type: "image/png",
+          media: "(prefers-color-scheme: dark)",
+        },
+        {
+          url: "/favicon-dark-96.png",
+          sizes: "96x96",
+          type: "image/png",
+          media: "(prefers-color-scheme: dark)",
+        },
+      ],
+      apple: [
+        {
+          url: "/apple-touch-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
+      ],
+    },
+  };
+}
 
 //</editor-fold>
 
