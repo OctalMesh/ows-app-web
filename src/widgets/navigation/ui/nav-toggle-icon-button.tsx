@@ -28,12 +28,11 @@ export function NavToggleIconButton({
 
   return (
     <Button
-      type="button"
-      variant="outline"
+      variant="outline-blurred"
       size="lg"
       aria-label={ariaLabel}
       className={cn(
-        "z-110 h-16 w-16 rounded-full backdrop-blur-xl disabled:pointer-events-none disabled:opacity-60",
+        "z-110 h-16 w-16 rounded-full disabled:pointer-events-none disabled:opacity-60",
         className,
       )}
       onClick={onToggle}

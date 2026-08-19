@@ -23,11 +23,11 @@ export function NavPillButton({
   return (
     <Button
       type="button"
-      variant="outline"
+      variant="outline-blurred"
       size="lg"
       aria-label={ariaLabel ?? label}
       className={cn(
-        "flex h-16 items-center justify-start gap-4 rounded-full px-6 backdrop-blur-xl",
+        "flex h-16 items-center justify-start gap-4 rounded-full px-6",
         className,
       )}
       onClick={onClick}
