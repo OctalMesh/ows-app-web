@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -11,6 +11,7 @@ import { ThemeProvider } from "@features/theme";
 
 import { isValidLocale } from "@shared/i18n";
 import { cn } from "@shared/lib";
+import { NavigationHistoryProvider } from "@shared/navigation";
 
 //<editor-fold desc="Fonts" defaultstate="collapsed">
 
@@ -139,10 +140,13 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <ThemeProvider>
           <NextIntlClientProvider locale={locale}>
-            <main className="relative min-h-dvh border-b bg-background">
-              {children}
-            </main>
-            <Footer className="mb-23 max-sm:border-b sm:mb-0" />
+            <NavigationHistoryProvider>
+              <main className="relative min-h-dvh border-b bg-background">
+                {children}
+              </main>
+
+              <Footer className="mb-23 max-sm:border-b sm:mb-0" />
+            </NavigationHistoryProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

@@ -1,10 +1,13 @@
 "use client";
 
-import { JSX } from "react";
+import type { JSX } from "react";
 
 import { useTranslations } from "next-intl";
 
 import { IconArrowLeft } from "@tabler/icons-react";
+
+import { useRouter } from "@shared/i18n";
+import { useNavigationHistory } from "@shared/navigation";
 
 import { NavPillButton } from "./nav-pill-button";
 
@@ -16,21 +19,23 @@ export function BackButton({
   fallbackHref = "/",
 }: BackButtonProps): JSX.Element {
   const t = useTranslations("common");
+  const router = useRouter();
+  const { canGoBack } = useNavigationHistory();
 
-  function handleBrowserBack() {
-    if (window.history.length > 1) {
-      window.history.back();
+  function handleBack() {
+    if (canGoBack) {
+      router.back();
       return;
     }
 
-    window.location.assign(fallbackHref);
+    void router.push(fallbackHref);
   }
 
   return (
     <NavPillButton
       icon={<IconArrowLeft className="size-5" />}
       label={t("nav.back")}
-      onClick={handleBrowserBack}
+      onClick={handleBack}
     />
   );
 }
