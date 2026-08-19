@@ -1,13 +1,17 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 
 import { cn } from "@shared/lib";
 
+export type SelectGroupProps = SelectPrimitive.Group.Props;
+
 export function SelectGroup({
   className,
   ...props
-}: SelectPrimitive.Group.Props) {
+}: SelectGroupProps): JSX.Element {
   return (
     <SelectPrimitive.Group
       data-slot="select-group"

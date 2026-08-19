@@ -1,11 +1,11 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 import { Button } from "@shared/ui/button";
 
-interface NavPillButtonProps {
+export interface NavPillButtonProps {
   icon: ReactNode;
   label: string;
   ariaLabel?: string;
@@ -19,7 +19,7 @@ export function NavPillButton({
   ariaLabel,
   onClick,
   className,
-}: NavPillButtonProps) {
+}: NavPillButtonProps): JSX.Element {
   return (
     <Button
       type="button"

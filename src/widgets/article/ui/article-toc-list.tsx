@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { type JSX, useRef } from "react";
 
 import { TocHeading } from "*.mdx";
 
@@ -21,7 +21,7 @@ export function ArticleTocList({
   activeIds,
   onSelect,
   className,
-}: TocHeadingListProps) {
+}: TocHeadingListProps): JSX.Element {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (

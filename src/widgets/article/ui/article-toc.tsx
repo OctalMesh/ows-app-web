@@ -1,12 +1,14 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { usePathname } from "next/navigation";
 
 import type { TocHeading } from "*.mdx";
 
 import { cn } from "@shared/lib";
 
-import { useArticleContext } from "../model";
+import { useArticle } from "../model";
 import { useArticleToc } from "../model/use-article-toc";
 import { ArticleTocDesktop } from "./article-toc-desktop";
 import { ArticleTocMobile } from "./article-toc-mobile";
@@ -16,9 +18,12 @@ export interface ArticleTocProps {
   className?: string;
 }
 
-export function ArticleToc({ headings, className }: ArticleTocProps) {
+export function ArticleToc({
+  headings,
+  className,
+}: ArticleTocProps): JSX.Element {
   const pathname = usePathname();
-  const { contentRef } = useArticleContext();
+  const { contentRef } = useArticle();
 
   const { activeIds, scrollToHeading } = useArticleToc({
     headings,

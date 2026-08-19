@@ -1,15 +1,18 @@
 "use client";
 
-import type { HTMLAttributes } from "react";
+import type { HTMLAttributes, JSX } from "react";
 
 import { cn } from "@shared/lib";
 
-import { useArticleContext } from "../model/use-article-context";
+import { useArticle } from "../model/use-article";
 
 export type ArticleContentProps = HTMLAttributes<HTMLElement>;
 
-export function ArticleContent({ className, ...props }: ArticleContentProps) {
-  const { contentRef } = useArticleContext();
+export function ArticleContent({
+  className,
+  ...props
+}: ArticleContentProps): JSX.Element {
+  const { contentRef } = useArticle();
 
   return (
     <article

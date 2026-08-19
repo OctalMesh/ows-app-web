@@ -1,6 +1,7 @@
+export { getFlatIds } from "./get-flat-ids";
 export {
   type ArticleContextValue,
   ArticleContext,
-  useArticleContext,
-} from "./use-article-context";
+  useArticle,
+} from "./use-article";
 export { useArticleToc } from "./use-article-toc";

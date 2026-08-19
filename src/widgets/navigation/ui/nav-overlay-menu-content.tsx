@@ -1,10 +1,10 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-interface NavOverlayMenuContentProps {
+export interface NavOverlayMenuContentProps {
   children: ReactNode;
   className?: string;
 }
@@ -12,7 +12,7 @@ interface NavOverlayMenuContentProps {
 export function NavOverlayMenuContent({
   children,
   className,
-}: NavOverlayMenuContentProps) {
+}: NavOverlayMenuContentProps): JSX.Element {
   return (
     <div
       className={cn(

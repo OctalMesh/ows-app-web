@@ -1,10 +1,14 @@
-import * as React from "react";
+"use client";
+
+import type { ComponentProps, JSX } from "react";
 
 import { Input as InputPrimitive } from "@base-ui/react/input";
 
 import { cn } from "@shared/lib";
 
-function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+export type InputProps = ComponentProps<"input">;
+
+export function Input({ className, type, ...props }: InputProps): JSX.Element {
   return (
     <InputPrimitive
       type={type}
@@ -17,5 +21,3 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
     />
   );
 }
-
-export { Input };

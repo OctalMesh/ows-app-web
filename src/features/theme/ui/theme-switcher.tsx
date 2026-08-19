@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 
 import { Theme } from "@shared/config";
 
-interface ThemeSwitchProps {
+export interface ThemeSwitchProps {
   light: ReactNode;
   dark: ReactNode;
   system?: ReactNode;
@@ -22,7 +22,7 @@ export function ThemeSwitcher({
   dark,
   system,
   fallback,
-}: ThemeSwitchProps) {
+}: ThemeSwitchProps): ReactNode {
   const { theme, resolvedTheme } = useTheme();
 
   const mounted = useSyncExternalStore(

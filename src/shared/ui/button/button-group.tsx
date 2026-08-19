@@ -1,16 +1,22 @@
-import { ComponentProps } from "react";
+"use client";
 
-import { type VariantProps } from "class-variance-authority";
+import { ComponentProps, type JSX } from "react";
 
 import { cn } from "@shared/lib";
 
-import { buttonGroupVariants } from "./button-group.styles";
+import {
+  ButtonGroupVariantsProps,
+  buttonGroupVariants,
+} from "./button-group.styles";
+
+export interface ButtonGroupProps
+  extends ComponentProps<"div">, ButtonGroupVariantsProps {}
 
 export function ButtonGroup({
   className,
   orientation,
   ...props
-}: ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) {
+}: ButtonGroupProps): JSX.Element {
   return (
     <div
       role="group"

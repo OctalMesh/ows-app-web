@@ -1,20 +1,9 @@
+import { JSX } from "react";
+
 import Link from "next/link";
 
 import { cn } from "@shared/lib";
-
-const ArrowIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    fill="none"
-    className="h-full w-full"
-  >
-    <path
-      d="M24 7C24.5523 7 25 7.44772 25 8V22H23V10.4141L8.70703 24.707L7.29297 23.293L21.5859 9H10V7H24Z"
-      fill="currentColor"
-    />
-  </svg>
-);
+import { ArrowIcon } from "@shared/ui";
 
 interface FooterLinkProps {
   href: string;
@@ -22,7 +11,11 @@ interface FooterLinkProps {
   external?: boolean;
 }
 
-export function FooterLink({ href, label, external }: FooterLinkProps) {
+export function FooterLink({
+  href,
+  label,
+  external,
+}: FooterLinkProps): JSX.Element {
   return (
     <Link
       href={href}

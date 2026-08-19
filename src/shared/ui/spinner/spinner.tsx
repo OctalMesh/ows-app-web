@@ -1,8 +1,12 @@
+import { JSX, SVGProps } from "react";
+
 import { IconLoader } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
 
-function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
+export type SpinnerProps = SVGProps<SVGSVGElement>;
+
+export function Spinner({ className, ...props }: SpinnerProps): JSX.Element {
   return (
     <IconLoader
       data-slot="spinner"
@@ -13,5 +17,3 @@ function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
     />
   );
 }
-
-export { Spinner };

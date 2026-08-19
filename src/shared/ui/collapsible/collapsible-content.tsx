@@ -1,14 +1,18 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
 import { cn } from "@shared/lib";
+
+export type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props;
 
 export function CollapsibleContent({
   className,
   children,
   ...props
-}: CollapsiblePrimitive.Panel.Props) {
+}: CollapsibleContentProps): JSX.Element {
   return (
     <CollapsiblePrimitive.Panel
       data-slot="collapsible-content"

@@ -1,5 +1,7 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
 import { IconAlignLeft } from "@tabler/icons-react";
@@ -11,7 +13,10 @@ export interface TocTitleProps {
   className?: string;
 }
 
-export function ArticleTocTitle({ text, className }: TocTitleProps) {
+export function ArticleTocTitle({
+  text,
+  className,
+}: TocTitleProps): JSX.Element {
   const t = useTranslations("common.toc");
 
   return (

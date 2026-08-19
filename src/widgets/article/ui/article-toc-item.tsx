@@ -1,5 +1,7 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { TocHeading } from "*.mdx";
 
 import { cn } from "@shared/lib";
@@ -17,7 +19,7 @@ export function ArticleTocItem({
   isActive,
   onSelect,
   className,
-}: TocItemProps) {
+}: TocItemProps): JSX.Element {
   const isSubHeading = heading.level >= 3;
 
   return (

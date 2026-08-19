@@ -1,7 +1,7 @@
 "use client";
 
+import type { ComponentProps, JSX } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
-import * as React from "react";
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -14,7 +14,13 @@ import { LogoOctalMesh, PlaceholderImg } from "@shared/ui";
 import { FooterLink } from "./footer-link";
 import { FooterLinkGroup } from "./footer-link-group";
 
-function ProductFallback({ className }: { className?: string }) {
+const FALLBACK_ITEMS_COUNT = 6;
+
+interface ProductFallbackProps {
+  className?: string;
+}
+
+function ProductFallback({ className }: ProductFallbackProps): JSX.Element {
   return (
     <div
       className={cn(
@@ -28,10 +34,9 @@ function ProductFallback({ className }: { className?: string }) {
   );
 }
 
-export function Footer({
-  className,
-  ...props
-}: React.ComponentProps<"footer">) {
+export type FooterProps = ComponentProps<"footer">;
+
+export function Footer({ className, ...props }: FooterProps): JSX.Element {
   const t = useTranslations("footer");
   const footerRef = useRef<HTMLElement>(null);
   const [fitsViewport, setFitsViewport] = useState(false);
@@ -43,18 +48,29 @@ export function Footer({
       return;
     }
 
-    const check = () => {
-      setFitsViewport(footer.offsetHeight <= window.innerHeight);
-    };
-    check();
+    let frame = 0;
 
-    const resizeObserver = new ResizeObserver(check);
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0];
+
+      if (!entry) {
+        return;
+      }
+
+      const footerHeight =
+        entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        setFitsViewport(footerHeight <= window.innerHeight);
+      });
+    });
+
     resizeObserver.observe(footer);
-    window.addEventListener("resize", check);
 
     return () => {
+      cancelAnimationFrame(frame);
       resizeObserver.disconnect();
-      window.removeEventListener("resize", check);
     };
   }, []);
 
@@ -70,6 +86,7 @@ export function Footer({
       className={cn(
         className,
         "relative left-0 z-0 w-full bg-background",
+        "[contain:layout_paint]",
         fitsViewport && "overflow-hidden",
       )}
       {...props}
@@ -84,7 +101,11 @@ export function Footer({
         <div className="grid flex-1 grid-cols-1 sm:grid-cols-2">
           {/* Left col */}
           <div className="flex flex-col">
-            <Link href="/" className="border-b p-8">
+            <Link
+              aria-label={t("nav_group.company")}
+              href="/"
+              className="border-b p-8"
+            >
               <LogoOctalMesh className="h-auto w-full" />
             </Link>
 
@@ -99,9 +120,11 @@ export function Footer({
               </div>
 
               <div className="grid grid-cols-2 gap-3 xl:grid-cols-3">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <ProductFallback key={i} />
-                ))}
+                {Array.from({ length: FALLBACK_ITEMS_COUNT }).map(
+                  (_, index) => (
+                    <ProductFallback key={index} />
+                  ),
+                )}
               </div>
             </div>
           </div>

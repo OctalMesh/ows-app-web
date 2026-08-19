@@ -1,13 +1,13 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { JSX, type ReactNode, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
 
 import { cn } from "@shared/lib";
 import { Button } from "@shared/ui/button";
 
-interface NavToggleIconButtonProps {
+export interface NavToggleIconButtonProps {
   isActive: boolean;
   onToggle: () => void;
   activeIcon: ReactNode;
@@ -23,7 +23,7 @@ export function NavToggleIconButton({
   inactiveIcon,
   ariaLabel,
   className,
-}: NavToggleIconButtonProps) {
+}: NavToggleIconButtonProps): JSX.Element {
   const [isAnimating, setIsAnimating] = useState(false);
 
   return (

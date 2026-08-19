@@ -1,17 +1,17 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
 import { useNavigation } from "../model";
 
-interface NavBarProps {
+export interface NavBarProps {
   children: ReactNode;
   className?: string;
 }
 
-export function NavBar({ children, className }: NavBarProps) {
+export function NavBar({ children, className }: NavBarProps): JSX.Element {
   const { setNavBarContainer } = useNavigation();
 
   return (

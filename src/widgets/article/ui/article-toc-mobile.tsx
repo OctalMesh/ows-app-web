@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type JSX, useState } from "react";
 
 import { TocHeading } from "*.mdx";
 
@@ -21,7 +21,7 @@ export function ArticleTocMobile({
   headings,
   activeIds,
   onSelect,
-}: TocMobileProps) {
+}: TocMobileProps): JSX.Element {
   const [open, setOpen] = useState(false);
 
   return (

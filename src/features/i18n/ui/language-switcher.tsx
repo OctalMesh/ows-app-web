@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
-import { useTransition } from "react";
+import type { JSX } from "react";
+import { useId, useMemo, useTransition } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
@@ -20,17 +20,17 @@ import {
   SelectValue,
 } from "@shared/ui/select";
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher(): JSX.Element {
   const locale = useLocale();
   const t = useTranslations("common.languages");
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
-  const selectId = React.useId();
+  const selectId = useId();
   const contentId = `language-select-content-${selectId}`;
   const [isPending, startTransition] = useTransition();
 
-  const options = React.useMemo(() => {
+  const options = useMemo(() => {
     return SUPPORTED_LOCALES.map((code) => ({
       code,
       label: t(code),

@@ -1,16 +1,20 @@
 "use client";
 
+import { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
 import { IconArrowLeft } from "@tabler/icons-react";
 
 import { NavPillButton } from "./nav-pill-button";
 
-interface BackButtonProps {
+export interface BackButtonProps {
   fallbackHref?: string;
 }
 
-export function BackButton({ fallbackHref = "/" }: BackButtonProps) {
+export function BackButton({
+  fallbackHref = "/",
+}: BackButtonProps): JSX.Element {
   const t = useTranslations("common");
 
   function handleBrowserBack() {

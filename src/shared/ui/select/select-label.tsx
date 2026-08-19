@@ -1,13 +1,17 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 
 import { cn } from "@shared/lib";
 
+export type SelectLabelProps = SelectPrimitive.GroupLabel.Props;
+
 export function SelectLabel({
   className,
   ...props
-}: SelectPrimitive.GroupLabel.Props) {
+}: SelectLabelProps): JSX.Element {
   return (
     <SelectPrimitive.GroupLabel
       data-slot="select-label"

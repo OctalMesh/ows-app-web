@@ -1,14 +1,13 @@
 "use client";
 
-import {
-  type RefObject,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import type { RefObject } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { TocHeading } from "*.mdx";
+
+import { areSetsEqual } from "@shared/lib";
+
+import { getFlatIds } from "./get-flat-ids";
 
 const TOP_OFFSET = 90;
 
@@ -18,30 +17,26 @@ export interface UseArticleTocOptions {
   pageKey: string;
 }
 
-function getFlatIds(headings: TocHeading[]): string[] {
-  const ids: string[] = [];
-
-  for (const item of headings) {
-    ids.push(item.id);
-
-    if (item.children.length > 0) {
-      ids.push(...getFlatIds(item.children));
-    }
-  }
-
-  return ids;
+export interface UseArticleTocReturn {
+  activeIds: Set<string>;
+  scrollToHeading: (id: string) => void;
 }
 
 export function useArticleToc({
   headings,
   contentRef,
   pageKey,
-}: UseArticleTocOptions) {
+}: UseArticleTocOptions): UseArticleTocReturn {
   const [activeIds, setActiveIds] = useState<Set<string>>(() => new Set());
   const flatIds = useMemo(() => getFlatIds(headings), [headings]);
 
+  const measurementsRef = useRef<
+    Array<{ id: string; top: number; bottom: number }>
+  >([]);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   useEffect(() => {
-    if (!flatIds.length) {
+    if (flatIds.length === 0) {
       return;
     }
 
@@ -51,43 +46,87 @@ export function useArticleToc({
       return;
     }
 
-    const elements = flatIds
-      .map((id) => document.getElementById(id))
-      .filter((element): element is HTMLElement => element !== null);
+    const measureDOM = () => {
+      const elements = flatIds
+        .map((id) => document.getElementById(id))
+        .filter((element): element is HTMLElement => element !== null);
 
-    if (!elements.length) {
-      return;
-    }
+      if (elements.length === 0) {
+        return;
+      }
 
-    const updateActiveSections = () => {
-      const activeIds = new Set<string>();
-      const viewportHeight = window.innerHeight;
-      const contentBottom = content.getBoundingClientRect().bottom;
+      const scrollY = window.scrollY;
+      const contentRect = content.getBoundingClientRect();
+      const contentAbsoluteBottom = contentRect.bottom + scrollY;
 
-      for (let i = 0; i < elements.length; i++) {
-        const current = elements[i]!;
+      measurementsRef.current = elements.map((current, i) => {
         const next = elements[i + 1];
+        const top = current.getBoundingClientRect().top + scrollY;
+        const bottom = next
+          ? next.getBoundingClientRect().top + scrollY
+          : contentAbsoluteBottom;
 
-        const top = current.getBoundingClientRect().top;
-        const bottom = next?.getBoundingClientRect().top ?? contentBottom;
+        return { id: current.id, top, bottom };
+      });
+      checkActiveSections();
+    };
 
-        if (top < viewportHeight && bottom > TOP_OFFSET) {
-          activeIds.add(current.id);
+    const scheduleMeasurement = () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        requestAnimationFrame(measureDOM);
+      }, 100);
+    };
+
+    const checkActiveSections = () => {
+      if (measurementsRef.current.length === 0) {
+        return;
+      }
+
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const viewportTop = scrollY + TOP_OFFSET;
+      const viewportBottom = scrollY + viewportHeight;
+
+      const nextActiveIds = new Set<string>();
+
+      for (const { id, top, bottom } of measurementsRef.current) {
+        if (top < viewportBottom && bottom > viewportTop) {
+          nextActiveIds.add(id);
         }
       }
 
-      setActiveIds(activeIds);
+      setActiveIds((prev) =>
+        areSetsEqual(prev, nextActiveIds) ? prev : nextActiveIds,
+      );
     };
 
-    const observer = new IntersectionObserver(updateActiveSections);
+    const resizeObserver = new ResizeObserver(() => {
+      scheduleMeasurement();
+    });
+    resizeObserver.observe(content);
 
-    for (const element of elements) {
-      observer.observe(element);
-    }
+    const onScroll = () => {
+      requestAnimationFrame(checkActiveSections);
+    };
 
-    updateActiveSections();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", scheduleMeasurement, { passive: true });
 
-    return () => observer.disconnect();
+    scheduleMeasurement();
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", scheduleMeasurement);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
   }, [contentRef, flatIds, pageKey]);
 
   const scrollToHeading = useCallback((id: string) => {

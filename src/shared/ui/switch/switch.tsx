@@ -1,16 +1,20 @@
 "use client";
 
+import { JSX } from "react";
+
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 
 import { cn } from "@shared/lib";
 
-function Switch({
+export interface SwitchProps extends SwitchPrimitive.Root.Props {
+  size?: "sm" | "default";
+}
+
+export function Switch({
   className,
   size = "default",
   ...props
-}: SwitchPrimitive.Root.Props & {
-  size?: "sm" | "default";
-}) {
+}: SwitchProps): JSX.Element {
   return (
     <SwitchPrimitive.Root
       data-slot="switch"
@@ -28,5 +32,3 @@ function Switch({
     </SwitchPrimitive.Root>
   );
 }
-
-export { Switch };

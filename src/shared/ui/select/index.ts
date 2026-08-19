@@ -1,12 +1,16 @@
 export { Select } from "./select";
-export { SelectContent } from "./select-content";
-export { SelectGroup } from "./select-group";
-export { SelectItem } from "./select-item";
-export { SelectLabel } from "./select-label";
+export { SelectContent, type SelectContentProps } from "./select-content";
+export { SelectGroup, type SelectGroupProps } from "./select-group";
+export { SelectItem, type SelectItemProps } from "./select-item";
+export { SelectLabel, type SelectLabelProps } from "./select-label";
 export {
   SelectScrollUpButton,
+  type SelectScrollUpButtonProps,
+} from "./select-scroll-button-up";
+export {
   SelectScrollDownButton,
-} from "./select-scroll-button";
-export { SelectSeparator } from "./select-separator";
-export { SelectTrigger } from "./select-trigger";
-export { SelectValue } from "./select-value";
+  type SelectScrollDownButtonProps,
+} from "./select-scroll-button-down";
+export { SelectSeparator, type SelectSeparatorProps } from "./select-separator";
+export { SelectTrigger, type SelectTriggerProps } from "./select-trigger";
+export { SelectValue, type SelectValueProps } from "./select-value";

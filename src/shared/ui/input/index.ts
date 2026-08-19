@@ -1,17 +1,37 @@
 export { Input } from "./input";
 
+export { InputGroup, type InputGroupProps } from "./input-group";
 export {
-  InputGroup,
   InputGroupAddon,
+  type InputGroupAddonProps,
+} from "./input-group-addon";
+export {
   InputGroupButton,
-  InputGroupText,
+  type InputGroupButtonProps,
+} from "./input-group-button";
+export { InputGroupText, type InputGroupTextProps } from "./input-group-text";
+export {
   InputGroupInput,
+  type InputGroupInputProps,
+} from "./input-group-input";
+export {
   InputGroupTextarea,
-} from "./input-group";
+  type InputGroupTextareaProps,
+} from "./input-group-textarea";
 
 export {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-  InputOTPSeparator,
-} from "./input-otp";
+  inputGroupAddonVariants,
+  type InputGroupAddonVariantsProps,
+} from "./input-group-addon.styles";
+export {
+  inputGroupButtonVariants,
+  type InputGroupButtonVariantsProps,
+} from "./input-group-button.styles";
+
+export { InputOtp, type InputOtpProps } from "./input-otp";
+export { InputOtpGroup, type InputOtpGroupProps } from "./input-otp-group";
+export { InputOtpSlot, type InputOtpSlotProps } from "./input-otp-slot";
+export {
+  InputOtpSeparator,
+  type InputOtpSeparatorProps,
+} from "./input-otp-separator";

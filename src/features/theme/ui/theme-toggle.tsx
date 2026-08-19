@@ -1,5 +1,7 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
@@ -16,7 +18,7 @@ import {
 
 import { ThemeSwitcher } from "./theme-switcher";
 
-export function ThemeToggle() {
+export function ThemeToggle(): JSX.Element {
   const { setTheme } = useTheme();
   const t = useTranslations("theme");
 

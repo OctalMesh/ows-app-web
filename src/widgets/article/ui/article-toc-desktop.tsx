@@ -1,5 +1,7 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
 import { TocHeading } from "*.mdx";
@@ -19,7 +21,7 @@ export function ArticleTocDesktop({
   headings,
   activeIds,
   onSelect,
-}: TocDesktopProps) {
+}: TocDesktopProps): JSX.Element {
   const t = useTranslations("common.toc");
 
   return (

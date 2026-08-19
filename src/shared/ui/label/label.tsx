@@ -1,10 +1,12 @@
 "use client";
 
-import * as React from "react";
+import type { ComponentProps, JSX } from "react";
 
 import { cn } from "@shared/lib";
 
-function Label({ className, ...props }: React.ComponentProps<"label">) {
+export type LabelProps = ComponentProps<"label">;
+
+export function Label({ className, ...props }: LabelProps): JSX.Element {
   return (
     <label
       data-slot="label"
@@ -16,5 +18,3 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
     />
   );
 }
-
-export { Label };

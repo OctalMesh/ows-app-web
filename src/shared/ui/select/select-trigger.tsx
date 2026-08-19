@@ -1,18 +1,22 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { IconChevronDown } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
+
+export interface SelectTriggerProps extends SelectPrimitive.Trigger.Props {
+  size?: "sm" | "md" | "lg" | "default";
+}
 
 export function SelectTrigger({
   className,
   size = "default",
   children,
   ...props
-}: SelectPrimitive.Trigger.Props & {
-  size?: "sm" | "md" | "lg" | "default";
-}) {
+}: SelectTriggerProps): JSX.Element {
   return (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"

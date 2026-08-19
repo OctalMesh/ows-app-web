@@ -1,11 +1,14 @@
-import { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 interface FooterLinkGroupProps {
   title: string;
   children: ReactNode;
 }
 
-export function FooterLinkGroup({ title, children }: FooterLinkGroupProps) {
+export function FooterLinkGroup({
+  title,
+  children,
+}: FooterLinkGroupProps): JSX.Element {
   return (
     <div>
       <h2 className="text-md mb-6 font-mono tracking-widest uppercase opacity-30">

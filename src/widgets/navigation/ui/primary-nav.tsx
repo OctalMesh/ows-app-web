@@ -1,21 +1,27 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { NavPrimaryList } from "./nav-primary-list";
 import { PrimaryNavHome } from "./primary-nav-home";
 import { PrimaryNavTab } from "./primary-nav-tab";
 
-interface PrimaryNavProps {
+export interface PrimaryNavProps {
   children: ReactNode;
   className?: string;
 }
 
-function PrimaryNavRoot({ children, className }: PrimaryNavProps) {
+function PrimaryNavRoot({ children, className }: PrimaryNavProps): JSX.Element {
   return <NavPrimaryList className={className}>{children}</NavPrimaryList>;
 }
 
-export const PrimaryNav = Object.assign(PrimaryNavRoot, {
+export interface PrimaryNavComponent {
+  (props: PrimaryNavProps): JSX.Element;
+  Home: typeof PrimaryNavHome;
+  Tab: typeof PrimaryNavTab;
+}
+
+export const PrimaryNav: PrimaryNavComponent = Object.assign(PrimaryNavRoot, {
   Home: PrimaryNavHome,
   Tab: PrimaryNavTab,
 });

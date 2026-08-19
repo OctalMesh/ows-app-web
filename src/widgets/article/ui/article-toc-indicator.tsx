@@ -1,6 +1,13 @@
 "use client";
 
-import { type RefObject, useEffect, useState } from "react";
+import {
+  type JSX,
+  type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { motion } from "motion/react";
 
@@ -16,12 +23,55 @@ export function ArticleTocIndicator({
   containerRef,
   activeIds,
   className,
-}: TocIndicatorProps) {
+}: TocIndicatorProps): JSX.Element {
   const [indicator, setIndicator] = useState({
     top: 0,
     height: 0,
     opacity: 0,
   });
+
+  const measurementsRef = useRef<Map<string, { top: number; bottom: number }>>(
+    new Map(),
+  );
+
+  const activeIdsRef = useRef(activeIds);
+  useEffect(() => {
+    activeIdsRef.current = activeIds;
+  }, [activeIds]);
+
+  const updateIndicator = useCallback(() => {
+    const ids = activeIdsRef.current;
+
+    if (ids.size === 0) {
+      setIndicator((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+
+    let minTop = Infinity;
+    let maxBottom = -Infinity;
+    let hasValidMeasurements = false;
+
+    for (const id of ids) {
+      const rect = measurementsRef.current.get(id);
+      if (rect) {
+        minTop = Math.min(minTop, rect.top);
+        maxBottom = Math.max(maxBottom, rect.bottom);
+        hasValidMeasurements = true;
+      }
+    }
+
+    if (hasValidMeasurements) {
+      setIndicator({
+        top: minTop,
+        height: maxBottom - minTop,
+        opacity: 1,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    updateIndicator();
+  }, [activeIds, updateIndicator]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -30,44 +80,52 @@ export function ArticleTocIndicator({
       return;
     }
 
-    const rafId = requestAnimationFrame(() => {
-      const activeElements = Array.from(activeIds)
-        .map(
-          (id) =>
-            container.querySelector(
-              `[data-toc-id="${id}"]`,
-            ) as HTMLElement | null,
-        )
-        .filter((element): element is HTMLElement => element !== null);
+    const measureDOM = () => {
+      const elements = container.querySelectorAll<HTMLElement>("[data-toc-id]");
+      let layoutChanged = false;
 
-      if (activeElements.length === 0) {
-        setIndicator((prev) => ({
-          ...prev,
-          opacity: 0,
-        }));
+      elements.forEach((el) => {
+        const id = el.getAttribute("data-toc-id");
+        if (!id) return;
 
-        return;
-      }
+        const top = el.offsetTop;
+        const bottom = top + el.offsetHeight;
 
-      const minTop = Math.min(
-        ...activeElements.map((element) => element.offsetTop),
-      );
+        const existing = measurementsRef.current.get(id);
 
-      const maxBottom = Math.max(
-        ...activeElements.map(
-          (element) => element.offsetTop + element.offsetHeight,
-        ),
-      );
-
-      setIndicator({
-        top: minTop,
-        height: maxBottom - minTop,
-        opacity: 1,
+        if (!existing || existing.top !== top || existing.bottom !== bottom) {
+          measurementsRef.current.set(id, { top, bottom });
+          layoutChanged = true;
+        }
       });
+
+      if (layoutChanged) {
+        updateIndicator();
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      measureDOM();
+    });
+    resizeObserver.observe(container);
+
+    const mutationObserver = new MutationObserver(() => {
+      measureDOM();
+    });
+    mutationObserver.observe(container, {
+      childList: true,
+      subtree: true,
+      characterData: true,
     });
 
-    return () => cancelAnimationFrame(rafId);
-  }, [activeIds, containerRef]);
+    const rafId = requestAnimationFrame(measureDOM);
+
+    return () => {
+      resizeObserver.disconnect();
+      mutationObserver.disconnect();
+      cancelAnimationFrame(rafId);
+    };
+  }, [containerRef, updateIndicator]);
 
   return (
     <motion.div

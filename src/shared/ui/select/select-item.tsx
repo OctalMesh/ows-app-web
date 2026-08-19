@@ -1,15 +1,19 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { IconCheck } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
 
+export type SelectItemProps = SelectPrimitive.Item.Props;
+
 export function SelectItem({
   className,
   children,
   ...props
-}: SelectPrimitive.Item.Props) {
+}: SelectItemProps): JSX.Element {
   return (
     <SelectPrimitive.Item
       data-slot="select-item"

@@ -1,6 +1,7 @@
 "use client";
 
-import { ReactNode, useRef } from "react";
+import { useRef } from "react";
+import type { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
@@ -11,7 +12,10 @@ export interface ArticleShellProps {
   className?: string;
 }
 
-export function ArticleShell({ children, className }: ArticleShellProps) {
+export function ArticleShell({
+  children,
+  className,
+}: ArticleShellProps): JSX.Element {
   const contentRef = useRef<HTMLElement>(null);
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ import { cn } from "@shared/lib";
 
 import { useNavigation } from "../model";
 
-interface NavOverlayMenuActionProps {
+export interface NavOverlayMenuActionProps {
   href: string;
   icon: ReactNode;
   label: string;
@@ -20,7 +20,7 @@ export function NavOverlayMenuAction({
   icon,
   label,
   className,
-}: NavOverlayMenuActionProps) {
+}: NavOverlayMenuActionProps): JSX.Element {
   const { closeMenu } = useNavigation();
 
   return (

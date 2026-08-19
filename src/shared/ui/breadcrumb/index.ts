@@ -1,9 +1,13 @@
+export { Breadcrumb, type BreadcrumbProps } from "./breadcrumb";
+export { BreadcrumbList, type BreadcrumbListProps } from "./breadcrumb-list";
+export { BreadcrumbItem, type BreadcrumbItemProps } from "./breadcrumb-item";
+export { BreadcrumbLink, type BreadcrumbLinkProps } from "./breadcrumb-link";
+export { BreadcrumbPage, type BreadcrumbPageProps } from "./breadcrumb-page";
 export {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbPage,
   BreadcrumbSeparator,
+  type BreadcrumbSeparatorProps,
+} from "./breadcrumb-separator";
+export {
   BreadcrumbEllipsis,
-} from "./breadcrumb";
+  type BreadcrumbEllipsisProps,
+} from "./breadcrumb-ellipsis";

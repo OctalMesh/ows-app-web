@@ -1,6 +1,10 @@
+import type { ComponentProps, JSX } from "react";
+
 import { cn } from "@shared/lib";
 
-function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+export type SkeletonProps = ComponentProps<"div">;
+
+export function Skeleton({ className, ...props }: SkeletonProps): JSX.Element {
   return (
     <div
       data-slot="skeleton"
@@ -9,5 +13,3 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
     />
   );
 }
-
-export { Skeleton };

@@ -1,6 +1,6 @@
-import { SVGProps } from "react";
+import { JSX, SVGProps } from "react";
 
-export function PlaceholderImg(props: SVGProps<SVGSVGElement>) {
+export function PlaceholderImg(props: SVGProps<SVGSVGElement>): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

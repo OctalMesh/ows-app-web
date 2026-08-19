@@ -1,18 +1,16 @@
-export {
-  Combobox,
-  ComboboxInput,
-  ComboboxContent,
-  ComboboxList,
-  ComboboxItem,
-  ComboboxGroup,
-  ComboboxLabel,
-  ComboboxCollection,
-  ComboboxEmpty,
-  ComboboxSeparator,
-  ComboboxChips,
-  ComboboxChip,
-  ComboboxChipsInput,
-  ComboboxTrigger,
-  ComboboxValue,
-  useComboboxAnchor,
-} from "./combobox";
+export { Combobox } from "./combobox";
+export { ComboboxInput, type ComboboxInputProps } from "./combobox-input";
+export { ComboboxContent } from "./combobox-content";
+export { ComboboxList } from "./combobox-list";
+export { ComboboxItem } from "./combobox-item";
+export { ComboboxGroup } from "./combobox-group";
+export { ComboboxLabel } from "./combobox-label";
+export { ComboboxCollection } from "./combobox-collection";
+export { ComboboxEmpty } from "./combobox-empty";
+export { ComboboxSeparator } from "./combobox-separator";
+export { ComboboxChips } from "./combobox-chips";
+export { ComboboxChip } from "./combobox-chip";
+export { ComboboxChipsInput } from "./combobox-chips-input";
+export { ComboboxTrigger, type ComboboxTriggerProps } from "./combobox-trigger";
+export { ComboboxValue, type ComboboxValueProps } from "./combobox-value";
+export { useComboboxAnchor } from "./use-combobox-anchor";

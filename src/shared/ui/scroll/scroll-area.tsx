@@ -1,12 +1,14 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area";
 
 import { cn } from "@shared/lib";
 
 import { ScrollBar } from "./scroll-bar";
 
-interface ScrollAreaProps extends ScrollAreaPrimitive.Root.Props {
+export interface ScrollAreaProps extends ScrollAreaPrimitive.Root.Props {
   showBar?: boolean;
 }
 
@@ -15,7 +17,7 @@ export function ScrollArea({
   children,
   showBar = true,
   ...props
-}: ScrollAreaProps) {
+}: ScrollAreaProps): JSX.Element {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"

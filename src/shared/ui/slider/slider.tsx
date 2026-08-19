@@ -1,16 +1,20 @@
+import type { JSX } from "react";
+
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 
 import { cn } from "@shared/lib";
 
-function Slider({
+export type SliderProps = SliderPrimitive.Root.Props;
+
+export function Slider({
   className,
   defaultValue,
   value,
   min = 0,
   max = 100,
   ...props
-}: SliderPrimitive.Root.Props) {
-  const _values = Array.isArray(value)
+}: SliderProps): JSX.Element {
+  const values = Array.isArray(value)
     ? value
     : Array.isArray(defaultValue)
       ? defaultValue
@@ -37,7 +41,8 @@ function Slider({
             className="bg-primary select-none data-horizontal:h-full data-vertical:w-full"
           />
         </SliderPrimitive.Track>
-        {Array.from({ length: _values.length }, (_, index) => (
+
+        {Array.from({ length: values.length }, (_, index) => (
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
             key={index}
@@ -48,5 +53,3 @@ function Slider({
     </SliderPrimitive.Root>
   );
 }
-
-export { Slider };

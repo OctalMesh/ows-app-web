@@ -1,5 +1,7 @@
 "use client";
 
+import { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
 import { IconMenu, IconX } from "@tabler/icons-react";
@@ -7,7 +9,7 @@ import { IconMenu, IconX } from "@tabler/icons-react";
 import { useNavigation } from "../model";
 import { NavToggleIconButton } from "./nav-toggle-icon-button";
 
-export function MenuButton() {
+export function MenuButton(): JSX.Element {
   const t = useTranslations("common");
   const { isMenuOpen, toggleMenu } = useNavigation();
 

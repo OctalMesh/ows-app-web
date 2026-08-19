@@ -1,13 +1,17 @@
+"use client";
+
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 
 import { cn } from "@shared/lib";
 
+export type ButtonGroupTextProps = useRender.ComponentProps<"div">;
+
 export function ButtonGroupText({
   className,
   render,
   ...props
-}: useRender.ComponentProps<"div">) {
+}: ButtonGroupTextProps): ReturnType<typeof useRender> {
   return useRender({
     defaultTagName: "div",
     props: mergeProps<"div">(

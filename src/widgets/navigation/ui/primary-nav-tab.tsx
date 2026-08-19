@@ -1,13 +1,14 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-import { type NavOverlayKey, useNavigation } from "../model";
+import { useNavigation } from "../model";
+import { NavOverlayKey } from "./nav-overlay";
 import { NavPrimaryItem } from "./nav-primary-item";
 
-interface PrimaryNavTabProps {
+export interface PrimaryNavTabProps {
   overlay: NavOverlayKey;
   icon: ReactNode;
   label: string;
@@ -19,7 +20,7 @@ export function PrimaryNavTab({
   icon,
   label,
   count,
-}: PrimaryNavTabProps) {
+}: PrimaryNavTabProps): JSX.Element {
   const { activeOverlay, openOverlay } = useNavigation();
   const active = activeOverlay === overlay;
 

@@ -1,11 +1,15 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { IconCheck } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
 
-function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
+export type CheckboxProps = CheckboxPrimitive.Root.Props;
+
+export function Checkbox({ className, ...props }: CheckboxProps): JSX.Element {
   return (
     <CheckboxPrimitive.Root
       data-slot="checkbox"
@@ -24,5 +28,3 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
     </CheckboxPrimitive.Root>
   );
 }
-
-export { Checkbox };

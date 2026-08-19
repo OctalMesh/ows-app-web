@@ -1,5 +1,7 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { IconChevronDown } from "@tabler/icons-react";
 
 import { cn } from "@shared/lib";
@@ -15,7 +17,7 @@ export function ArticleTocMobileTrigger({
   open,
   onClick,
   className,
-}: TocMobileTriggerProps) {
+}: TocMobileTriggerProps): JSX.Element {
   return (
     <Button
       variant="text"

@@ -1,7 +1,16 @@
 export { Button } from "./button";
-export { buttonVariants } from "./button.styles";
+export { ButtonGroup, type ButtonGroupProps } from "./button-group";
+export {
+  ButtonGroupSeparator,
+  type ButtonGroupSeparatorProps,
+} from "./button-group-separator";
+export {
+  ButtonGroupText,
+  type ButtonGroupTextProps,
+} from "./button-group-text";
 
-export { ButtonGroup } from "./button-group";
-export { ButtonGroupSeparator } from "./button-group-separator";
-export { ButtonGroupText } from "./button-group-text";
-export { buttonGroupVariants } from "./button-group.styles";
+export { buttonVariants, type ButtonVariantsProps } from "./button.styles";
+export {
+  buttonGroupVariants,
+  type ButtonGroupVariantsProps,
+} from "./button-group.styles";

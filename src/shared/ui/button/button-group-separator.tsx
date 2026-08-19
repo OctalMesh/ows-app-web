@@ -1,13 +1,21 @@
-import { ComponentProps } from "react";
+"use client";
+
+import { ComponentProps, type JSX } from "react";
 
 import { cn } from "@shared/lib";
 import { Separator } from "@shared/ui/separator";
+
+export interface ButtonGroupSeparatorProps extends ComponentProps<
+  typeof Separator
+> {
+  orientation?: "horizontal" | "vertical";
+}
 
 export function ButtonGroupSeparator({
   className,
   orientation = "vertical",
   ...props
-}: ComponentProps<typeof Separator>) {
+}: ButtonGroupSeparatorProps): JSX.Element {
   return (
     <Separator
       data-slot="button-group-separator"

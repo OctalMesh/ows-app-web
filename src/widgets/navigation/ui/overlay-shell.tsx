@@ -1,17 +1,22 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-interface Props {
+export interface OverlayShellProps {
   open: boolean;
   action: () => void;
   children: ReactNode;
   className?: string;
 }
 
-export function OverlayShell({ open, action, children, className }: Props) {
+export function OverlayShell({
+  open,
+  action,
+  children,
+  className,
+}: OverlayShellProps): JSX.Element {
   return (
     <>
       {open ? (

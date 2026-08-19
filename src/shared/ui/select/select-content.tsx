@@ -1,13 +1,19 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 
 import { cn } from "@shared/lib";
 
-import {
-  SelectScrollDownButton,
-  SelectScrollUpButton,
-} from "./select-scroll-button";
+import { SelectScrollDownButton } from "./select-scroll-button-down";
+import { SelectScrollUpButton } from "./select-scroll-button-up";
+
+export type SelectContentProps = SelectPrimitive.Popup.Props &
+  Pick<
+    SelectPrimitive.Positioner.Props,
+    "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
+  >;
 
 export function SelectContent({
   className,
@@ -18,11 +24,7 @@ export function SelectContent({
   alignOffset = 0,
   alignItemWithTrigger = true,
   ...props
-}: SelectPrimitive.Popup.Props &
-  Pick<
-    SelectPrimitive.Positioner.Props,
-    "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
-  >) {
+}: SelectContentProps): JSX.Element {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Positioner

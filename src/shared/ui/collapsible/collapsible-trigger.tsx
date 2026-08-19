@@ -1,10 +1,14 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+
+export type CollapsibleTriggerProps = CollapsiblePrimitive.Trigger.Props;
 
 export function CollapsibleTrigger({
   ...props
-}: CollapsiblePrimitive.Trigger.Props) {
+}: CollapsibleTriggerProps): JSX.Element {
   return (
     <CollapsiblePrimitive.Trigger data-slot="collapsible-trigger" {...props} />
   );

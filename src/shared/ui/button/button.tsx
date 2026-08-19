@@ -1,16 +1,21 @@
+"use client";
+
+import type { JSX } from "react";
+
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
-import { type VariantProps } from "class-variance-authority";
 
 import { cn } from "@shared/lib";
 
-import { buttonVariants } from "./button.styles";
+import { ButtonVariantsProps, buttonVariants } from "./button.styles";
+
+interface ButtonProps extends ButtonPrimitive.Props, ButtonVariantsProps {}
 
 export function Button({
   className,
   variant = "default",
   size = "default",
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps): JSX.Element {
   return (
     <ButtonPrimitive
       data-slot="button"

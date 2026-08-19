@@ -1,13 +1,17 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 
 import { cn } from "@shared/lib";
 
+export type SelectSeparatorProps = SelectPrimitive.Separator.Props;
+
 export function SelectSeparator({
   className,
   ...props
-}: SelectPrimitive.Separator.Props) {
+}: SelectSeparatorProps): JSX.Element {
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"

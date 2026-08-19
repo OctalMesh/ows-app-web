@@ -1,12 +1,12 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import Link from "next/link";
 
 import { cn } from "@shared/lib";
 
-interface NavPrimaryItemProps {
+export interface NavPrimaryItemProps {
   active: boolean;
   ariaLabel: string;
   icon: ReactNode;
@@ -22,7 +22,7 @@ export function NavPrimaryItem({
   label,
   href,
   onClick,
-}: NavPrimaryItemProps) {
+}: NavPrimaryItemProps): JSX.Element {
   const className = cn(
     "flex h-14 min-w-0 items-center gap-2 overflow-hidden rounded-full",
     "transition-[flex-grow,background-color,color,padding] duration-300 ease-out",

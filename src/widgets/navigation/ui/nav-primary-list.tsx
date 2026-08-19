@@ -1,15 +1,18 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-interface NavPrimaryListProps {
+export interface NavPrimaryListProps {
   children: ReactNode;
   className?: string;
 }
 
-export function NavPrimaryList({ children, className }: NavPrimaryListProps) {
+export function NavPrimaryList({
+  children,
+  className,
+}: NavPrimaryListProps): JSX.Element {
   return (
     <div
       className={cn(

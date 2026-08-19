@@ -1,9 +1,16 @@
+export { Pagination, type PaginationProps } from "./pagination";
 export {
-  Pagination,
   PaginationContent,
+  type PaginationContentProps,
+} from "./pagination-content";
+export {
   PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
+  type PaginationEllipsisProps,
+} from "./pagination-ellipsis";
+export { PaginationItem, type PaginationItemProps } from "./pagination-item";
+export { PaginationLink, type PaginationLinkProps } from "./pagination-link";
+export { PaginationNext, type PaginationNextProps } from "./pagination-next";
+export {
   PaginationPrevious,
-} from "./pagination";
+  type PaginationPreviousProps,
+} from "./pagination-previous";

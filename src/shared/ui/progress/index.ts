@@ -1,7 +1,8 @@
+export { Progress, type ProgressProps } from "./progress";
+export { ProgressTrack, type ProgressTrackProps } from "./progress-track";
 export {
-  Progress,
-  ProgressTrack,
   ProgressIndicator,
-  ProgressLabel,
-  ProgressValue,
-} from "./progress";
+  type ProgressIndicatorProps,
+} from "./progress-indicator";
+export { ProgressLabel, type ProgressLabelProps } from "./progress-label";
+export { ProgressValue, type ProgressValueProps } from "./progress-value";

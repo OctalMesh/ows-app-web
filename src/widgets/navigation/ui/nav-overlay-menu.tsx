@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { useTranslations } from "next-intl";
 
@@ -10,12 +10,15 @@ import { cn } from "@shared/lib";
 
 import { useNavigation } from "../model";
 
-interface NavOverlayMenuProps {
+export interface NavOverlayMenuProps {
   children: ReactNode;
   backdrop?: ReactNode;
 }
 
-export function NavOverlayMenu({ children, backdrop }: NavOverlayMenuProps) {
+export function NavOverlayMenu({
+  children,
+  backdrop,
+}: NavOverlayMenuProps): JSX.Element {
   const t = useTranslations("common");
   const { isMenuOpen, closeMenu, navBarContainer } = useNavigation();
 

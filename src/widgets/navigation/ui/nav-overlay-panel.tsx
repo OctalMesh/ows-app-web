@@ -1,16 +1,20 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
-import { type NavOverlayKey, useNavigation } from "../model";
+import { useNavigation } from "../model";
+import { NavOverlayKey } from "./nav-overlay";
 import { OverlayShell } from "./overlay-shell";
 
-interface NavOverlayPanelProps {
+export interface NavOverlayPanelProps {
   overlay: NavOverlayKey;
   children: ReactNode;
 }
 
-export function NavOverlayPanel({ overlay, children }: NavOverlayPanelProps) {
+export function NavOverlayPanel({
+  overlay,
+  children,
+}: NavOverlayPanelProps): JSX.Element {
   const { activeOverlay, closeOverlay } = useNavigation();
 
   return (

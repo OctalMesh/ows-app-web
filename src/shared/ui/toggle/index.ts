@@ -1,3 +1,8 @@
-export { Toggle, toggleVariants } from "./toggle";
+export { Toggle, type ToggleProps } from "./toggle";
+export { ToggleGroup, type ToggleGroupProps } from "./toggle-group";
+export {
+  ToggleGroupItem,
+  type ToggleGroupItemProps,
+} from "./toggle-group-item";
 
-export { ToggleGroup, ToggleGroupItem } from "./toggle-group";
+export { toggleVariants, type ToggleVariantsProps } from "./toggle.styles";

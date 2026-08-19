@@ -1,17 +1,22 @@
 "use client";
 
+import { JSX } from "react";
+
 import Link from "next/link";
 
 import { IconChevronRight } from "@tabler/icons-react";
 
 import { useNavigation } from "../model";
 
-interface NavOverlayMenuLinkProps {
+export interface NavOverlayMenuLinkProps {
   href: string;
   label: string;
 }
 
-export function NavOverlayMenuLink({ href, label }: NavOverlayMenuLinkProps) {
+export function NavOverlayMenuLink({
+  href,
+  label,
+}: NavOverlayMenuLinkProps): JSX.Element {
   const { closeMenu } = useNavigation();
 
   return (

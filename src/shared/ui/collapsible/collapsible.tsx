@@ -1,7 +1,11 @@
 "use client";
 
+import type { JSX } from "react";
+
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
-export function Collapsible({ ...props }: CollapsiblePrimitive.Root.Props) {
+export type CollapsibleProps = CollapsiblePrimitive.Root.Props;
+
+export function Collapsible({ ...props }: CollapsibleProps): JSX.Element {
   return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />;
 }
