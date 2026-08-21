@@ -23,7 +23,7 @@ export function NavOverlayMenuLink({
     <Link
       href={href}
       onClick={closeMenu}
-      className="group flex items-center justify-between rounded-3xl border border-transparent px-8 py-4 transition-all duration-300 hover:border-border/60 hover:bg-muted"
+      className="group flex items-center justify-between rounded-3xl border border-transparent px-8 py-4 transition-all duration-300 hover:bg-muted"
     >
       <span className="text-3xl font-medium tracking-tight sm:text-4xl">
         {label}

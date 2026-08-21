@@ -28,7 +28,7 @@ export function OverlayShell({
           onClick={action}
         >
           <div
-            className="flex w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-border/60 bg-background shadow-2xl"
+            className="flex w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] border border-border bg-background shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="grid flex-1 gap-4 overflow-y-auto p-4 md:p-6">

@@ -20,7 +20,7 @@ export function NavOverlayMenuControl({
   return (
     <div
       className={cn(
-        "flex items-center justify-between rounded-[1.5rem] border border-border/60 px-5 py-4",
+        "flex items-center justify-between rounded-[1.5rem] border border-border px-5 py-4",
         className,
       )}
     >

@@ -28,7 +28,7 @@ export function NavOverlayMenuAction({
       href={href}
       onClick={closeMenu}
       className={cn(
-        "flex h-16 items-center justify-start gap-3 rounded-[1.5rem] border border-border/60 px-5 transition-colors hover:bg-muted",
+        "flex h-16 items-center justify-start gap-3 rounded-[1.5rem] border border-border px-5 transition-colors hover:bg-muted",
         className,
       )}
     >

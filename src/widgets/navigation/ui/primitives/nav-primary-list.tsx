@@ -16,7 +16,7 @@ export function NavPrimaryList({
   return (
     <div
       className={cn(
-        "z-100 flex flex-1 items-stretch gap-1 rounded-full border border-border/70 p-1 backdrop-blur-xl",
+        "z-100 flex flex-1 items-stretch gap-1 rounded-full border border-border p-1 backdrop-blur-xl",
         className,
       )}
     >
