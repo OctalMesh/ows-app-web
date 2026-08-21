@@ -10,10 +10,10 @@ import { usePathname } from "@shared/i18n";
 import { createFlagStore, createOverlayStore } from "@shared/lib";
 
 import {
+  type NavOverlayKey,
   NavigationContext,
   type NavigationContextValue,
-} from "../model/use-navigation";
-import type { NavOverlayKey } from "./nav-overlay";
+} from "../../model/use-navigation";
 
 export interface NavigationProps {
   children: ReactNode;

@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { IconSmartHome } from "@tabler/icons-react";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 import { NavPrimaryItem } from "./nav-primary-item";
 
 export interface PrimaryNavHomeProps {

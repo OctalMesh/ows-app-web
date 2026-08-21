@@ -4,7 +4,7 @@ import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 
 export interface NavBarProps {
   children: ReactNode;

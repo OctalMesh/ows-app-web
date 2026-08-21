@@ -8,7 +8,7 @@ import { Dialog } from "@base-ui/react/dialog";
 
 import { cn } from "@shared/lib";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 
 export interface NavOverlayMenuProps {
   children: ReactNode;

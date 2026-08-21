@@ -10,12 +10,18 @@ export function ThemeProvider({
   children,
   ...props
 }: ThemeProviderProps): JSX.Element {
+  const scriptProps =
+    typeof window === "undefined"
+      ? undefined
+      : ({ type: "application/json" } as const);
+
   return (
     <NextThemesProvider
-      scriptProps={{ "data-cfasync": "false" }}
+      defaultTheme="system"
       enableSystem
       enableColorScheme
       disableTransitionOnChange
+      scriptProps={scriptProps}
       {...props}
     >
       {children}

@@ -18,8 +18,6 @@ function NavOverlayRoot({ children }: NavOverlayProps): JSX.Element {
   return <>{children}</>;
 }
 
-export type NavOverlayKey = string;
-
 export interface NavOverlayComponent {
   (props: NavOverlayProps): JSX.Element;
   Panel: typeof NavOverlayPanel;

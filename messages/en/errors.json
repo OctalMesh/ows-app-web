@@ -1,0 +1,47 @@
+{
+  "400": {
+    "title": "Bad request",
+    "description": "The request could not be understood by the server.",
+    "cta": "Go back"
+  },
+  "401": {
+    "title": "Unauthorized",
+    "description": "You need to sign in to access this page.",
+    "cta": "Sign in"
+  },
+  "403": {
+    "title": "Access denied",
+    "description": "You don't have permission to view this page.",
+    "cta": "Go to homepage"
+  },
+  "404": {
+    "title": "Not found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "cta": "Go to homepage"
+  },
+  "429": {
+    "title": "Too many requests",
+    "description": "You've made too many requests. Please slow down and try again.",
+    "cta": "Try again later"
+  },
+  "500": {
+    "title": "Server error",
+    "description": "Something went wrong on our end. Please try again later.",
+    "cta": "Reload page"
+  },
+  "502": {
+    "title": "Bad gateway",
+    "description": "The server received an invalid response. Please try again.",
+    "cta": "Reload page"
+  },
+  "503": {
+    "title": "Service unavailable",
+    "description": "The service is temporarily unavailable. Please try again shortly.",
+    "cta": "Reload page"
+  },
+  "default": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred.",
+    "cta": "Go to homepage"
+  }
+}

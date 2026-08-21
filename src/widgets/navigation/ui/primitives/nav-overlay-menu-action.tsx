@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { cn } from "@shared/lib";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 
 export interface NavOverlayMenuActionProps {
   href: string;

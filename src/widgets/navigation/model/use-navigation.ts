@@ -1,6 +1,8 @@
+"use client";
+
 import { createContext, useContext } from "react";
 
-import { NavOverlayKey } from "../ui/nav-overlay";
+export type NavOverlayKey = string;
 
 export interface NavigationContextValue {
   pathname: string;

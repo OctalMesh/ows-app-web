@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { JSX, ReactNode } from "react";
 
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -6,12 +6,12 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { Footer } from "@widgets/footer";
+import { NavigationHistoryProvider } from "@widgets/navigation";
 
 import { ThemeProvider } from "@features/theme";
 
 import { isValidLocale } from "@shared/i18n";
 import { cn } from "@shared/lib";
-import { NavigationHistoryProvider } from "@shared/navigation";
 
 //<editor-fold desc="Fonts" defaultstate="collapsed">
 
@@ -123,7 +123,10 @@ interface Props {
   params: Promise<{ locale: string }>;
 }
 
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: Props): Promise<JSX.Element> {
   const { locale } = await params;
 
   if (!isValidLocale(locale)) {
@@ -137,11 +140,11 @@ export default async function LocaleLayout({ children, params }: Props) {
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body>
+      <body className="font-sans antialiased">
         <ThemeProvider>
           <NextIntlClientProvider locale={locale}>
             <NavigationHistoryProvider>
-              <main className="relative min-h-dvh border-b bg-background">
+              <main className="relative min-h-svh border-b bg-background">
                 {children}
               </main>
 

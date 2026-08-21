@@ -7,8 +7,8 @@ import { useTranslations } from "next-intl";
 import { IconArrowLeft } from "@tabler/icons-react";
 
 import { useRouter } from "@shared/i18n";
-import { useNavigationHistory } from "@shared/navigation";
 
+import { useNavigationHistory } from "../../model";
 import { NavPillButton } from "./nav-pill-button";
 
 export interface BackButtonProps {
@@ -20,11 +20,13 @@ export function BackButton({
 }: BackButtonProps): JSX.Element {
   const t = useTranslations("common");
   const router = useRouter();
-  const { canGoBack } = useNavigationHistory();
+  const { canGoBack, goBack } = useNavigationHistory();
 
   function handleBack() {
     if (canGoBack) {
+      goBack();
       router.back();
+
       return;
     }
 

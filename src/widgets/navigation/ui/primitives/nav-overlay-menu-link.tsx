@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 
 export interface NavOverlayMenuLinkProps {
   href: string;

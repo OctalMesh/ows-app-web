@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { IconMenu, IconX } from "@tabler/icons-react";
 
-import { useNavigation } from "../model";
+import { useNavigation } from "../../model";
 import { NavToggleIconButton } from "./nav-toggle-icon-button";
 
 export function MenuButton(): JSX.Element {

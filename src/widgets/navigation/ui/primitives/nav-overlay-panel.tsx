@@ -2,8 +2,7 @@
 
 import { JSX, ReactNode } from "react";
 
-import { useNavigation } from "../model";
-import { NavOverlayKey } from "./nav-overlay";
+import { type NavOverlayKey, useNavigation } from "../../model";
 import { OverlayShell } from "./overlay-shell";
 
 export interface NavOverlayPanelProps {

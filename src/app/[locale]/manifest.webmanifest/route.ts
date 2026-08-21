@@ -5,7 +5,10 @@ type Props = {
   params: Promise<{ locale: string }>;
 };
 
-export async function GET(_: Request, { params }: Props) {
+export async function GET(
+  _: Request,
+  { params }: Props,
+): Promise<NextResponse> {
   const { locale } = await params;
   const t = await getTranslations({
     locale: locale as Locale,

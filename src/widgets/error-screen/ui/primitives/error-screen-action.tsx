@@ -1,0 +1,21 @@
+"use client";
+
+import type { JSX, ReactNode } from "react";
+
+import { cn } from "@shared/lib";
+
+export interface ErrorScreenActionProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function ErrorScreenAction({
+  children,
+  className,
+}: ErrorScreenActionProps): JSX.Element {
+  return (
+    <div className={cn("flex shrink-0 items-center justify-center", className)}>
+      {children}
+    </div>
+  );
+}

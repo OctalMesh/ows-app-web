@@ -2,6 +2,7 @@ import { SUPPORTED_LOCALES } from "./config";
 
 interface NamespaceMap {
   common: typeof import("../../../messages/uk/common.json");
+  errors: typeof import("../../../messages/uk/errors.json");
   manifest: typeof import("../../../messages/uk/manifest.json");
   theme: typeof import("../../../messages/uk/theme.json");
   footer: typeof import("../../../messages/uk/footer.json");
