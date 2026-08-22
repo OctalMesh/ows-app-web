@@ -2,8 +2,6 @@
 
 import type { JSX } from "react";
 
-import { Inter, Space_Grotesk } from "next/font/google";
-
 import {
   NOT_FOUND_STATUS_CODE,
   NotFoundErrorScreen,
@@ -13,29 +11,15 @@ import {
 
 import { ThemeProvider } from "@features/theme";
 
-import { cn } from "@shared/lib";
-
-//<editor-fold desc="Fonts" defaultstate="collapsed">
-
-const spaceGroteskHeading = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-//</editor-fold>
+import "@shared/assets/styles";
 
 export default function RootNotFound(): JSX.Element {
   const locale = getStaticLocale();
   const { title, cta } = getStaticErrorMsg(NOT_FOUND_STATUS_CODE, locale);
 
   return (
-    <html
-      className={cn(inter.variable, spaceGroteskHeading.variable)}
-      lang={locale}
-      suppressHydrationWarning
-    >
-      <body className="font-sans antialiased">
+    <html lang={locale} suppressHydrationWarning>
+      <body>
         <ThemeProvider>
           <NotFoundErrorScreen title={title} cta={cta} />
         </ThemeProvider>

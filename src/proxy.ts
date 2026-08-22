@@ -1,6 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 
-import { routing } from "@shared/i18n";
+// eslint-disable-next-line fsd/fsd-logic
+import { routing } from "@shared/i18n/routing";
 
 export default createMiddleware(routing);
 

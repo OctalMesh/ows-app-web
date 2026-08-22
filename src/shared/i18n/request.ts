@@ -1,19 +1,39 @@
 import { IntlErrorCode } from "next-intl";
 import { GetRequestConfigParams, getRequestConfig } from "next-intl/server";
+import * as rootParams from "next/root-params";
 
 import { DEFAULT_LOCALE, NAMESPACES, isValidLocale } from "./config";
 
-async function loadMessages(locale: Locale): Promise<IntlMessages> {
-  const entries = await Promise.all(
-    NAMESPACES.map(async (ns: IntlNamespaces) => {
-      const mod = (await import(`../../../messages/${locale}/${ns}.json`)) as {
-        default: Record<string, unknown>;
-      };
-      return [ns, mod.default] as const;
-    }),
-  );
+const isDev = process.env.NODE_ENV !== "production";
 
-  return Object.fromEntries(entries) as unknown as IntlMessages;
+const rawMessagesCache = new Map<Locale, Promise<IntlMessages>>();
+
+function loadMessages(locale: Locale): Promise<IntlMessages> {
+  if (!isDev) {
+    const cached = rawMessagesCache.get(locale);
+
+    if (cached) {
+      return cached;
+    }
+  }
+
+  const promise = (async () => {
+    const entries = await Promise.all(
+      NAMESPACES.map(async (ns: IntlNamespaces) => {
+        const mod = (await import(
+          `../../../messages/${locale}/${ns}.json`
+        )) as {
+          default: Record<string, unknown>;
+        };
+        return [ns, mod.default] as const;
+      }),
+    );
+
+    return Object.fromEntries(entries) as unknown as IntlMessages;
+  })();
+
+  if (!isDev) rawMessagesCache.set(locale, promise);
+  return promise;
 }
 
 function deepMerge(
@@ -46,55 +66,75 @@ function deepMerge(
   return result;
 }
 
-async function loadMessagesWithFallback(locale: Locale): Promise<IntlMessages> {
-  const defaultMessages = await loadMessages(DEFAULT_LOCALE);
+const mergedMessagesCache = new Map<Locale, Promise<IntlMessages>>();
 
-  if (locale === DEFAULT_LOCALE) {
-    return defaultMessages;
+function loadMessagesWithFallback(locale: Locale): Promise<IntlMessages> {
+  if (!isDev) {
+    const cached = mergedMessagesCache.get(locale);
+
+    if (cached) {
+      return cached;
+    }
   }
 
-  try {
-    const localeMessages = await loadMessages(locale);
+  const promise = (async () => {
+    const defaultMessages = await loadMessages(DEFAULT_LOCALE);
 
-    return deepMerge(
-      defaultMessages as unknown as Record<string, unknown>,
-      localeMessages as unknown as Record<string, unknown>,
-    ) as unknown as IntlMessages;
-  } catch {
-    return defaultMessages;
-  }
-}
-
-export default getRequestConfig(
-  async ({ locale, requestLocale }: GetRequestConfigParams) => {
-    let resolvedLocale: Locale;
-
-    if (isValidLocale(locale)) {
-      resolvedLocale = locale;
-    } else {
-      const requested = await requestLocale;
-      resolvedLocale = isValidLocale(requested) ? requested : DEFAULT_LOCALE;
+    if (locale === DEFAULT_LOCALE) {
+      return defaultMessages;
     }
 
-    return {
-      locale: resolvedLocale,
-      messages: await loadMessagesWithFallback(resolvedLocale),
-      onError(error) {
-        if (error.code !== IntlErrorCode.MISSING_MESSAGE) {
-          console.error(error);
-        }
-      },
-      getMessageFallback({ namespace, key }) {
-        const path = [namespace, key].filter(Boolean).join(".");
+    try {
+      const localeMessages = await loadMessages(locale);
 
-        if (process.env.NODE_ENV === "development") {
-          console.warn(
-            `[i18n] Missing message: "${path}" for locale "${resolvedLocale}"`,
-          );
-        }
+      return deepMerge(
+        defaultMessages as unknown as Record<string, unknown>,
+        localeMessages as unknown as Record<string, unknown>,
+      ) as unknown as IntlMessages;
+    } catch {
+      return defaultMessages;
+    }
+  })();
 
-        return path;
-      },
-    };
-  },
-);
+  if (!isDev) {
+    mergedMessagesCache.set(locale, promise);
+  }
+
+  return promise;
+}
+
+async function resolveLocale({
+  locale,
+}: GetRequestConfigParams): Promise<Locale> {
+  if (isValidLocale(locale)) {
+    return locale;
+  }
+
+  const paramValue = await rootParams.locale();
+  return isValidLocale(paramValue) ? paramValue : DEFAULT_LOCALE;
+}
+
+export default getRequestConfig(async (params) => {
+  const resolvedLocale = await resolveLocale(params);
+
+  return {
+    locale: resolvedLocale,
+    messages: await loadMessagesWithFallback(resolvedLocale),
+    onError(error) {
+      if (error.code !== IntlErrorCode.MISSING_MESSAGE) {
+        console.error(error);
+      }
+    },
+    getMessageFallback({ namespace, key }) {
+      const path = [namespace, key].filter(Boolean).join(".");
+
+      if (isDev) {
+        console.warn(
+          `[i18n] Missing message: "${path}" for locale "${resolvedLocale}"`,
+        );
+      }
+
+      return path;
+    },
+  };
+});

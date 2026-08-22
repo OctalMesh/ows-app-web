@@ -1,49 +1,45 @@
-import type { JSX, ReactNode } from "react";
+import type { JSX } from "react";
 
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { locale as rootLocale } from "next/root-params";
 
 import { Footer } from "@widgets/footer";
 import { NavigationHistoryProvider } from "@widgets/navigation";
 
 import { ThemeProvider } from "@features/theme";
 
-import { isValidLocale } from "@shared/i18n";
-import { cn } from "@shared/lib";
+import "@shared/assets/styles";
+import { routing } from "@shared/i18n";
 
-//<editor-fold desc="Fonts" defaultstate="collapsed">
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await rootLocale();
 
-const spaceGroteskHeading = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
-//</editor-fold>
-
-//<editor-fold desc="Metadata" defaultstate="collapsed">
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const t = await getTranslations({
+    locale: locale,
+    namespace: "metadata",
+  });
 
   return {
     metadataBase: new URL("https://octalmesh.com"),
     manifest: `/${locale}/manifest.webmanifest`,
-    title: { default: "OctalMesh", template: "%s | OctalMesh" },
-    description:
-      "Engineering studio specializing in 3D printing and additive manufacturing",
+    title: { default: t("title"), template: t("template") },
+    description: t("description"),
     openGraph: {
-      title: "OctalMesh",
-      description:
-        "Engineering studio specializing in 3D printing and additive manufacturing",
+      title: t("title"),
+      description: t("description"),
       url: "https://octalmesh.com",
-      siteName: "OctalMesh",
+      siteName: t("site_name"),
     },
     icons: {
       icon: [
-        /* Light mode favicons */
+        //<editor-fold desc="Light mode favicons" defaultstate="collapsed">
         {
           url: "/favicon.ico",
           sizes: "any",
@@ -73,8 +69,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           type: "image/png",
           media: "(prefers-color-scheme: light)",
         },
+        //</editor-fold>
 
-        /* Dark mode favicons */
+        //<editor-fold desc="Dark mode favicons" defaultstate="collapsed">
         {
           url: "/favicon-dark.ico",
           sizes: "any",
@@ -104,45 +101,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           type: "image/png",
           media: "(prefers-color-scheme: dark)",
         },
+        //</editor-fold>
       ],
       apple: [
+        //<editor-fold desc="Apple touch icons" defaultstate="collapsed">
         {
           url: "/apple-touch-icon.png",
           sizes: "180x180",
           type: "image/png",
         },
+        //</editor-fold>
       ],
     },
   };
 }
 
-//</editor-fold>
-
-interface Props {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
   children,
-  params,
-}: Props): Promise<JSX.Element> {
-  const { locale } = await params;
+}: LayoutProps<"/[locale]">): Promise<JSX.Element> {
+  const locale = await rootLocale();
 
-  if (!isValidLocale(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   return (
-    <html
-      lang={locale}
-      className={cn(inter.variable, spaceGroteskHeading.variable)}
-      data-scroll-behavior="smooth"
-      suppressHydrationWarning
-    >
-      <body className="font-sans antialiased">
+    <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
+      <body>
         <ThemeProvider>
-          <NextIntlClientProvider locale={locale}>
+          <NextIntlClientProvider>
             <NavigationHistoryProvider>
               <main className="relative min-h-svh border-b bg-background">
                 {children}

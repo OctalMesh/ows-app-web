@@ -14,6 +14,7 @@ const configNext: NextConfig = {
   reactStrictMode: true,
   output: "standalone", // https://nextjs.org/docs/getting-started/deploying
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  cacheComponents: true,
 
   //<editor-fold desc="Redirects" defaultstate="collapsed">
 

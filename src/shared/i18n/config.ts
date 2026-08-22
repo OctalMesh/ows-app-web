@@ -3,6 +3,7 @@ export const SUPPORTED_LOCALES = [DEFAULT_LOCALE, "en"] as const;
 export const NAMESPACES = [
   "common",
   "errors",
+  "metadata",
   "manifest",
   "theme",
   "footer",

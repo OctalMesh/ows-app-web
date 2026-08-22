@@ -2,8 +2,6 @@
 
 import type { JSX } from "react";
 
-import { Inter, Space_Grotesk } from "next/font/google";
-
 import {
   ServerErrorScreen,
   getErrorStatusCode,
@@ -14,17 +12,6 @@ import {
 import { ThemeProvider } from "@features/theme";
 
 import "@shared/assets/styles";
-import { cn } from "@shared/lib";
-
-//<editor-fold desc="Fonts" defaultstate="collapsed">
-
-const spaceGroteskHeading = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-heading",
-});
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-//</editor-fold>
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
@@ -40,12 +27,8 @@ export default function GlobalError({
   const { title, cta } = getStaticErrorMsg(statusCode, locale);
 
   return (
-    <html
-      className={cn(inter.variable, spaceGroteskHeading.variable)}
-      lang={locale}
-      suppressHydrationWarning
-    >
-      <body className="font-sans antialiased">
+    <html lang={locale} suppressHydrationWarning>
+      <body>
         <ThemeProvider>
           <ServerErrorScreen
             statusCode={statusCode}
