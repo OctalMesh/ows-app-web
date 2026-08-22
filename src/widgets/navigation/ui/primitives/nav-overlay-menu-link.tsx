@@ -2,9 +2,9 @@
 
 import { JSX } from "react";
 
-import Link from "next/link";
-
 import { IconChevronRight } from "@tabler/icons-react";
+
+import { Link } from "@shared/i18n";
 
 import { useNavigation } from "../../model";
 

@@ -4,10 +4,10 @@ import type { ComponentProps, JSX } from "react";
 import { useLayoutEffect, useRef, useState } from "react";
 
 import { useTranslations } from "next-intl";
-import Link from "next/link";
 
 import { motion, useScroll, useTransform } from "motion/react";
 
+import { Link } from "@shared/i18n";
 import { cn } from "@shared/lib";
 import { LogoOctalMesh, PlaceholderImg } from "@shared/ui";
 
