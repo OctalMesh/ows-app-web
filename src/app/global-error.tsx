@@ -12,6 +12,7 @@ import {
 import { ThemeProvider } from "@features/theme";
 
 import "@shared/assets/styles";
+import { inter, octalFont } from "@shared/config";
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
@@ -27,7 +28,12 @@ export default function GlobalError({
   const { title, cta } = getStaticErrorMsg(statusCode, locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${octalFont.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider>
           <ServerErrorScreen

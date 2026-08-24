@@ -12,6 +12,7 @@ import { NavigationHistoryProvider } from "@widgets/navigation";
 import { ThemeProvider } from "@features/theme";
 
 import "@shared/assets/styles";
+import { inter, octalFont } from "@shared/config";
 import { routing } from "@shared/i18n";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -130,7 +131,12 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${octalFont.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider>
           <NextIntlClientProvider>

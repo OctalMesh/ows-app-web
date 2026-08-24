@@ -12,13 +12,19 @@ import {
 import { ThemeProvider } from "@features/theme";
 
 import "@shared/assets/styles";
+import { inter, octalFont } from "@shared/config";
 
 export default function RootNotFound(): JSX.Element {
   const locale = getStaticLocale();
   const { title, cta } = getStaticErrorMsg(NOT_FOUND_STATUS_CODE, locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${octalFont.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
         <ThemeProvider>
           <NotFoundErrorScreen title={title} cta={cta} />
