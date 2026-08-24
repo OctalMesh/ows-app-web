@@ -40,7 +40,7 @@ export function LanguageSwitcher(): JSX.Element {
   function handleChange(
     newLocale: Locale | null,
     _eventDetails: SelectRootChangeEventDetails,
-  ) {
+  ): void {
     if (!newLocale || newLocale === locale) {
       return;
     }

@@ -1,12 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { JSX, ReactNode } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import { useCartStore } from "@entities/cart";
 
-import { usePathname } from "@shared/i18n";
 import { createFlagStore, createOverlayStore } from "@shared/lib";
 
 import {
@@ -14,13 +13,14 @@ import {
   NavigationContext,
   type NavigationContextValue,
 } from "../../model/use-navigation";
+import { PathnameObserver } from "./pathname-observer";
 
 export interface NavigationProps {
   children: ReactNode;
 }
 
 export function Navigation({ children }: NavigationProps): JSX.Element {
-  const pathname = usePathname();
+  const [pathname, setPathname] = useState("");
 
   const [useMenuStore] = useState(() => createFlagStore());
   const [useOverlayStore] = useState(() => createOverlayStore<NavOverlayKey>());
@@ -47,36 +47,59 @@ export function Navigation({ children }: NavigationProps): JSX.Element {
     closeAllOverlays();
   }, [closeMenu, closeAllOverlays]);
 
-  const isAnyOpen = activeOverlay !== null;
+  const isAnyOpen = isMenuOpen || activeOverlay !== null;
 
-  useEffect(() => {
-    closeAll();
-  }, [pathname, closeAll]);
+  const handlePathChange = useCallback(
+    (newPathname: string) => {
+      setPathname(newPathname);
+      closeAll();
+    },
+    [closeAll],
+  );
 
   useHotkeys("escape", closeAll, {
     enabled: isAnyOpen,
     enableOnFormTags: true,
   });
 
-  const value: NavigationContextValue = {
-    pathname,
-    isMenuOpen,
-    activeOverlay,
-    cartItemsCount,
-    openMenu,
-    closeMenu,
-    toggleMenu,
-    openOverlay,
-    closeOverlay,
-    toggleOverlay,
-    closeAll,
-    isAnyOpen,
-    navBarContainer,
-    setNavBarContainer,
-  };
+  const value = useMemo<NavigationContextValue>(
+    () => ({
+      pathname,
+      isMenuOpen,
+      activeOverlay,
+      cartItemsCount,
+      openMenu,
+      closeMenu,
+      toggleMenu,
+      openOverlay,
+      closeOverlay,
+      toggleOverlay,
+      closeAll,
+      isAnyOpen,
+      navBarContainer,
+      setNavBarContainer,
+    }),
+    [
+      pathname,
+      isMenuOpen,
+      activeOverlay,
+      cartItemsCount,
+      openMenu,
+      closeMenu,
+      toggleMenu,
+      openOverlay,
+      closeOverlay,
+      toggleOverlay,
+      closeAll,
+      isAnyOpen,
+      navBarContainer,
+    ],
+  );
 
   return (
     <NavigationContext.Provider value={value}>
+      <PathnameObserver onChange={handlePathChange} />
+
       {children}
     </NavigationContext.Provider>
   );

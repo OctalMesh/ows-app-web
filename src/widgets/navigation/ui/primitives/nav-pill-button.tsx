@@ -3,9 +3,9 @@
 import { JSX, ReactNode } from "react";
 
 import { cn } from "@shared/lib";
-import { Button } from "@shared/ui/button";
+import { Button, type ButtonProps } from "@shared/ui/button";
 
-export interface NavPillButtonProps {
+export interface NavPillButtonProps extends ButtonProps {
   icon: ReactNode;
   label: string;
   ariaLabel?: string;

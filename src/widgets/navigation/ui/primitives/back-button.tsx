@@ -1,6 +1,7 @@
 "use client";
 
 import type { JSX } from "react";
+import { Suspense } from "react";
 
 import { useTranslations } from "next-intl";
 
@@ -15,22 +16,20 @@ export interface BackButtonProps {
   fallbackHref?: string;
 }
 
-export function BackButton({
+function BackButtonContent({
   fallbackHref = "/",
 }: BackButtonProps): JSX.Element {
   const t = useTranslations("common");
   const router = useRouter();
   const { canGoBack, goBack } = useNavigationHistory();
 
-  function handleBack() {
+  function handleBack(): void {
     if (canGoBack) {
       goBack();
       router.back();
-
-      return;
+    } else {
+      router.push(fallbackHref);
     }
-
-    void router.push(fallbackHref);
   }
 
   return (
@@ -39,5 +38,25 @@ export function BackButton({
       label={t("nav.back")}
       onClick={handleBack}
     />
+  );
+}
+
+function BackButtonFallback(): JSX.Element {
+  const t = useTranslations("common");
+
+  return (
+    <NavPillButton
+      icon={<IconArrowLeft className="size-5" />}
+      label={t("nav.back")}
+      disabled
+    />
+  );
+}
+
+export function BackButton(props: BackButtonProps): JSX.Element {
+  return (
+    <Suspense fallback={<BackButtonFallback />}>
+      <BackButtonContent {...props} />
+    </Suspense>
   );
 }

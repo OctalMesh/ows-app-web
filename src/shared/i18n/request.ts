@@ -120,12 +120,12 @@ export default getRequestConfig(async (params) => {
   return {
     locale: resolvedLocale,
     messages: await loadMessagesWithFallback(resolvedLocale),
-    onError(error) {
+    onError(error): void {
       if (error.code !== IntlErrorCode.MISSING_MESSAGE) {
         console.error(error);
       }
     },
-    getMessageFallback({ namespace, key }) {
+    getMessageFallback({ namespace, key }): string {
       const path = [namespace, key].filter(Boolean).join(".");
 
       if (isDev) {

@@ -1,6 +1,8 @@
+import { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
-export default function AboutPage() {
+export default function AboutPage(): JSX.Element {
   const t = useTranslations("common");
 
   return (

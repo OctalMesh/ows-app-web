@@ -1,3 +1,5 @@
+import { JSX, Suspense } from "react";
+
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -8,11 +10,11 @@ import { getMdxContent, getMdxMetadata, getMdxSlugs } from "@shared/lib/server";
 
 const COLLECTION: string = "legal" as const;
 
-interface Props {
+interface ArticleProps {
   params: Promise<{ locale: Locale; slug: string }>;
 }
 
-interface LegalMetadata {
+interface ArticleMetadata {
   title: string;
   description: string;
 }
@@ -29,9 +31,11 @@ export function generateStaticParams(): {
   );
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ArticleProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const meta = await getMdxMetadata<LegalMetadata>(
+  const meta = await getMdxMetadata<ArticleMetadata>(
     `${COLLECTION}/${slug}`,
     locale as Locale,
   );
@@ -42,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function LegalPage({ params }: Props) {
+async function ArticleContent({ params }: ArticleProps): Promise<JSX.Element> {
   const { locale, slug } = await params;
   const content = await getMdxContent(COLLECTION, slug, locale);
 
@@ -51,12 +55,29 @@ export default async function LegalPage({ params }: Props) {
   }
 
   return (
-    <Article>
+    <>
       <Article.Toc headings={content.tableOfContents ?? []} />
 
       <Article.Content>
         <content.default />
       </Article.Content>
+    </>
+  );
+}
+
+export default function ArticlePage({ params }: ArticleProps): JSX.Element {
+  return (
+    <Article>
+      <Suspense
+        fallback={
+          <>
+            <Article.TocSkeleton />
+            <Article.ContentSkeleton />
+          </>
+        }
+      >
+        <ArticleContent params={params} />
+      </Suspense>
     </Article>
   );
 }

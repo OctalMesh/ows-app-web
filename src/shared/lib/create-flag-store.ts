@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { StoreApi, UseBoundStore, create } from "zustand";
 
 export interface FlagStore {
   isOpen: boolean;
@@ -7,7 +7,9 @@ export interface FlagStore {
   toggle: () => void;
 }
 
-export function createFlagStore(initial = false) {
+export function createFlagStore(
+  initial = false,
+): UseBoundStore<StoreApi<FlagStore>> {
   return create<FlagStore>((set, get) => ({
     isOpen: initial,
     open: () => set({ isOpen: true }),

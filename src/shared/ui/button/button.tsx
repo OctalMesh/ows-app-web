@@ -8,7 +8,8 @@ import { cn } from "@shared/lib";
 
 import { ButtonVariantsProps, buttonVariants } from "./button.styles";
 
-interface ButtonProps extends ButtonPrimitive.Props, ButtonVariantsProps {}
+export interface ButtonProps
+  extends ButtonPrimitive.Props, ButtonVariantsProps {}
 
 export function Button({
   className,

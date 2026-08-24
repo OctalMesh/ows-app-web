@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { StoreApi, UseBoundStore, create } from "zustand";
 
 export interface OverlayStore<TKey extends string> {
   active: TKey | null;
@@ -9,7 +9,9 @@ export interface OverlayStore<TKey extends string> {
   closeAll: () => void;
 }
 
-export function createOverlayStore<TKey extends string>() {
+export function createOverlayStore<TKey extends string>(): UseBoundStore<
+  StoreApi<OverlayStore<TKey>>
+> {
   return create<OverlayStore<TKey>>((set, get) => ({
     active: null,
     isOpen: (key) => get().active === key,

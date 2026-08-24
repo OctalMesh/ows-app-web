@@ -1,18 +1,17 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { useCallback, useEffect, useMemo, useReducer } from "react";
+import type { JSX, ReactNode } from "react";
+import { useCallback, useMemo, useReducer, useState } from "react";
 
-import { usePathname } from "@shared/i18n";
-
-import { NavigationHistoryContext } from "./navigation-history-context";
+import { NavigationHistoryContext } from "../../model/navigation-history-context";
 import {
   NavigationHistoryActionType,
   PageStatus,
   type PageStatusType,
   createInitialState,
   navigationHistoryReducer,
-} from "./navigation-history-reducer";
+} from "../../model/navigation-history-reducer";
+import { PathnameObserver } from "./pathname-observer";
 
 export interface NavigationHistoryProviderProps {
   children: ReactNode;
@@ -20,8 +19,8 @@ export interface NavigationHistoryProviderProps {
 
 export function NavigationHistoryProvider({
   children,
-}: NavigationHistoryProviderProps) {
-  const pathname = usePathname();
+}: NavigationHistoryProviderProps): JSX.Element {
+  const [pathname, setPathname] = useState("");
 
   const [state, dispatch] = useReducer(
     navigationHistoryReducer,
@@ -29,9 +28,14 @@ export function NavigationHistoryProvider({
     createInitialState,
   );
 
-  useEffect(() => {
-    dispatch({ type: NavigationHistoryActionType.NAVIGATE, pathname });
-  }, [pathname]);
+  const handlePathChange = useCallback((newPathname: string) => {
+    setPathname(newPathname);
+
+    dispatch({
+      type: NavigationHistoryActionType.NAVIGATE,
+      pathname: newPathname,
+    });
+  }, []);
 
   const goBack = useCallback(() => {
     dispatch({ type: NavigationHistoryActionType.BACK });
@@ -51,7 +55,6 @@ export function NavigationHistoryProvider({
   const previousPath =
     state.entries.length > 1 ? (state.entries.at(-2) ?? null) : null;
   const canGoBack = state.entries.length > 1;
-
   const pageStatus: PageStatusType =
     state.pageStatusEntry?.pathname === pathname
       ? state.pageStatusEntry.status
@@ -64,6 +67,8 @@ export function NavigationHistoryProvider({
 
   return (
     <NavigationHistoryContext.Provider value={value}>
+      <PathnameObserver onChange={handlePathChange} />
+
       {children}
     </NavigationHistoryContext.Provider>
   );

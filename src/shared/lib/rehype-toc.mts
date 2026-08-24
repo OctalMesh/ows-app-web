@@ -46,7 +46,7 @@ function buildTocTree(flatHeadings: FlatHeading[]): TocHeading[] {
   return root;
 }
 
-export default function rehypeToc() {
+export default function rehypeToc(): (tree: Root) => void {
   return (tree: Root) => {
     const flatHeadings: FlatHeading[] = [];
 

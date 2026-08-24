@@ -1,10 +1,8 @@
 import type { JSX } from "react";
 
 import type { Metadata } from "next";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
-import { locale as rootLocale } from "next/root-params";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { Footer } from "@widgets/footer";
 import { NavigationHistoryProvider } from "@widgets/navigation";
@@ -16,11 +14,7 @@ import { inter, octalFont } from "@shared/config";
 import { routing } from "@shared/i18n";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await rootLocale();
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+  const locale = await getLocale();
 
   const t = await getTranslations({
     locale: locale,
@@ -117,18 +111,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export function generateStaticParams() {
+export function generateStaticParams(): Array<{ locale: Locale }> {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+type LocaleLayoutProps = LayoutProps<"/[locale]">;
+
 export default async function LocaleLayout({
   children,
-}: LayoutProps<"/[locale]">): Promise<JSX.Element> {
-  const locale = await rootLocale();
-
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+}: LocaleLayoutProps): Promise<JSX.Element> {
+  const locale = await getLocale();
 
   return (
     <html

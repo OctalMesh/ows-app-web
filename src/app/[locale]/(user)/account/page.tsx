@@ -1,6 +1,8 @@
+import { JSX } from "react";
+
 import { useTranslations } from "next-intl";
 
-export default function AccountPage() {
+export default function AccountPage(): JSX.Element {
   const t = useTranslations("common");
 
   return (

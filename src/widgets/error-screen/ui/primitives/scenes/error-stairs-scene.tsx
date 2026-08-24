@@ -27,7 +27,7 @@ const DIGIT_LINE_WIDTH = 1.5;
 const DIGIT_SIZE_MULTIPLIER = 1.5;
 const DIGIT_PARTICLE_SIZE_CORRECT_X = 0.7;
 const DIGIT_PARTICLE_SIZE_CORRECT_Y = 0.7;
-const DIGIT_FONT = '"OctalFont Titan", ui-sans-serif, sans-serif';
+const DIGIT_FONT = '"OctalFont", ui-sans-serif, sans-serif';
 //</editor-fold>
 
 //<editor-fold desc="Constants: helpers" defaultstate="collapsed">
@@ -80,7 +80,7 @@ function useStairsCanvas(
   canvasRef: RefObject<HTMLCanvasElement | null>,
   digits: string[],
   poolSize = DEFAULT_POOL_SIZE,
-) {
+): void {
   useEffect(() => {
     const canvas = canvasRef.current;
 

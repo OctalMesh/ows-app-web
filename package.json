@@ -34,6 +34,7 @@
   },
   "scripts": {
     "dev": "next dev -p 3001 --turbopack",
+    "dev:inspect": "pnpm run dev --inspect",
     "staging": "next build && next start -p 3001",
     "build": "next build",
     "start": "next start -p 3001",

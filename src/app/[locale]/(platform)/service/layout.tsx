@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { JSX, ReactNode } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
 
@@ -24,12 +24,20 @@ import { ThemeToggle } from "@features/theme";
 
 import { useCartStore } from "@entities/cart";
 
-export default function ServiceLayout({ children }: { children: ReactNode }) {
+interface ServiceLayoutProps {
+  children: ReactNode;
+}
+
+export default function ServiceLayout({
+  children,
+}: ServiceLayoutProps): JSX.Element {
+  const t = useTranslations("common.nav");
+
   return (
     <Navigation>
       <NavBar>
         <PrimaryNav>
-          <PrimaryNav.Home href="/service" />
+          <PrimaryNav.Home href="/service" label={t("printing")} />
           <ConstructorTab />
           <CartTab />
         </PrimaryNav>
@@ -55,70 +63,70 @@ export default function ServiceLayout({ children }: { children: ReactNode }) {
   );
 }
 
-function ConstructorTab() {
-  const t = useTranslations("common");
+function ConstructorTab(): JSX.Element {
+  const t = useTranslations("common.nav");
   return (
     <PrimaryNav.Tab
       overlay="constructor"
       icon={<IconCube className="size-5" />}
-      label={t("nav.constructor")}
+      label={t("constructor")}
     />
   );
 }
 
-function CartTab() {
-  const t = useTranslations("common");
+function CartTab(): JSX.Element {
+  const t = useTranslations("common.nav");
   const count = useCartStore((s) => s.itemsCount);
   return (
     <PrimaryNav.Tab
       overlay="cart"
       icon={<IconShoppingBag className="size-5" />}
-      label={t("nav.cart")}
+      label={t("cart")}
       count={count}
     />
   );
 }
 
-function MenuSection() {
-  const t = useTranslations("common");
+function MenuSection(): JSX.Element {
+  const t = useTranslations("common.nav");
   return (
-    <NavOverlay.MenuSection title={t("nav.menu")}>
-      <NavOverlay.MenuLink href="/" label={t("nav.home")} />
-      <NavOverlay.MenuLink href="/about" label={t("nav.about")} />
-      <NavOverlay.MenuLink href="/contact" label={t("nav.contact")} />
+    <NavOverlay.MenuSection title={t("menu")}>
+      <NavOverlay.MenuLink href="/" label={t("home")} />
+      <NavOverlay.MenuLink href="/about" label={t("about")} />
+      <NavOverlay.MenuLink href="/contact" label={t("contact")} />
     </NavOverlay.MenuSection>
   );
 }
 
-function LinksSection() {
-  const t = useTranslations("common");
+function LinksSection(): JSX.Element {
+  const t = useTranslations("common.nav");
   const locale = useLocale();
 
   return (
     <NavOverlay.MenuSection
-      title={t("nav.links")}
+      title={t("links")}
       className="mt-auto border-b-0 pt-8"
     >
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <NavOverlay.MenuAction
           href="/account"
           icon={<IconUserCircle className="size-6 text-muted-foreground" />}
-          label={t("nav.profile")}
+          label={t("profile")}
         />
         <NavOverlay.MenuAction
           href="/settings"
           icon={<IconSettings className="size-6 text-muted-foreground" />}
-          label={t("nav.settings")}
+          label={t("settings")}
         />
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <NavOverlay.MenuControl
-          label={t("nav.settings")}
+          label={t("settings")}
           value="Theme"
           control={<ThemeToggle />}
         />
         <NavOverlay.MenuControl
-          label={t("nav.language")}
+          label={t("language")}
           value={locale.toUpperCase()}
           control={<LanguageSwitcher />}
         />

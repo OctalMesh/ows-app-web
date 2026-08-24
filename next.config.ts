@@ -15,6 +15,12 @@ const configNext: NextConfig = {
   output: "standalone", // https://nextjs.org/docs/getting-started/deploying
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   cacheComponents: true,
+  partialPrefetching: true,
+  experimental: {
+    instantInsights: {
+      validationLevel: "manual-warning",
+    },
+  },
 
   //<editor-fold desc="Redirects" defaultstate="collapsed">
 

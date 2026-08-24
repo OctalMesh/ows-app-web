@@ -2,9 +2,12 @@
 
 import { useContext } from "react";
 
-import { NavigationHistoryContext } from "./navigation-history-context";
+import {
+  NavigationHistoryContext,
+  type NavigationHistoryContextValue,
+} from "./navigation-history-context";
 
-export function useNavigationHistory() {
+export function useNavigationHistory(): NavigationHistoryContextValue {
   const context = useContext(NavigationHistoryContext);
 
   if (!context) {
