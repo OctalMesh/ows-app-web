@@ -2,7 +2,7 @@
 
 import type { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Label } from "@shared/ui/label";
 
 export type FieldLabelProps = ComponentProps<typeof Label>;

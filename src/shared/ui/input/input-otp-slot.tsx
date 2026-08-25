@@ -4,7 +4,7 @@ import { ComponentProps, JSX, useContext } from "react";
 
 import { OTPInputContext } from "input-otp";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface InputOtpSlotProps extends ComponentProps<"div"> {
   index: number;

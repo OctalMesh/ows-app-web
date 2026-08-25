@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type CollapsibleContentProps = CollapsiblePrimitive.Panel.Props;
 

@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { ButtonVariantsProps, buttonVariants } from "./button.styles";
 

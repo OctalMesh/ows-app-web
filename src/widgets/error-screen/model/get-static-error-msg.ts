@@ -2,10 +2,11 @@
 NOTE: Real shit code. This is a temporary solution to get static error
 messages for the root error page.
 */
+import enErrors from "@messages/en/errors.json";
+import ukErrors from "@messages/uk/errors.json";
+
 import { DEFAULT_LOCALE } from "@shared/i18n";
 
-import enErrors from "../../../../messages/en/errors.json";
-import ukErrors from "../../../../messages/uk/errors.json";
 import { type ErrorMessage, resolveErrorKey } from "./resolve-error-key";
 
 const LOCALE_COOKIE_NAME = "NEXT_LOCALE";

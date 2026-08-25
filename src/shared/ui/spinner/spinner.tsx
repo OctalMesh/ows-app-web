@@ -2,7 +2,7 @@ import { JSX, SVGProps } from "react";
 
 import { IconLoader } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SpinnerProps = SVGProps<SVGSVGElement>;
 

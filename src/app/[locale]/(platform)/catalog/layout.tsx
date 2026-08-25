@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, ReactNode } from "react";
+import { JSX } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
 
@@ -24,9 +24,7 @@ import { ThemeToggle } from "@features/theme";
 
 import { useCartStore } from "@entities/cart";
 
-interface CatalogLayoutProps {
-  children: ReactNode;
-}
+type CatalogLayoutProps = LayoutProps<"/[locale]/catalog">;
 
 export default function CatalogLayout({
   children,

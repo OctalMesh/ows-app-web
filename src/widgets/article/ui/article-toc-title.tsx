@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { IconAlignLeft } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface TocTitleProps {
   text?: string;

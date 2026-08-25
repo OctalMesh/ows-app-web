@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { IconCheck } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface DropdownMenuCheckboxItemProps
   extends MenuPrimitive.CheckboxItem.Props {

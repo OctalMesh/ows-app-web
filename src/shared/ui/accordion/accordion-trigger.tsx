@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type AccordionTriggerProps = AccordionPrimitive.Trigger.Props;
 

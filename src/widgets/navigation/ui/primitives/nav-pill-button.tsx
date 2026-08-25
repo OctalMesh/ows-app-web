@@ -2,7 +2,7 @@
 
 import { JSX, ReactNode } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button, type ButtonProps } from "@shared/ui/button";
 
 export interface NavPillButtonProps extends ButtonProps {

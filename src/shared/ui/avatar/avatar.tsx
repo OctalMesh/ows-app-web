@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface AvatarProps extends AvatarPrimitive.Root.Props {
   size?: "default" | "sm" | "lg";

@@ -5,7 +5,7 @@ import { JSX } from "react";
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 import { IconX } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button } from "@shared/ui/button";
 
 export type ToastCloseProps = ToastPrimitive.Close.Props;

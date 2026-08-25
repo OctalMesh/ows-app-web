@@ -2,8 +2,8 @@
 
 import type { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
-import { Separator } from "@shared/ui";
+import { cn } from "@shared/lib/cn";
+import { Separator } from "@shared/ui/separator";
 
 export type ItemSeparatorProps = ComponentProps<typeof Separator>;
 

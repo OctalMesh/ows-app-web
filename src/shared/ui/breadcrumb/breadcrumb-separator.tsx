@@ -4,7 +4,7 @@ import type { ComponentProps, JSX } from "react";
 
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type BreadcrumbSeparatorProps = ComponentProps<"li">;
 

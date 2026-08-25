@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SheetOverlayProps = SheetPrimitive.Backdrop.Props;
 

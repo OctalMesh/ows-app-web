@@ -4,7 +4,7 @@ import { JSX, type ReactNode, useState } from "react";
 
 import { AnimatePresence, motion } from "motion/react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button } from "@shared/ui/button";
 
 export interface NavToggleIconButtonProps {

@@ -11,10 +11,10 @@ import {
 
 import { ThemeProvider } from "@features/theme";
 
-import "@shared/assets/styles";
-import { inter, octalFont } from "@shared/config";
+import { inter, octalFont } from "@shared/config/fonts";
+import "@shared/styles";
 
-interface GlobalErrorProps {
+interface GlobalErrorProps extends PageProps<"/[locale]"> {
   error: Error & { digest?: string };
   reset: () => void;
 }

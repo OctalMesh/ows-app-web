@@ -8,8 +8,8 @@ import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "motion/react";
 
 import { Link } from "@shared/i18n";
-import { cn } from "@shared/lib";
-import { LogoOctalMesh, PlaceholderImg } from "@shared/ui";
+import { cn } from "@shared/lib/cn";
+import { LogoOctalMesh, PlaceholderImg } from "@shared/ui/svg";
 
 import { FooterLink } from "./footer-link";
 import { FooterLinkGroup } from "./footer-link-group";
@@ -181,13 +181,13 @@ export function Footer({ className, ...props }: FooterProps): JSX.Element {
         >
           <p>{t("copyright")}</p>
           <Link
-            href="/privacy"
+            href="/articles/privacy"
             className="transition-colors duration-300 hover:text-current"
           >
             {t("legal.privacy")}
           </Link>
           <Link
-            href="/terms"
+            href="/articles/terms"
             className="transition-colors duration-300 hover:text-current"
           >
             {t("legal.terms")}

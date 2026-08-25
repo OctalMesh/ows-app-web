@@ -2,7 +2,7 @@ import type { JSX } from "react";
 
 import { Slider as SliderPrimitive } from "@base-ui/react/slider";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SliderProps = SliderPrimitive.Root.Props;
 

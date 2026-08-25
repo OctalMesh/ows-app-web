@@ -13,7 +13,7 @@ import {
   useNavigationHistory,
 } from "@widgets/navigation";
 
-interface ErrorPageProps {
+interface ErrorPageProps extends PageProps<"/[locale]"> {
   error: Error & { digest?: string };
   reset: () => void;
 }

@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { IconX } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button } from "@shared/ui/button";
 
 export interface ComboboxChipProps extends ComboboxPrimitive.Chip.Props {

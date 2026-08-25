@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SelectSeparatorProps = SelectPrimitive.Separator.Props;
 

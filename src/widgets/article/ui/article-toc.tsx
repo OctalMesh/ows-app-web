@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import type { TocHeading } from "*.mdx";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { useArticle } from "../model";
 import { useArticleToc } from "../model/use-article-toc";

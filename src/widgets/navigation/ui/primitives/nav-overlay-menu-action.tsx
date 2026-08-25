@@ -3,7 +3,7 @@
 import { JSX, ReactNode } from "react";
 
 import { Link } from "@shared/i18n";
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { useNavigation } from "../../model";
 

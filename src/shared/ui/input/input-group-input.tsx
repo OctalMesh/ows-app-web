@@ -2,7 +2,7 @@
 
 import type { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Input } from "@shared/ui/input";
 
 export type InputGroupInputProps = ComponentProps<"input">;

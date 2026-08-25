@@ -1,14 +1,14 @@
 "use client";
 
-import { type JSX, ReactNode } from "react";
+import { type JSX } from "react";
 
 import { DefaultNavigation } from "@widgets/navigation";
 
-interface Props {
-  children: ReactNode;
-}
+type ContentLayoutProps = LayoutProps<"/[locale]">;
 
-export default function ContentLayout({ children }: Props): JSX.Element {
+export default function ContentLayout({
+  children,
+}: ContentLayoutProps): JSX.Element {
   return (
     <DefaultNavigation showPrimaryNav={false} showBackButton={true}>
       {children}

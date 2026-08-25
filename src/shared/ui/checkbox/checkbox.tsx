@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox";
 import { IconCheck } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type CheckboxProps = CheckboxPrimitive.Root.Props;
 

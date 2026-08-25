@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { IconCheck } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type ComboboxItemProps = ComboboxPrimitive.Item.Props;
 

@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { ToggleGroupContext } from "./toggle-group-context";
 import { type ToggleVariantsProps, toggleVariants } from "./toggle.styles";

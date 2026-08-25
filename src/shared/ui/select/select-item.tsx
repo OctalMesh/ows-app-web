@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { IconCheck } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SelectItemProps = SelectPrimitive.Item.Props;
 

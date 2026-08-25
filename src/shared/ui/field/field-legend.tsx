@@ -2,7 +2,7 @@
 
 import type { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface FieldLegendProps extends ComponentProps<"legend"> {
   variant?: "legend" | "label";

@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type TabsTriggerProps = TabsPrimitive.Tab.Props;
 

@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface DropdownMenuLabelProps extends MenuPrimitive.GroupLabel.Props {
   inset?: boolean;

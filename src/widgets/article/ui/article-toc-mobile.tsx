@@ -4,8 +4,8 @@ import { type JSX, useState } from "react";
 
 import { TocHeading } from "*.mdx";
 
-import { ScrollArea } from "@shared/ui";
 import { Collapsible, CollapsibleContent } from "@shared/ui/collapsible";
+import { ScrollArea } from "@shared/ui/scroll";
 
 import { ArticleTocList } from "./article-toc-list";
 import { ArticleTocMobileTrigger } from "./article-toc-mobile-trigger";

@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { PreviewCard as PreviewCardPrimitive } from "@base-ui/react/preview-card";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type HoverCardContentProps = PreviewCardPrimitive.Popup.Props &
   Pick<

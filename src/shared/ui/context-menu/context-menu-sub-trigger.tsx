@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface ContextMenuSubTriggerProps
   extends ContextMenuPrimitive.SubmenuTrigger.Props {

@@ -4,7 +4,7 @@ import { type JSX, useRef } from "react";
 
 import { TocHeading } from "*.mdx";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { ArticleTocIndicator } from "./article-toc-indicator";
 import { ArticleTocSection } from "./article-toc-section";

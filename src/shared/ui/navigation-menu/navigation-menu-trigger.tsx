@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 import { IconChevronDown } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type NavigationMenuTriggerProps = NavigationMenuPrimitive.Trigger.Props;
 

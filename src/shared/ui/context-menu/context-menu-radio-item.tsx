@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 import { IconCheck } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface ContextMenuRadioItemProps
   extends ContextMenuPrimitive.RadioItem.Props {

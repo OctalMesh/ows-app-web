@@ -4,7 +4,7 @@ import type { CSSProperties, JSX } from "react";
 
 import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { ToggleGroupContext } from "./toggle-group-context";
 import type { ToggleVariantsProps } from "./toggle.styles";

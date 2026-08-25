@@ -1,8 +1,8 @@
 import { JSX } from "react";
 
 import { Link } from "@shared/i18n";
-import { cn } from "@shared/lib";
-import { ArrowIcon } from "@shared/ui";
+import { cn } from "@shared/lib/cn";
+import { ArrowIcon } from "@shared/ui/svg";
 
 interface FooterLinkProps {
   href: string;

@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { ContextMenu as ContextMenuPrimitive } from "@base-ui/react/context-menu";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface ContextMenuItemProps extends ContextMenuPrimitive.Item.Props {
   inset?: boolean;

@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, ReactNode } from "react";
+import { JSX } from "react";
 
 import { useLocale, useTranslations } from "next-intl";
 
@@ -24,9 +24,7 @@ import { ThemeToggle } from "@features/theme";
 
 import { useCartStore } from "@entities/cart";
 
-interface ServiceLayoutProps {
-  children: ReactNode;
-}
+type ServiceLayoutProps = LayoutProps<"/[locale]/service">;
 
 export default function ServiceLayout({
   children,

@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type AccordionItemProps = AccordionPrimitive.Item.Props;
 

@@ -30,8 +30,8 @@ files:
     update_option: "update_without_changes"
 
   # Mdx files for content pages
-  - source: "/src/shared/assets/content/uk/**/*.mdx"
-    translation: "/src/shared/assets/content/%two_letters_code%/**/%original_file_name%"
+  - source: "/content/uk/**/*.mdx"
+    translation: "/content/%two_letters_code%/**/%original_file_name%"
     update_option: "update_as_unapproved"
     content_segmentation: 1
     translate_content: 1

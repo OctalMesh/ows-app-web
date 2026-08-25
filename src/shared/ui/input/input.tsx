@@ -4,7 +4,7 @@ import type { ComponentProps, JSX } from "react";
 
 import { Input as InputPrimitive } from "@base-ui/react/input";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type InputProps = ComponentProps<"input">;
 

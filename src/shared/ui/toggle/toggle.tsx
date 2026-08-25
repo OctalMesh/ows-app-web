@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { ToggleVariantsProps, toggleVariants } from "./toggle.styles";
 

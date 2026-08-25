@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface DropdownMenuSubTriggerProps
   extends MenuPrimitive.SubmenuTrigger.Props {

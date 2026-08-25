@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { Dialog } from "@base-ui/react/dialog";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { useNavigation } from "../../model";
 

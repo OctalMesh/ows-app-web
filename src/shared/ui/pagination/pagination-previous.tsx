@@ -4,7 +4,7 @@ import type { ComponentProps, JSX } from "react";
 
 import { IconChevronLeft } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { PaginationLink } from "./pagination-link";
 

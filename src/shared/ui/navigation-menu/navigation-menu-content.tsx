@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type NavigationMenuContentProps = NavigationMenuPrimitive.Content.Props;
 

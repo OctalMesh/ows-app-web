@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { DrawerOverlay } from "./drawer-overlay";
 import { DrawerPortal } from "./drawer-portal";

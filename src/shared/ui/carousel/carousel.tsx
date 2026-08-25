@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import useEmblaCarousel from "embla-carousel-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { CarouselApi, CarouselContext, CarouselProps } from "./use-carousel";
 

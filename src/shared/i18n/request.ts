@@ -20,9 +20,7 @@ function loadMessages(locale: Locale): Promise<IntlMessages> {
   const promise = (async () => {
     const entries = await Promise.all(
       NAMESPACES.map(async (ns: IntlNamespaces) => {
-        const mod = (await import(
-          `../../../messages/${locale}/${ns}.json`
-        )) as {
+        const mod = (await import(`@messages/${locale}/${ns}.json`)) as {
           default: Record<string, unknown>;
         };
         return [ns, mod.default] as const;
@@ -32,7 +30,10 @@ function loadMessages(locale: Locale): Promise<IntlMessages> {
     return Object.fromEntries(entries) as unknown as IntlMessages;
   })();
 
-  if (!isDev) rawMessagesCache.set(locale, promise);
+  if (!isDev) {
+    rawMessagesCache.set(locale, promise);
+  }
+
   return promise;
 }
 

@@ -9,9 +9,9 @@ import { NavigationHistoryProvider } from "@widgets/navigation";
 
 import { ThemeProvider } from "@features/theme";
 
-import "@shared/assets/styles";
-import { inter, octalFont } from "@shared/config";
+import { inter, octalFont } from "@shared/config/fonts";
 import { routing } from "@shared/i18n";
+import "@shared/styles";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();

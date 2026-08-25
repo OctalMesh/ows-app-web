@@ -9,7 +9,9 @@
       "@widgets/*": [ "./src/widgets/*" ],
       "@features/*": [ "./src/features/*" ],
       "@entities/*": [ "./src/entities/*" ],
-      "@shared/*": [ "./src/shared/*" ]
+      "@shared/*": [ "./src/shared/*" ],
+      "@messages/*": [ "./messages/*" ],
+      "@content/*": ["./content/*"]
     },
 
     /* Environment */

@@ -4,7 +4,7 @@ import { ComponentProps, JSX } from "react";
 
 import { OTPInput } from "input-otp";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type InputOtpProps = ComponentProps<typeof OTPInput> & {
   containerClassName?: string;

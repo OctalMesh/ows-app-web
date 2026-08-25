@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Progress as ProgressPrimitive } from "@base-ui/react/progress";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type ProgressIndicatorProps = ProgressPrimitive.Indicator.Props;
 

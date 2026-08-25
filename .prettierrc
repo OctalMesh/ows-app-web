@@ -13,7 +13,7 @@
     "@trivago/prettier-plugin-sort-imports",
     "prettier-plugin-tailwindcss"
   ],
-  "tailwindStylesheet": "./src/shared/assets/styles/globals.css",
+  "tailwindStylesheet": "./src/shared/styles/globals.css",
   "tailwindFunctions": ["cn", "cva"],
   "importOrder": [
     "^server-only$",

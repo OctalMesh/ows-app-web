@@ -2,7 +2,7 @@
 
 import { ComponentProps, type JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import {
   ButtonGroupVariantsProps,

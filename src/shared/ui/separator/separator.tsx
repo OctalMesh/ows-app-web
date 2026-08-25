@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SeparatorProps = SeparatorPrimitive.Props;
 

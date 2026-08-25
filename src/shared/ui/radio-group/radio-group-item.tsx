@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type RadioGroupItemProps = RadioPrimitive.Root.Props;
 

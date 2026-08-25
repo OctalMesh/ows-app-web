@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type ToastDescriptionProps = ToastPrimitive.Description.Props;
 

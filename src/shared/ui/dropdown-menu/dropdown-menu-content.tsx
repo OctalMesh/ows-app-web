@@ -4,7 +4,7 @@ import type { ComponentProps, JSX } from "react";
 
 import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type DropdownMenuContentProps = ComponentProps<
   typeof MenuPrimitive.Popup

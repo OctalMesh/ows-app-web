@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { IconX } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button } from "@shared/ui/button";
 
 import { DialogOverlay } from "./dialog-overlay";

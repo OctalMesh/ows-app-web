@@ -11,7 +11,7 @@ import {
 
 import { motion } from "motion/react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface TocIndicatorProps {
   containerRef: RefObject<HTMLDivElement | null>;

@@ -2,7 +2,7 @@
 
 import type { JSX, ReactNode } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface ErrorScreenBannerProps {
   children: ReactNode;

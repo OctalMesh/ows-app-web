@@ -2,7 +2,7 @@
 
 import type { ComponentProps, JSX, ReactNode } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Separator } from "@shared/ui/separator";
 
 export interface FieldSeparatorProps extends ComponentProps<"div"> {

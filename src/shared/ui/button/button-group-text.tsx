@@ -3,7 +3,7 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type ButtonGroupTextProps = useRender.ComponentProps<"div">;
 

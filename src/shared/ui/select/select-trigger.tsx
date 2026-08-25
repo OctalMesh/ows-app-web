@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { IconChevronDown } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface SelectTriggerProps extends SelectPrimitive.Trigger.Props {
   size?: "sm" | "md" | "lg" | "default";

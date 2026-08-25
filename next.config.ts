@@ -121,7 +121,7 @@ const withMDX = nextMDX({
     ],
     rehypePlugins: [
       "rehype-slug",
-      path.resolve(process.cwd(), "src/shared/lib/rehype-toc.mts"),
+      path.resolve(process.cwd(), "src/shared/mdx/rehype-toc.mts"),
     ],
   },
 });

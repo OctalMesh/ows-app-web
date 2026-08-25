@@ -2,7 +2,7 @@
 
 import { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type TableCellProps = ComponentProps<"td">;
 

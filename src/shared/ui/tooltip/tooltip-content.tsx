@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type TooltipContentProps = TooltipPrimitive.Popup.Props &
   Pick<

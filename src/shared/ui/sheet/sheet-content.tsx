@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 import { IconX } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Button } from "@shared/ui/button";
 
 import { SheetOverlay } from "./sheet-overlay";

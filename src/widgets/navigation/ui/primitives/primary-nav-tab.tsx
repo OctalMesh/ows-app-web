@@ -2,7 +2,7 @@
 
 import { JSX, ReactNode } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 import { type NavOverlayKey, useNavigation } from "../../model";
 import { NavPrimaryItem } from "./nav-primary-item";

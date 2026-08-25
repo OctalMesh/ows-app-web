@@ -1,14 +1,14 @@
 "use client";
 
-import { type JSX, ReactNode } from "react";
+import { type JSX } from "react";
 
 import { DefaultNavigation } from "@widgets/navigation";
 
-interface Props {
-  children: ReactNode;
-}
+type LandingLayoutProps = LayoutProps<"/[locale]">;
 
-export default function LandingLayout({ children }: Props): JSX.Element {
+export default function LandingLayout({
+  children,
+}: LandingLayoutProps): JSX.Element {
   return (
     <DefaultNavigation>
       <div className="flex min-h-svh items-center justify-center px-10">

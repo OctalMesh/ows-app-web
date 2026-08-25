@@ -5,7 +5,7 @@ import type { ComponentProps, JSX } from "react";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
 import { IconChevronUp } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type SelectScrollUpButtonProps = ComponentProps<
   typeof SelectPrimitive.ScrollUpArrow

@@ -4,7 +4,7 @@ import { JSX } from "react";
 
 import { Switch as SwitchPrimitive } from "@base-ui/react/switch";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export interface SwitchProps extends SwitchPrimitive.Root.Props {
   size?: "sm" | "default";

@@ -4,8 +4,8 @@ import type { JSX } from "react";
 
 import { TocHeading } from "*.mdx";
 
-import { cn } from "@shared/lib";
-import { Button } from "@shared/ui";
+import { cn } from "@shared/lib/cn";
+import { Button } from "@shared/ui/button";
 
 export interface TocItemProps {
   heading: TocHeading;

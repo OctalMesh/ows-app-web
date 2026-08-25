@@ -4,7 +4,7 @@ import { type ReactNode, useSyncExternalStore } from "react";
 
 import { useTheme } from "next-themes";
 
-import { Theme } from "@shared/config";
+import { Theme } from "@shared/config/theme";
 
 export interface ThemeSwitchProps {
   light: ReactNode;

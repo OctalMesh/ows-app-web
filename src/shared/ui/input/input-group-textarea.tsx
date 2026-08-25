@@ -2,7 +2,7 @@
 
 import type { ComponentProps, JSX } from "react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { Textarea } from "@shared/ui/textarea";
 
 export type InputGroupTextareaProps = ComponentProps<"textarea">;

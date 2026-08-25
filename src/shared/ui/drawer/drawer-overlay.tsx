@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { Drawer as DrawerPrimitive } from "@base-ui/react/drawer";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type DrawerOverlayProps = DrawerPrimitive.Backdrop.Props;
 

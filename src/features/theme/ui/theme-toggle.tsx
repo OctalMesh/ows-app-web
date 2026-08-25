@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 
 import { IconDeviceDesktop, IconMoon, IconSun } from "@tabler/icons-react";
 
-import { Theme } from "@shared/config";
+import { Theme } from "@shared/config/theme";
 import { Button } from "@shared/ui/button";
 import {
   DropdownMenu,

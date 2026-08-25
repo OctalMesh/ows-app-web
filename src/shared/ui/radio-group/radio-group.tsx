@@ -4,7 +4,7 @@ import type { JSX } from "react";
 
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 
 export type RadioGroupProps = RadioGroupPrimitive.Props;
 

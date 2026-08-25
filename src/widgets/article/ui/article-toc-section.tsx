@@ -5,7 +5,7 @@ import { type JSX, useState } from "react";
 import { TocHeading } from "*.mdx";
 import { IconChevronRight } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import {
   Collapsible,
   CollapsibleContent,

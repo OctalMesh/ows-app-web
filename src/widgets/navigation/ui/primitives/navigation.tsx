@@ -6,7 +6,8 @@ import { useHotkeys } from "react-hotkeys-hook";
 
 import { useCartStore } from "@entities/cart";
 
-import { createFlagStore, createOverlayStore } from "@shared/lib";
+import { createFlagStore } from "@shared/lib/create-flag-store";
+import { createOverlayStore } from "@shared/lib/create-overlay-store";
 
 import {
   type NavOverlayKey,
@@ -47,7 +48,7 @@ export function Navigation({ children }: NavigationProps): JSX.Element {
     closeAllOverlays();
   }, [closeMenu, closeAllOverlays]);
 
-  const isAnyOpen = isMenuOpen || activeOverlay !== null;
+  const isAnyOpen = activeOverlay !== null;
 
   const handlePathChange = useCallback(
     (newPathname: string) => {

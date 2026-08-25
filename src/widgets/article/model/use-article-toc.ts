@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { TocHeading } from "*.mdx";
 
-import { areSetsEqual } from "@shared/lib";
+import { areSetsEqual } from "@shared/lib/are-sets-equal";
 
 import { getFlatIds } from "./get-flat-ids";
 

@@ -5,7 +5,7 @@ import type { JSX } from "react";
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
 import { IconX } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { InputGroupButton } from "@shared/ui/input";
 
 export type ComboboxClearProps = ComboboxPrimitive.Clear.Props;

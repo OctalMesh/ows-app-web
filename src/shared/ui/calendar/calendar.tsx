@@ -9,7 +9,7 @@ import {
   IconChevronRight,
 } from "@tabler/icons-react";
 
-import { cn } from "@shared/lib";
+import { cn } from "@shared/lib/cn";
 import { ButtonVariantsProps, buttonVariants } from "@shared/ui/button";
 
 import { CalendarDayButton } from "./calendar-day-button";

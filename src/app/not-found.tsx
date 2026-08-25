@@ -11,8 +11,8 @@ import {
 
 import { ThemeProvider } from "@features/theme";
 
-import "@shared/assets/styles";
-import { inter, octalFont } from "@shared/config";
+import { inter, octalFont } from "@shared/config/fonts";
+import "@shared/styles";
 
 export default function RootNotFound(): JSX.Element {
   const locale = getStaticLocale();
