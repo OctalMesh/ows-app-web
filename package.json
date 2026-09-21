@@ -112,7 +112,7 @@
     "jsdom": "^30.0.1",
     "postcss": "^8.5.28",
     "postcss-load-config": "^6.0.1",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "tree-node-cli": "^3.0.0",
