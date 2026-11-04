@@ -21,8 +21,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1(@types/react@19.3.0)(react@19.3.1)
       '@next/mdx':
-        specifier: ^16.4.2
-        version: 16.4.2(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))
+        specifier: ^16.4.3
+        version: 16.4.3(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))
       '@shadcn/react':
         specifier: ^0.3.1
         version: 0.3.1(@types/react@19.3.0)(react@19.3.1)
@@ -873,8 +873,8 @@ packages:
   '@next/eslint-plugin-next@16.4.3':
     resolution: {integrity: sha512-oxuC06wt/71h6ACYCV9GbKOfnf5a7VlRe/p80YHTut15TNgDEmynDnaq8t/xhy5rlvk7dhItIPs6H3rvIM4kyw==}
 
-  '@next/mdx@16.4.2':
-    resolution: {integrity: sha512-elDnhfH37V+dBiOTmhW8VFcAm6wrXU0LI+NYk5oGVBtrdfRk9FMLpAofTi9sgTazohoThiDVFJQpzKRgbB8SEg==}
+  '@next/mdx@16.4.3':
+    resolution: {integrity: sha512-N86fgGEVCoB0ULnWlmRZcaZnZD5sLmBkZt4CAPxy0b04qpwimlCdhA6MnwdnJBqmByl2OEKHpQt/GpJRz3UUwQ==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '>=0.15.0'
@@ -5469,7 +5469,7 @@ snapshots:
     transitivePeerDependencies:
       - eslint
 
-  '@next/mdx@16.4.2(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))':
+  '@next/mdx@16.4.3(@mdx-js/loader@3.1.1)(@mdx-js/react@3.1.1(@types/react@19.3.0)(react@19.3.1))':
     dependencies:
       source-map: 0.7.6
     optionalDependencies:
