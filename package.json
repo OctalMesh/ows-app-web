@@ -91,7 +91,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.4",
     "@tailwindcss/typography": "^0.5.20",
     "@tanstack/eslint-plugin-query": "^5.106.1",
     "@testing-library/dom": "^10.4.2",
@@ -114,7 +114,7 @@
     "postcss-load-config": "^6.0.1",
     "prettier": "^3.9.10",
     "prettier-plugin-tailwindcss": "^0.8.1",
-    "tailwindcss": "^4.3.3",
+    "tailwindcss": "^4.3.4",
     "tree-node-cli": "^3.0.0",
     "typescript": "^6.0.3",
     "vitest": "^5.0.5"
